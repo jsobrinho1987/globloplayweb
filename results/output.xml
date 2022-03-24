@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.1 (Python 3.9.7 on win32)" generated="20220216 17:33:58.347" rpa="false" schemaversion="2">
+<suite id="s1" name="Home" source="C:\Users\ACT\Documents\Globo - QA\web-tests-globoplay\scenarios\Home.robot">
+<kw name="Before Suite" library="environment" type="SETUP">
+<kw name="Create Directory">
+<arg>${path_screenshots}/${SUITE NAME}</arg>
+<msg timestamp="20220216 17:33:58.373" level="FAIL">No keyword with name 'Create Directory' found.</msg>
+<status status="FAIL" starttime="20220216 17:33:58.373" endtime="20220216 17:33:58.373"/>
+</kw>
+<kw name="Empty Directory">
+<arg>${path_screenshots}/${SUITE NAME}</arg>
+<status status="NOT RUN" starttime="20220216 17:33:58.374" endtime="20220216 17:33:58.375"/>
+</kw>
+<kw name="Remove files">
+<arg>${EXECDIR}/geckodriver-*.log</arg>
+<status status="NOT RUN" starttime="20220216 17:33:58.376" endtime="20220216 17:33:58.376"/>
+</kw>
+<status status="FAIL" starttime="20220216 17:33:58.371" endtime="20220216 17:33:58.376"/>
+</kw>
+<test id="s1-t1" name="Validar exibição do destaque banner de carrossel na home">
+<status status="FAIL" starttime="20220216 17:33:58.376" endtime="20220216 17:33:58.377">Parent suite setup failed:
+No keyword with name 'Create Directory' found.</status>
+</test>
+<test id="s1-t2" name="Validar exibição do trilho de destaque na home">
+<status status="FAIL" starttime="20220216 17:33:58.379" endtime="20220216 17:33:58.379">Parent suite setup failed:
+No keyword with name 'Create Directory' found.</status>
+</test>
+<doc>Validação de fluxos e funcionalidades presentes na Home</doc>
+<status status="FAIL" starttime="20220216 17:33:58.348" endtime="20220216 17:33:58.381">Suite setup failed:
+No keyword with name 'Create Directory' found.</status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Home">Home</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
