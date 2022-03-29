@@ -1215,7 +1215,7 @@ clicar no menu "Busca"
 
 seleciona o menu Explore
     Log To Console    Seleciona botão Explore
-    Click element   ${podcasts.explore}
+    Click element   ${menu_podcasts.explore}
 
 direciona para a página do Explore
     Log To Console    Valida página explore
@@ -1228,7 +1228,7 @@ direciona para a página do Explore
 #    Run Keyword If    '${pageExplore.aba_categoria}' == ''    Log To Console    Retorno NOK
 
     Wait Until Element Is Visible   ${pageExplore.categorias_lista}     20s
-    Click element   ${podcasts.explore}
+    Click element   ${menu_podcasts.explore}
 
 
 #---------------------------------------------------------------------#
@@ -1237,15 +1237,15 @@ direciona para a página do Explore
 
 seleciona a aba "Podcasts"
     Log To Console    Valida aba Podcasts
-    Wait Until Element Is Visible   ${podcasts.pod}     20s
-    Click element   ${podcasts.pod}
+    Wait Until Element Is Visible   ${menu_podcasts.pod}     20s
+    Click element   ${menu_podcasts.pod}
 
 apresenta as opções disponiveis do podcasts
     Log To Console    Valida página de Podcasts
 
     Run Keyword If    '${url_pod}' == 'https://globoplay.globo.com/podcasts/'    Log To Console     Redirecionado para a página de Podcasts
     ...         ELSE   Log To Console     <Não redirecinado para a página de Podcasts> RETORNA URL: '${url_pod}'
-    Wait Until Element Is Visible   ${podcasts.lista}     20s
+    Wait Until Element Is Visible   ${menu_podcasts.lista}     20s
 
 #----------------------------------------------------------#
 # Validação dos cenários PODCASTS - Original Globoplay
@@ -1253,8 +1253,8 @@ apresenta as opções disponiveis do podcasts
 
 seleciona opção "Original Globoplay"
     Log To Console    Valida opção "Original Globoplay"
-    Wait Until Element Is Visible   ${podcasts.originais_globoplay}     20s
-    Click element   ${podcasts.originais_globoplay}
+    Wait Until Element Is Visible   ${menu_podcasts.originais_globoplay}     20s
+    Click element   ${menu_podcasts.originais_globoplay}
 
 apresenta opções disponiveis do Original Globoplay
     Log To Console    Valida página do Podcast "Original Globoplay"
@@ -1263,35 +1263,51 @@ apresenta opções disponiveis do Original Globoplay
     ...         ELSE   Log To Console     <Não redirecinado para a página de Podcast "Original Globoplay"> RETORNA URL: '${url_originais}'
     
     Wait Until Page Contains   text=Podcasts Originais Globoplay
-    Wait Until Element Is Visible   ${originais.lista}     20s
+    Wait Until Element Is Visible   ${podcasts.lista}     20s
 
-# Valida cenários PODCASTS Original Globoplay (À Mão Armada)
+#----------------------------------------------------------#
+# Validação dos cenários PODCASTS - Mais Vistos
+#----------------------------------------------------------#
 
-seleciona opção "À Mão Armada"
-    Log To Console    Valida opção "À Mão Armada"
-    Wait Until Element Is Visible   ${originais.mao_armada}     20s
-    Click element   ${originais.mao_armada}
+seleciona opção "Podcasts Mais Ouvidos"
+    Log To Console    Valida opção "Mais Ouvidos"
+    Wait Until Element Is Visible   ${menu_podcasts.mais_ouvidos}     20s
+    Click element   ${menu_podcasts.mais_ouvidos}
 
-apresenta opções disponiveis de episódios À Mão Armada
-    Log To Console    Valida página do podcast "À Mão Armada"
+apresenta opções disponiveis do Podcasts Mais Ouvidos
+    Log To Console    Valida página do Podcast "Mais Ouvidos"
+    
+    Run Keyword If    '${url_mais_ouvidos}' == 'https://globoplay.globo.com/podcasts/categorias/podcasts-mais-ouvidos/'    Log To Console     Redirecionado para a página de Podcasts "Mais Ouvidos"
+    ...         ELSE   Log To Console     <Não redirecinado para a página de Podcast "Mais Ouvidos"> RETORNA URL: '${url_mais_ouvidos}'
+    
+    Wait Until Page Contains   text=Podcasts Mais Ouvidos
+    Wait Until Element Is Visible   ${podcasts.lista}     20s
 
-    Run Keyword If    '${url_mao_armada}' == 'https://globoplay.globo.com/podcasts/a-mao-armada/7b135c4e-0847-4339-ae77-7d5605ea0ec7'    Log To Console     Redirecionado para a página de Podcasts "À Mão Armada"
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Podcast "À Mão Armada"> RETORNA URL: '${url_mao_armada}'
+#----------------------------------------------------------#
+# Validação dos cenários PODCASTS - Episódios
+#----------------------------------------------------------#
 
-    Wait Until Page Contains   text=À Mão Armada
-    Wait Until Element Is Visible   ${pod_mao_armada.grid}     20s
-    Wait Until Element Is Visible   ${pod_mao_armada.grid_episodios}     20s
+apresenta opções disponiveis de episódios
+    Log To Console    Valida página do podcast seleciona
+
+    Run Keyword If    '${url_mao_armada}' == 'https://globoplay.globo.com/podcasts/a-mao-armada/7b135c4e-0847-4339-ae77-7d5605ea0ec7'    Log To Console     Redirecionado para a página do Podcasts
+    ...         ELSE   Log To Console     <Não redirecinado para a página do Podcast"> RETORNA URL: '${url_mao_armada}'
+
+    Wait Until Element Is Visible   ${grid_podcasts.titulo_principal}     20s
+    
+    ${titulo_principal}=  Get Text   ${grid_podcasts.titulo_principal}
+    Wait Until Element Is Visible   ${grid_podcasts.grid}     20s
+    Wait Until Element Is Visible   ${grid_podcasts.grid_episodios}     20s
     
     @{play}=   Get WebElements   CSS:article[class="episode-card"]
 
     FOR   ${x}  IN RANGE    2000
-         Wait Until Element Is Visible   ${pod_mao_armada.play}     20s
+         Press Keys   NONE   ARROW_DOWN ARROW_DOWN
 
-         Press Keys   NONE   ARROW_DOWN
+         Wait Until Element Is Visible   ${grid_podcasts.play}     20s
 
          ${play}=  BuiltIn.Run Keyword And Ignore Error    Get Text   xpath=//html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/div[1]/article[${x}+1]   
          Run Keyword If  '${play[0]}' == ('PASS', None)   Sleep   1s 
- #        ...         ELSE IF  '${play[0]}' == ('FAIL')  Log To Console    Episódios = '${x}'  Exit For Loop  
          
          Log To Console    Episódios = '${x}'
          Exit For Loop If    '${play[0]}' == ('FAIL')  
@@ -1300,18 +1316,88 @@ apresenta opções disponiveis de episódios À Mão Armada
         
     END
 
-
 seleciona aba de "Detalhes"
     Log To Console    Valida aba "Detalhes"
-    Wait Until Element Is Visible   ${pod_mao_armada.aba_detalhes}     20s
-    Click element   ${pod_mao_armada.aba_detalhes}
+    Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT
+    Wait Until Element Is Visible   ${grid_podcasts.aba_detalhes}     20s
+    Click element   ${grid_podcasts.aba_detalhes}
 
-apresenta os detalhes da serie do podcasts "À Mão Armada"
-    Log To Console    Valida página do Podcast "À Mão Armada"
+apresenta os detalhes da serie do podcasts
+    Log To Console    Valida página do Podcast
     Wait Until Page Contains   text=Ficha técnica
     Wait Until Page Contains   text=Sinopse
-    Wait Until Element Is Visible   ${pod_mao_armada.conteudo_detalhes}     20s
 
+    ${ficha_tecnica}=  Get Text   ${grid_podcasts.ficha_tecnica}
+    ${título}=  Get Text   ${grid_podcasts.título}
+    ${total_episódios}=  Get Text   ${grid_podcasts.total_episódios}
+    ${categoria}=  Get Text   ${grid_podcasts.categoria}
+    ${produção}=  Get Text   ${grid_podcasts.produção}
+    ${sinopse}=  Get Text   ${grid_podcasts.sinopse}
+    ${sinopse_detalhes}=  Get Text   ${grid_podcasts.sinopse_detalhes}
+
+    Wait Until Element Is Visible   ${grid_podcasts.conteudo_detalhes}     20s
+
+# Valida cenários PODCASTS Original Globoplay (À Mão Armada)
+
+seleciona opção "À Mão Armada"
+    Log To Console    Valida opção "À Mão Armada"
+    Wait Until Element Is Visible   ${podcasts.mao_armada}     20s
+    Click element   ${podcasts.mao_armada}
+
+# Valida cenários PODCASTS Original Globoplay (Papo de Parente)
+
+seleciona opção "Papo de Parente"
+    Log To Console    Valida opção "Papo de Parente"
+    Wait Until Element Is Visible   ${podcasts.papo_parente}     20s
+    Click element   ${podcasts.papo_parente}
+
+# Valida cenários PODCASTS Original Globoplay (A República das Milícias)
+
+seleciona opção "A República das Milícias"
+    Log To Console    Valida opção "A República das Milícias"
+    Wait Until Element Is Visible   ${podcasts.republica_milicias}     20s
+    Click element   ${podcasts.republica_milicias}
+
+# Valida cenários PODCASTS Original Globoplay (Abuso)
+
+seleciona opção "Abuso"
+    Log To Console    Valida opção "Abuso"
+    Wait Until Element Is Visible   ${podcasts.abuso}     20s
+    Click element   ${podcasts.abuso}
+
+# Valida cenários PODCASTS Original Globoplay (Pistoleiros)
+
+seleciona opção "Pistoleiros"
+    Log To Console    Valida opção "Pistoleiros"
+    Wait Until Element Is Visible   ${podcasts.pistoleiros}     20s
+    Click element   ${podcasts.pistoleiros}
+
+
+# Valida cenários PODCASTS Original Globoplay (BBB - Big Brother Brasil)
+
+seleciona opção "BBB - Big Brother Brasil"
+    Log To Console    Valida opção "BBB - Big Brother Brasil"
+    Wait Until Element Is Visible   ${podcasts.bbb_brasil}     20s
+    Click element   ${podcasts.bbb_brasil}
+
+# Valida cenários PODCASTS Original Globoplay (Modus Operandi)
+
+seleciona opção "Modus Operandi"
+    Log To Console    Valida opção "Modus Operandi"
+    Wait Until Element Is Visible   ${podcasts.modus_operandi}     20s
+    Click element   ${podcasts.modus_operandi}
+
+# Valida cenários PODCASTS Original Globoplay (Lady Night)
+
+seleciona opção "Lady Night"
+    Log To Console    Valida opção "Lady Night"
+    Wait Until Element Is Visible   ${podcasts.lady_night}     20s
+    Click element   ${podcasts.lady_night}
+
+seleciona opção "O Assunto"
+    Log To Console    Valida opção "O Assunto"
+    Wait Until Element Is Visible   ${podcasts.assunto}     20s
+    Click element   ${podcasts.assunto}
 
 #----------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CATEGORIA             #
@@ -1323,16 +1409,16 @@ sou um usuário anônimo
   Maximize Browser Window
 
 
-que estou na home
-  Log      Verifica página home
-  ${url}=    Get Location
-  Run Keyword If    '${url}' == '${globoplay_home}'    Log To Console    Estou na home.
-  ...       ELSE    Log To Console    Não estou na home! URL: '${url}'
+#E que estou na home
+#  Log      Verifica página home
+#  ${url}=    Get Location
+#  Run Keyword If    '${url}' == '${globoplay_home}'    Log To Console    Estou na home.
+#  ...       ELSE    Log To Console    Não estou na home! URL: '${url}'
 
 
-clicar no menu "Explore"
-  Wait Until Element Is Visible    ${Home.btnMenuExplore}   ${timeout_20}
-  Click Element    ${Home.btnMenuExplore}
+#clicar no menu "Explore"
+#  Wait Until Element Is Visible    ${Home.btnMenuExplore}   ${timeout_20}
+#  Click Element    ${Home.btnMenuExplore}
 
 
 # Solicitação de login

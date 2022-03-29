@@ -4,12 +4,8 @@ Library             SeleniumLibrary
 
 *** Variables ***
 
-${url_pod}=             Get Location
-${url_originais}=       Get Location
-${url_mao_armada}=      Get Location
-
-&{podcasts}
-...                     explore=CSS:nav.header__items>a:nth-last-of-type(1)
+&{menu_podcasts}
+...                     explore=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/nav[1]/a[6]/nav[1]
 ...                     pod=CSS:nav.categories-navigation>a:nth-last-of-type(2)
 ...                     lista=CSS:nav.header__items>a:nth-last-of-type(1)
 ...                     originais_globoplay=CSS:a[title="Originais Globoplay"]
@@ -27,19 +23,210 @@ ${url_mao_armada}=      Get Location
 ...                     todos_podcasts=CSS:a[title="Todos os Podcasts"]
 ...                     termos_politicas=CSS:div[class='footer-widget--long grid']
 
-&{originais}
-...                     lista=CSS:div[class="podcasts-grid"]
-...                     mao_armada=CSS:a[title="À Mão Armada"]
-...                     papo_parente=CSS:a[title="Papo de Parente"]
-...                     republica_milicias=CSS:a[title="A República das Milícias"]
-...                     abuso=CSS:a[title="Abuso"]
-...                     pistoleiros=CSS:a[title="Pistoleiros"]
-
-&{pod_mao_armada}
+&{grid_podcasts}
 ...                     grid=CSS:div[class="podcast-view__header"]
 ...                     grid_episodios=CSS:section[class="podcast-view__episodes"]
+...                     titulo_principal=xpath://h1[@class='view-title podcast-view__headline']
 ...                     play=CSS:article[class="episode-card"]
 ...                     aba_detalhes=CSS:button[aria-label="Aba: Detalhes"]
 ...                     aba_episodios=CSS:button[aria-label="Aba: Episódios"]
 ...                     conteudo_detalhes=CSS:section[class="podcast-details"]
 ...                     player=CSS:div[class="episode-card__player-container"]
+...                     ficha_tecnica=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/h2[1]
+...                     título=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/p[1]/span[1]
+...                     total_episódios=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/p[2]/span[1]
+...                     categoria=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/p[3]/span[1]
+...                     produção=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/p[4]/span[1]
+...                     sinopse=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/h2[2]
+...                     sinopse_detalhes=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/article[1]/div[2]/div[1]/div[1]/section[1]/p[5]
+
+&{podcasts}
+...                     lista=CSS:div[class="podcasts-grid"]
+#---Podcasts Originais Globoplay---#
+...                     papo_parente=CSS:a[title="Papo de Parente"]
+#---Podcasts Mais Ouvidos---#
+...                     novela_9=CSS:a[title="Novela das 9?"]
+...                     prazer_renata=CSS:a[title="Prazer, Renata"]
+#---Podcasts Jornalismo---#
+...                     historias_globonews=CSS:a[title="As Histórias na Globonews"]
+...                     malu_on"=CSS:a[title="A Malu tá ON"]
+...                     resumão_diario=CSS:a[title="Resumão Diário"]
+...                     radio_sucupira=CSS:a[title="Rádio Sucupira"]
+...                     lauro_gabeira=CSS:a[title="Lauro e Gabeira (podcast de O Globo)"]
+...                     ponto=CSS:a[title="Ao Ponto (podcast do jornal O Globo)"]
+...                     panorama_cbn=CSS:a[title="Panorama CBN"]
+...                     assunto=CSS:a[title="O Assunto"]
+...                     funciona_assim=CSS:a[title="G1 - Funciona assim"]
+...                     resumão=CSS:a[title="Resumão"]
+...                     podparana=CSS:a[title="PodParaná"]
+...                     baixada_pauta=CSS:a[title="Baixada em Pauta"]
+...                     novo_coronavírus=CSS:a[title="Novo Coronavírus - perguntas e respostas"]
+...                     desenrola_rio=CSS:a[title="Desenrola, Rio"]
+...                     papo_política"=CSS:a[title="Papo de Política"]
+...                     bem_estar=CSS:a[title="Bem Estar"]
+...                     internacionala=CSS:a[title="GloboNews Internacional"]
+#---Podcasts Esportes---#
+...                     prancheta=CSS:a[title="Prancheta"]
+...                     resumão_ge=CSS:a[title="Resumão GE"]
+...                     cafe_bola=CSS:a[title="Café&Bola"]
+...                     ge_chapecoense=CSS:a[title="GE Chapecoense"]
+...                     ge_juventude=CSS:a[title="GE Juventude"]
+...                     legal=CSS:a[title="Legal!"]
+...                     ge_cuiaba=CSS:a[title="GE Cuiabá"]
+...                     ge_bragantino=CSS:a[title="GE Bragantino"]
+...                     ge_america=CSS:a[title="GE América-MG"]
+...                     beach_tennis=CSS:a[title="Match Point Beach Tennis"]
+...                     mare_feminina=CSS:a[title="Maré Feminina"]
+...                     atr_ge=CSS:a[title="ATR no GE"]
+...                     ge_flamengo=CSS:a[title="GE Flamengo"]
+...                     hoje_sim=CSS:a[title="Hoje Sim"]
+...                     na_ponta=CSS:a[title="Na Ponta dos Dedos"]
+...                     fala_fera=CSS:a[title="Fala, Fera! - Eric Faria"]
+...                     gringolandiar=CSS:a[title="Gringolândia"]
+...                     dinheiro_jogo=CSS:a[title="Dinheiro em Jogo"]
+...                     early_game=CSS:a[title="Early Game"]
+...                     ge_vasco=CSS:a[title="GE Vasco"]
+...                     ge_sp=CSS:a[title="GE São Paulo"]
+...                     ge_santos=CSS:a[title="GE Santos"]
+...                     ge_palmeiras=CSS:a[title="GE Palmeiras"]
+...                     ge_internacional=CSS:a[title="GE Internacional"]
+...                     ge_gremio=CSS:a[title="GE Grêmio"]
+...                     ge_fluminense=CSS:a[title="GE Fluminense"]
+...                     ge_cruzeiro=CSS:a[title="GE Cruzeiro"]
+...                     ge_coritiba=CSS:a[title="GE Coritiba"]
+...                     ge_corinthians=CSS:a[title="GE Corinthians"]
+...                     ge_botafogo=CSS:a[title="GE Botafogo"]
+...                     atletico_mg=CSS:a[title="GE Atlético-MG"]
+...                     ge_athletico=CSS:a[title="GE Athletico"]
+...                     mundo_luta=CSS:a[title="Mundo da Luta"]
+...                     cartolacast=CSS:a[title="CartolaCast"]
+...                     embolada=CSS:a[title="Embolada"]
+...                     classico_mineiro=CSS:a[title="Clássico Mineiro"]
+...                     ce_rede=CSS:a[title="CE na rede"]
+...                     a_mesa=CSS:a[title="A Mesa"]
+...                     segue_baba=CSS:a[title="Segue o BAba"]
+...                     na_escuta=CSS:a[title="Na Escuta"]
+...                     rodada_tripla=CSS:a[title="Rodada Tripla"]
+...                     troca_ideia=CSS:a[title="Casão Troca Ideia"]
+...                     ubuntu_ec=CSS:a[title="Ubuntu Esporte Clube"]
+...                     sexta_estrela=CSS:a[title="Sexta Estrela"]
+...                     la_pelota=CSS:a[title="La Pelota"]
+...                     campinho=CSS:a[title="A Dona do Campinho"]
+...                     voces_imprensa=CSS:a[title="Vocês da Imprensa"]
+...                     pontos_nba=CSS:a[title="2 Pontos NBA"]
+...                     ponte_aerear=CSS:a[title="Ponte Aérea"]
+...                     primeira_descida=CSS:a[title="Primeira Descida"]
+...                     rede_nalbertr=CSS:a[title="Na Rede com Nalbert"]
+...                     rumo_podio=CSS:a[title="Rumo ao Pódio"]
+...                     cientista_esporte=CSS:a[title="O Cientista do Esporte"]
+...                     toca_sai=CSS:a[title="Toca e Sai"]
+...                     match_point=CSS:a[title="Match Point"]
+...                     correriar=CSS:a[title="Correria"]
+...                     grande_circulo=CSS:a[title="Grande Círculo"]
+...                     conexão=CSS:a[title="Conexão"]
+...                     jogo_casa=CSS:a[title="Jogo em Casa"]
+...                     futebol_arte=CSS:a[title="Futebol Arte"]
+...                     goleada=CSS:a[title="Goleada"]
+#---Podcasts Sociedade e Comportamento---#
+...                     promessas=CSS:a[title="Promessas"]
+...                     frango_quiabo=CSS:a[title="Frango com Quiabo"]
+...                     ai_gay=CSS:a[title="E aí Gay?"]
+...                     papo_parente=CSS:a[title="Papo de Parente"]
+...                     diario_bordo=CSS:a[title="DIÁRIO DE BORDO"]
+...                     bem_juntinhos=CSS:a[title="Bem Juntinhos"]
+...                     to_trace=CSS:a[title="Tô na Trace"]
+...                     pega_ref=CSS:a[title="Pega essa Ref"]
+...                     decodificando=CSS:a[title="Decodificando"]
+...                     gente_conversa=CSS:a[title="Gente Conversa"]
+...                     gente_investiga=CSS:a[title="Gente Investiga"]
+...                     gente_podcasts=CSS:a[title="Gente Podcasts"]
+...                     te_explico=CSS:a[title="Eu Te Explico"]
+...                     projeto_humanos=CSS:a[title="Projeto Humanos: O Caso Evandro"]
+...                     mamilos=CSS:a[title="Mamilos"]
+...                     astrologicas=CSS:a[title="Astrológicas"]
+...                     atencao_passageiros=CSS:a[title="Atenção, Passageiros"]
+...                     cozinha_pratica=CSS:a[title="Cozinha Prática com Rita Lobo"]
+...                     meia_palavra=CSS:a[title="Masterclass Meia Palavra"]
+...                     minha_ideia=CSS:a[title="Mude minha ideia"]
+...                     papo_segunda=CSS:a[title="Papo de Segunda"]
+...                     saia_justa=CSS:a[title="Saia Justa"]
+...                     jout_saia=CSS:a[title="Jout Jout de Saia"]
+...                     acabemia_cbn=CSS:a[title="Academia CBN - Mario Sergio Cortella"]
+...                     conversa_bial=CSS:a[title="Conversa com Bial"]
+...                     podparana=CSS:a[title="PodParaná"]
+...                     simples_assim=CSS:a[title="Simples Assim - com Angélica"]
+...                     isso_fantastico=CSS:a[title="Isso é Fantástico"]
+...                     como_sera=CSS:a[title="O tema é - Como Será?"]
+...                     dialogos_vituais=CSS:a[title="Diálogos Virtuais"]
+...                     engajadxs=CSS:a[title="#Engajadxs - Como Será?"]
+...                     agora_assim=CSS:a[title="Agora é Assim?"]
+#---Podcasts Cultura Pop---#
+...                     cena_aberta=CSS:a[title="Cena Aberta"]
+...                     to_trace=CSS:a[title="Tô na Trace"]
+...                     pega_ref=CSS:a[title="Pega essa Ref"]
+...                     para_tudo=CSS:a[title="Podcast Para Tudo"]
+...                     sobe_som=CSS:a[title="Sobe o Som"]
+...                     alerta_spoiler=CSS:a[title="Alerta Spoiler!"]
+...                     ealy_game=CSS:a[title="Early Game"]
+...                     radionovela=CSS:a[title="Radionovela Herança de Ódio (Êta Mundo Bom!)"]
+...                     divisão=CSS:a[title="A Divisão"]
+...                     talk_five=CSS:a[title="Talk Five"]
+...                     novidades_musicais=CSS:a[title="G1 ouviu - seu guia de novidades musicais"]
+...                     semana_pop=CSS:a[title="G1 - Semana Pop"]
+...                     bbb_brasil=CSS:a[title="BBB - Big Brother Brasil"]
+...                     gshow_ccxp=CSS:a[title="Gshow na CCXP"]
+#---Podcasts Humor---#
+...                     iozzi=CSS:a[title="Fale Mais Sobre Isso, Iozzi"]
+...                     choque_cultura=CSS:a[title="Choque de Cultura - Ambiente de Música"]
+...                     donos_razao=CSS:a[title="Donos da Razão"]
+...                     jojo_nove=CSS:a[title="Jojo Nove e Meia"]
+...                     lady_night=CSS:a[title="Lady Night"]
+...                     qualquer_custo=CSS:a[title="Viagem a Qualquer Custo"]
+...                     historia_porchat=CSS:a[title="Que História É Essa, Porchat?"]
+...                     detetive_particular=CSS:a[title="Gilmar Baltazar, Detetive Particular"]
+...                     escolinha=CSS:a[title="Escolinha do Professor Raimundo"]
+...                     fora_hora=CSS:a[title="Fora de Hora"]
+...                     humor_globo=CSS:a[title="Humor Globo"]
+#---Podcasts Negócios e Finança---#
+...                     cade_trampo=CSS:a[title="Cadê meu Trampo?"]
+...                     papo_ceo=CSS:a[title="Papo Reto com CEO"]
+...                     caminhos_intuitivos=CSS:a[title="Caminhos Intuitivos"]
+...                     promessas=CSS:a[title="Fala, emancipade"]
+...                     pod_isso=CSS:a[title="Pod isso, meninas?"]
+...                     tirando_cracha=CSS:a[title="Tirando o Crachá"]
+...                     papo_mercado=CSS:a[title="Papo de Mercado"]
+...                     cbn_dinheiro=CSS:a[title="CBN Dinheiro - Marcelo d'Agosto"]
+...                     educacao_financeira=CSS:a[title="G1 - Educação Financeira"]
+#---Podcasts Ficção e Histórias---#
+...                     pistoleiros=CSS:a[title="Pistoleiros"]
+...                     modus_operandi=CSS:a[title="Modus Operandi"]
+...                     abuso=CSS:a[title="Abuso"]
+...                     republica_milicias=CSS:a[title="A República das Milícias"]
+...                     geopizza=CSS:a[title="Geopizza"]
+...                     está_acontecendo=CSS:a[title="Isso Está Acontecendo"]
+...                     mao_armada=CSS:a[title="À Mão Armada"]
+...                     te_explico=CSS:a[title="Eu Te Explico"]
+#---Podcasts Infantil---#
+...                     bichos_escuta=CSS:a[title="Bichos na Escuta"]
+...                     escuta_filho=CSS:a[title="Escuta que o filho é teu"]
+...                     mundo_mae=CSS:a[title="Espaço Mundo Mãe"]
+#---Podcasts Negócios e Finança---#
+...                     braincast=CSS:a[title="Braincast"]
+...                     hub_globoNews=CSS:a[title="HUB GloboNews"]
+...                     em_movimento=CSS:a[title="GloboNews - Em Movimento"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

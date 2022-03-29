@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.9.7 on win32)" generated="20220328 10:17:59.618" rpa="false" schemaversion="2">
+<suite id="s1" name="Robot Interactive Console" source="c:\Users\ACT\.vscode\extensions\robocorp.robotframework-lsp-0.42.0\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="Dado que sou um usuário anônimo">
+<msg timestamp="20220328 10:18:00.697" level="FAIL">No keyword with name 'Dado que sou um usuário anônimo' found.</msg>
+<status status="FAIL" starttime="20220328 10:18:00.697" endtime="20220328 10:18:00.697"/>
+</kw>
+<kw name="E que estou na home">
+<status status="NOT RUN" starttime="20220328 10:18:00.698" endtime="20220328 10:18:00.698"/>
+</kw>
+<kw name="Quando seleciona o menu Explore">
+<status status="NOT RUN" starttime="20220328 10:18:00.699" endtime="20220328 10:18:00.699"/>
+</kw>
+<kw name="E direciona para a página do Explore">
+<status status="NOT RUN" starttime="20220328 10:18:00.700" endtime="20220328 10:18:00.700"/>
+</kw>
+<kw name="Quando seleciona a aba &quot;Podcasts&quot;">
+<status status="NOT RUN" starttime="20220328 10:18:00.701" endtime="20220328 10:18:00.701"/>
+</kw>
+<kw name="E apresenta as opções disponiveis do podcasts">
+<status status="NOT RUN" starttime="20220328 10:18:00.702" endtime="20220328 10:18:00.702"/>
+</kw>
+<kw name="Quando seleciona opção &quot;Podcasts Mais Ouvidos&quot;">
+<status status="NOT RUN" starttime="20220328 10:18:00.703" endtime="20220328 10:18:00.703"/>
+</kw>
+<kw name="E apresenta opções disponiveis em Podcasts Mais Ouvidos">
+<status status="NOT RUN" starttime="20220328 10:18:00.705" endtime="20220328 10:18:00.705"/>
+</kw>
+<kw name="Quando seleciona opção &quot;Modus Operandi&quot;">
+<status status="NOT RUN" starttime="20220328 10:18:00.705" endtime="20220328 10:18:00.705"/>
+</kw>
+<kw name="E apresenta opções disponiveis de episódios">
+<status status="NOT RUN" starttime="20220328 10:18:00.706" endtime="20220328 10:18:00.706"/>
+</kw>
+<kw name="Quando seleciona aba de &quot;Detalhes&quot;">
+<status status="NOT RUN" starttime="20220328 10:18:00.706" endtime="20220328 10:18:00.707"/>
+</kw>
+<kw name="E apresenta os detalhes da serie do podcasts">
+<status status="NOT RUN" starttime="20220328 10:18:00.707" endtime="20220328 10:18:00.707"/>
+</kw>
+<status status="PASS" starttime="20220328 10:17:59.643" endtime="20220328 10:18:06.545"/>
+</kw>
+<status status="PASS" starttime="20220328 10:17:59.642" endtime="20220328 10:18:06.545"/>
+</test>
+<status status="PASS" starttime="20220328 10:17:59.620" endtime="20220328 10:18:06.547"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

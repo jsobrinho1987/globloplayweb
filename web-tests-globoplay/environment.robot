@@ -35,7 +35,7 @@ Resource                ../web-tests-globoplay/config/explore_podcasts/MenuExplo
 # Resource                ../web-tests-globoplay/config/LGPD_Locators.robot
 # Resource                ../web-tests-globoplay/config/Player_Locators.robot
 Resource                BDDptbr.robot
-Resource                keywords.robot
+Resource                ../web-tests-globoplay/script/keywords.robot
 
 
 *** Variables ***
@@ -45,6 +45,8 @@ ${url_explore}              https://globoplay.globo.com/categorias/
 ${url_pod}                  https://globoplay.globo.com/podcasts/
 ${url_originais}            https://globoplay.globo.com/podcasts/categorias/podcasts-originais-globoplay/
 ${url_mao_armada}           https://globoplay.globo.com/podcasts/a-mao-armada/7b135c4e-0847-4339-ae77-7d5605ea0ec7
+${url_papo_parente}         https://globoplay.globo.com/podcasts/papo-de-parente/325d6028-6db1-48a1-9853-cd87da6e0f23
+${url_mais_ouvidos}         https://globoplay.globo.com/podcasts/categorias/podcasts-mais-ouvidos/
 
 
 #${PROXY}                proxy.globoi.com:3128   #192.168.0.108:8888 # IP:PORT or HOST:PORT

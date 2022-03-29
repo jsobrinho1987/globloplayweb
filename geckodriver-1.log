@@ -1,11 +1,1 @@
-1648116370128	geckodriver	INFO	Listening on 127.0.0.1:61282
-1648116373235	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--disable-popup-blocking" "--no-sandbox" "—-disable-gpu" "--disable-infobars" "--disable-dev-shm-usage" "--user-agent= Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0" "-foreground" "-no-remote" "-profile" "C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofileuJuAum"
-1648116373529	Marionette	INFO	Marionette enabled
-console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofileuJuAum\\search.json.mozlz4", (void 0)))
-1648116375421	Marionette	INFO	Listening on port 61290
-1648116375883	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-[Child 4388, MediaDecoderStateMachine #1] WARNING: 1d7d53fb820 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:367
-[Child 4388, MediaDecoderStateMachine #1] WARNING: 1d7d83ac040 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:367
-1648116387710	Marionette	INFO	Stopped listening on port 61290
-JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
-[Parent 3300, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1648502623729	geckodriver	INFO	Listening on 127.0.0.1:52048
