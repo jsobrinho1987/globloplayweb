@@ -1172,8 +1172,8 @@ clicar no menu "Explore"
 
 
 clicar em "Categorias"
-    Wait until element is visible   ${MenuExplore.btnCategorias}    20s
-    Click element   ${MenuExplore.btnCategorias}
+    Wait until element is visible   ${Categorias.btn}    20s
+    Click element   ${Categorias.btn}
 
 
 clicar na categoria ${categoria}
@@ -1432,13 +1432,13 @@ devo ver a solicitação de login com a Conta Globo
 
 # Menu Explore
 selecionar "Categorias"
-  Wait Until Element Is Visible    ${MenuExplore.btnCategorias}   ${timeout_20}
-  Click Element    ${MenuExplore.btnCategorias}
+  Wait Until Element Is Visible    ${Categorias.btn}   ${timeout_20}
+  Click Element    ${Categorias.btn}
 
 
 selecionar "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.btnCanais}   ${timeout_20}
-  Click Element    ${MenuExplore.btnCanais}
+  Wait Until Element Is Visible    ${Canais.btn}   ${timeout_20}
+  Click Element    ${Canais.btn}
 
 #----------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CATEGORIA             #
@@ -1446,8 +1446,8 @@ selecionar "Canais"
 
 # Menu Explore - Categorias - Página
 o título "Novelas" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloNovelas}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloNovelas}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloNovelas}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloNovelas}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Novelas" ficou visível.
   ELSE
@@ -1456,8 +1456,8 @@ o título "Novelas" deve estar visível
 
 
 o título "Séries" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloSeries}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloSeries}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloSeries}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloSeries}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Séries" ficou visível.
   ELSE
@@ -1466,8 +1466,8 @@ o título "Séries" deve estar visível
 
 
 o título "Filmes" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloFilmes}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloFilmes}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloFilmes}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${CategoriastituloFilmes}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Filmes" ficou visível.
   ELSE
@@ -1476,8 +1476,8 @@ o título "Filmes" deve estar visível
 
 
 o título "Infantil" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloInfantil}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloInfantil}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloInfantil}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloInfantil}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Infantil" ficou visível.
   ELSE
@@ -1486,8 +1486,8 @@ o título "Infantil" deve estar visível
 
 
 o título "Realities" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloRealities}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloRealities}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloRealities}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloRealities}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Realities" ficou visível.
   ELSE
@@ -1496,8 +1496,8 @@ o título "Realities" deve estar visível
 
 
 o título "Documentários" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloDocumentarios}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloDocumentarios}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloDocumentarios}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloDocumentarios}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Documentários" ficou visível.
   ELSE
@@ -1506,8 +1506,8 @@ o título "Documentários" deve estar visível
 
 
 o título "Esportes" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloEsportes}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloEsportes}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloEsportes}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloEsportes}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Esportes" ficou visível.
   ELSE
@@ -1516,8 +1516,8 @@ o título "Esportes" deve estar visível
 
 
 o título "Variedades" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloVariedades}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloVariedades}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloVariedades}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloVariedades}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Variedades" ficou visível.
   ELSE
@@ -1526,8 +1526,8 @@ o título "Variedades" deve estar visível
 
 
 o título "Humor" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloHumor}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloHumor}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloHumor}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloHumor}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Humor" ficou visível.
   ELSE
@@ -1536,8 +1536,8 @@ o título "Humor" deve estar visível
 
 
 o título "Música" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloMusica}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloMusica}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloMusica}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloMusica}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Música" ficou visível.
   ELSE
@@ -1546,8 +1546,8 @@ o título "Música" deve estar visível
 
 
 o título "Jornalismo" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloJornalismo}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloJornalismo}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloJornalismo}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloJornalismo}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Jornalismo" ficou visível.
   ELSE
@@ -1556,8 +1556,8 @@ o título "Jornalismo" deve estar visível
 
 
 o título "Programas Locais" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloProgramasLocais}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloProgramasLocais}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloProgramasLocais}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloProgramasLocais}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Programas Locais" ficou visível.
   ELSE
@@ -1640,64 +1640,64 @@ devo ser redirecinado para a página "Programas Locais"
 
 # Menu Explore - Categorias - Conteúdos
 selecionar "Documentários"
-  Click Element    ${MenuExplore.btnDocumentarios}
+  Click Element    ${Documentarios.btn}
 
 
 selecionar "Novelas"
-  Click Element    ${MenuExplore.btnNovelas}
+  Click Element    ${Novelas.btn}
 
 
 selecionar "Infantil"
-  Wait Until Element Is Visible    ${MenuExplore.btnInfantil}    ${timeout_20}
-  Click Element    ${MenuExplore.btnInfantil}
+  Wait Until Element Is Visible    ${Infantil.btn}    ${timeout_20}
+  Click Element    ${Infantil.btn}
 
 
 selecionar "Realities"
-  Click Element    ${MenuExplore.btnRealities}
+  Click Element    ${Realities.btn}
 
 
 selecionar "Filmes"
-  Click Element    ${MenuExplore.btnFilmes}
+  Click Element    ${Filmes.btn}
 
 
 selecionar "Séries"
-  Click Element    ${MenuExplore.btnSeries}
+  Click Element    ${Series.btn}
 
 
 selecionar "Variedades"
-  Click Element    ${MenuExplore.btnVariedades}
+  Click Element    ${Variedades.btn}
 
 
 selecionar "Humor"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnHumor}
+  Click Element    ${Humor.btn}
 
 
 selecionar "Música"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnMusica}
+  Click Element    ${Musica.btn}
 
 
 selecionar "Esportes"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnEsportes}
+  Click Element    ${Esportes.btn}
 
 
 selecionar "Jornalismo"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnJornalismo}
+  Click Element    ${Jornalismo.btn}
 
 
 selecionar "Programas Locais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnProgramasLocais}
+  Click Element    ${ProgramasLocais.btn}
 
 
 # Menu Explore - Categorias - Banner
 o banner deve estar visível
   Log      Verifica existência do banner na Categoria escolhida
   Sleep  2s
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible     ${MenuExplore.banner}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible     ${Categorias.banner}
   Run Keyword If    '${valor[0]}' == 'PASS'     Log To Console    Mostrou o banner.
   ...       ELSE    Log To Console    Não mostrou o banner.
 
@@ -1705,37 +1705,42 @@ o banner deve estar visível
 # Menu Explore - Categorias - Veja Mais Banner
 selecionar "Veja Mais"
   Log      Verifica o Veja Mais recomendado no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMaisBanner}   ${timeout_20}
-  Click Element   ${MenuExplore.btnVejaMaisBanner}
+  Wait Until Element Is Visible    ${Categorias.btnVejaMaisBanner}   ${timeout_20}
+  Click Element   ${Categorias.btnVejaMaisBanner}
+
+
+selecionar "Assine Já"
+  Wait Until Element Is Visible    ${Categorias.btnAssineJaBanner}    ${timeout_20}
+  Click Element    ${Categorias.btnAssineJaBanner}
 
 
 # Menu Explore - Categorias - Assine Já Banner
 devo conseguir ver o botão "Assine já"
   Log      Verifica o Assine Já ao clilcar no recomendado no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineJaBanner}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnAssineJaBanner}
+  Wait Until Element Is Visible    ${Categorias.btnAssineJaBanner}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnAssineJaBanner}
 
 
 # Menu Explore - Categorias&Canais - Botão "Veja Mais" em Ver Todos
 selecionar "Veja Mais" em Ver Todos
   Log  ...
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVerTodos}   ${timeout_20}
-  Click Element    ${MenuExplore.btnVerTodos}
+  Wait Until Element Is Visible    ${Categorias.btnVerTodos}   ${timeout_20}
+  Click Element    ${Categorias.btnVerTodos}
 
 
 # Menu Explore - Categorias - Ver Todos
 devo conseguir localizar o botão "Veja mais"
   Log      Verifica a existência do botão "Veja Mais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMais}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnVejaMais}
+  Wait Until Element Is Visible    ${Categorias.btnVejaMais}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnVejaMais}
 
 
 devo conseguir localizar "Todos os documentários"
   Log      Verifica a existência de Todos os documentários
-  Wait Until Element Is Visible    ${MenuExplore.btnTodosOsDocumentarios}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodosOsDocumentarios}
+  Wait Until Element Is Visible    ${Documentarios.btnTodosOsDocumentarios}   ${timeout_20}
+  Element Should Be Visible    ${Documentarios.btnTodosOsDocumentarios}
 
 
 devo conseguir localizar "Todas as novelas"
@@ -1743,320 +1748,320 @@ devo conseguir localizar "Todas as novelas"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
   #Wait Until Element Is Visible    ${MenuExplore.btnTodasAsNovelas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodasAsNovelas}
+  Element Should Be Visible    ${Novelas.btnTodasAsNovelas}
 
 
 devo conseguir localizar "Todos os filmes"
   Log      Verifica a existência de Todos os filmes
-  Wait Until Element Is Visible    ${MenuExplore.btnTodosOsFilmes}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodosOsFilmes}
+  Wait Until Element Is Visible    ${Filmes.btnTodosOsFilmes}   ${timeout_20}
+  Element Should Be Visible    ${Filmes.btnTodosOsFilmes}
 
 
 devo conseguir localizar "Todas as séries"
   Log      Verifica a existência de Todas as séries
-  Wait Until Element Is Visible    ${MenuExplore.btnTodasAsSeries}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodasAsSeries}
+  Wait Until Element Is Visible    ${Series.btnTodasAsSeries}   ${timeout_20}
+  Element Should Be Visible    ${Series.btnTodasAsSeries}
 
 
 devo conseguir localizar "Esportes - Todos os títulos"
   Log      Verifica a existência de "Esportes - Todos os títulos"
-  Wait Until Element Is Visible    ${MenuExplore.tituloEsportesTodosOsTitulos}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloEsportesTodosOsTitulos}
+  Wait Until Element Is Visible    ${Esportes.tituloEsportesTodosOsTitulos}   ${timeout_20}
+  Element Should Be Visible    ${Esportes.tituloEsportesTodosOsTitulos}
 
 
 # Menu Explore - Categorias&Canais - Títulos
 devo conseguir localizar "Ver todos"
   Log      Verifica a existência do botão Veja mais ao final da página
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVerTodos}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnVerTodos}
+  Wait Until Element Is Visible    ${Categorias.btnVerTodos}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnVerTodos}
 
 
 # Menu Explore - Categorias - ProgramasLocais
 selecionar "Acre"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAcre}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAcre}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAcre}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAcre}
 
 
 selecionar "Alagoas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAlagoas}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAlagoas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAlagoas}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAlagoas}
 
 
 selecionar "Amapá"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmapa}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAmapa}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmapa}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAmapa}
 
 
 selecionar "Amazonas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmazonas}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAmazonas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmazonas}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAmazonas}
 
 
 selecionar "Bahia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloBahia}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloBahia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloBahia}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloBahia}
 
 
 selecionar "Ceará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloCeara}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloCeara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloCeara}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloCeara}
 
 
 selecionar "Distrito Federal"
-  Wait Until Element Is Visible    ${MenuExplore.tituloDistritoFederal}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloDistritoFederal}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloDistritoFederal}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloDistritoFederal}
 
 
 selecionar "Espírito Santo"
-  Wait Until Element Is Visible    ${MenuExplore.tituloEspiritoSanto}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloEspiritoSanto}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloEspiritoSanto}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloEspiritoSanto}
 
 
 selecionar "Goiás"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGoias}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloGoias}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGoias}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloGoias}
 
 
 selecionar "Maranhão"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMaranhao}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMaranhao}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMaranhao}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMaranhao}
 
 
 selecionar "Mato Grosso"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrosso}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMatoGrosso}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrosso}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMatoGrosso}
 
 
 selecionar "Mato Grosso do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrossoDoSul}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMatoGrossoDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMatoGrossoDoSul}
 
 
 selecionar "Minas Gerais"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMinasGerais}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMinasGerais}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMinasGerais}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMinasGerais}
 
 
 selecionar "Paraná"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParana}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloParana}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParana}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloParana}
 
 
 selecionar "Paraíba"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParaiba}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloParaiba}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParaiba}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloParaiba}
 
 
 selecionar "Pará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPara}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPara}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPara}
 
 
 selecionar "Pernambuco"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPernambuco}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPernambuco}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPernambuco}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPernambuco}
 
 
 selecionar "Piauí"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPiaui}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPiaui}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPiaui}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPiaui}
 
 
 selecionar "Rio Grande do Norte"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoNorte}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioGrandeDoNorte}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioGrandeDoNorte}
 
 
 selecionar "Rio Grande do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoSul}   ${timeout_20}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioGrandeDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoSul}   ${timeout_20}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioGrandeDoSul}
 
 
 selecionar "Rio de Janeiro"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioDeJaneiro}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioDeJaneiro}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioDeJaneiro}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioDeJaneiro}
 
 
 selecionar "Rondônia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRondonia}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRondonia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRondonia}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRondonia}
 
 
 selecionar "Roraima"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRoraima}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRoraima}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRoraima}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRoraima}
 
 
 selecionar "Santa Catarina"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSantaCatarina}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSantaCatarina}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSantaCatarina}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSantaCatarina}
 
 
 selecionar "Sergipe"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSergipe}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSergipe}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSergipe}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSergipe}
 
 
 selecionar "São Paulo"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSaoPaulo}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSaoPaulo}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSaoPaulo}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSaoPaulo}
 
 
 selecionar "Tocantins"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloTocantins}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloTocantins}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloTocantins}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloTocantins}
 
 
 # Menu Explore - Categorias - ProgramasLocais
 devo conseguir ver o texto "Acre"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAcre}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAcre}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAcre}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAcre}
 
 
 devo conseguir ver o texto "Alagoas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAlagoas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAlagoas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAlagoas}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAlagoas}
 
 
 devo conseguir ver o texto "Amapá"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmapa}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAmapa}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmapa}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAmapa}
 
 
 devo conseguir ver o texto "Amazonas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmazonas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAmazonas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmazonas}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAmazonas}
 
 
 devo conseguir ver o texto "Bahia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloBahia}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloBahia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloBahia}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloBahia}
 
 
 devo conseguir ver o texto "Ceará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloCeara}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloCeara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloCeara}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloCeara}
 
 
 devo conseguir ver o texto "Distrito Federal"
-  Wait Until Element Is Visible    ${MenuExplore.tituloDistritoFederal}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloDistritoFederal}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloDistritoFederal}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloDistritoFederal}
 
 
 devo conseguir ver o texto "Grande Vitória, ES"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGrandeVitoria}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloGrandeVitoria}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGrandeVitoria}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloGrandeVitoria}
 
 
 devo conseguir ver o texto "Goiás"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGoias}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloGoias}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGoias}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloGoias}
 
 
 devo conseguir ver o texto "Maranhão"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMaranhao}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMaranhao}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMaranhao}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMaranhao}
 
 
 devo conseguir ver o texto "Mato Grosso"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrosso}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMatoGrosso}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrosso}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMatoGrosso}
 
 
 devo conseguir ver o texto "Mato Grosso do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrossoDoSul}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMatoGrossoDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}
 
 
 devo conseguir ver o texto "Minas Gerais"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMinasGerais}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMinasGerais}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMinasGerais}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMinasGerais}
 
 
 devo conseguir ver o texto "Paraná"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParana}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloParana}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParana}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloParana}
 
 
 devo conseguir ver o texto "Paraíba"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParaiba}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloParaiba}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParaiba}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloParaiba}
 
 
 devo conseguir ver o texto "Pará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPara}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPara}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPara}
 
 
 devo conseguir ver o texto "Pernambuco"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPernambuco}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPernambuco}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPernambuco}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPernambuco}
 
 
 devo conseguir ver o texto "Piauí"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPiaui}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPiaui}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPiaui}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPiaui}
 
 
 devo conseguir ver o texto "Rio Grande do Norte"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoNorte}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioGrandeDoNorte}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}
 
 
 devo conseguir ver o texto "Rio Grande do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoSul}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioGrandeDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoSul}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioGrandeDoSul}
 
 
 devo conseguir ver o texto "Rio de Janeiro"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioDeJaneiro}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioDeJaneiro}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioDeJaneiro}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioDeJaneiro}
 
 
 devo conseguir ver o texto "Rondônia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRondonia}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRondonia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRondonia}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRondonia}
 
 
 devo conseguir ver o texto "Roraima"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRoraima}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRoraima}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRoraima}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRoraima}
 
 
 devo conseguir ver o texto "Santa Catarina"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSantaCatarina}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSantaCatarina}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSantaCatarina}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSantaCatarina}
 
 
 devo conseguir ver o texto "Sergipe"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSergipe}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSergipe}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSergipe}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSergipe}
 
 
 devo conseguir ver o texto "São Paulo"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSaoPaulo}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSaoPaulo}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSaoPaulo}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSaoPaulo}
 
 
 devo conseguir ver o texto "Tocantins"
-  Wait Until Element Is Visible    ${MenuExplore.tituloTocantins}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloTocantins}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloTocantins}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloTocantins}
 
 
 # Menu Explore - Categorias - Conteúdo
 selecionar "Lady Night"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Variedades_LadyNight}
+  Click Element    ${Variedades.LadyNight}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/lady-night/t/8sgfsb8qRH/'
     Log To Console    Redirecionado para "Lady Night".
@@ -2068,7 +2073,7 @@ selecionar "Lady Night"
 selecionar "Mais Você"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Variedades_MaisVoce}
+  Click Element    ${Variedades.MaisVoce}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/mais-voce/t/n9Vq6SMvsm/'
     Log To Console    Redirecionado para "Mais Você".
@@ -2079,8 +2084,8 @@ selecionar "Mais Você"
 
 selecionar "Multi Tom"
   Sleep  2s
-  Scroll Element Into View     ${MenuExplore.Humor_MultiTom}
-  Click Element    ${MenuExplore.Humor_MultiTom}
+  Scroll Element Into View     ${Humor.MultiTom}
+  Click Element    ${Humor.MultiTom}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/multi-tom/t/cmVr1RjCT8/'
     Log To Console    Redirecionado para "Multi Tom".
@@ -2091,8 +2096,8 @@ selecionar "Multi Tom"
 
 selecionar "Choque de Cultura Show"
   Sleep  2s
-  Scroll Element Into View     ${MenuExplore.Humor_ChoquedeCulturaShow}
-  Click Element    ${MenuExplore.Humor_ChoquedeCulturaShow}
+  Scroll Element Into View     ${Humor.ChoquedeCulturaShow}
+  Click Element    ${Humor.ChoquedeCulturaShow}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/choque-de-cultura-show/t/FBqg2t8Cq2/'
     Log To Console    Redirecionado para "Choque de Cultura Show".
@@ -2104,7 +2109,7 @@ selecionar "Choque de Cultura Show"
 selecionar "Prêmio Multishow"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Musica_PremioMultishow}
+  Click Element    ${Musica.PremioMultishow}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/premio-multishow/t/RpX7XmkDQM/'
     Log To Console    Redirecionado para "Prêmio Multishow".
@@ -2116,7 +2121,7 @@ selecionar "Prêmio Multishow"
 selecionar "Roberto Carlos Especial"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Musica_RobertoCarlosEspecial}
+  Click Element    ${Musica.RobertoCarlosEspecial}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/roberto-carlos-especial/t/kXRnfccg1q/'
     Log To Console    Redirecionado para "Roberto Carlos Especial".
@@ -2128,7 +2133,7 @@ selecionar "Roberto Carlos Especial"
 selecionar "Esporte Espetacular"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Esportes_EsporteEspetacular}
+  Click Element    ${Esportes.EsporteEspetacular}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/esporte-espetacular/t/Jm2mfGZHfq/'
     Log To Console    Redirecionado para "Esporte Espetacular".
@@ -2140,8 +2145,8 @@ selecionar "Esporte Espetacular"
 selecionar "Jornal das Dez"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Jornalismo_JornalDasDez}   ${timeout_20}
-  Click Element    ${MenuExplore.Jornalismo_JornalDasDez}
+  Wait Until Element Is Visible    ${Jornalismo_JornalDasDez}   ${timeout_20}
+  Click Element    ${Jornalismo.JornalDasDez}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/jornal-das-dez/t/NSWghfyn6w/'
     Log To Console    Redirecionado para "Jornal das Dez".
@@ -2153,7 +2158,7 @@ selecionar "Jornal das Dez"
 selecionar "Jornal Nacional"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Jornalismo_JornalNacional}
+  Click Element    ${Jornalismo_JornalNacional}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/jornal-nacional/t/MyCrVrr6gW/'
     Log To Console    Redirecionado para "Jornal Nacional".
@@ -2162,7 +2167,7 @@ selecionar "Jornal Nacional"
   END
 
 
-# Menu Explore - Categorias - Botão "Conheça o plano"
+# Menu Explore - Botão "Conheça o plano"
 devo conseguir ver o botão "Conheça o plano"
   Wait Until Element Is Visible    ${MenuExplore.btnConhecaOPlano}   ${timeout_20}
   Element Should Be Visible   ${MenuExplore.btnConhecaOPlano}
@@ -2170,11 +2175,11 @@ devo conseguir ver o botão "Conheça o plano"
 
 # Menu Explore - Categorias - Botão "Assista"
 selecionar "Assista"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssista}   ${timeout_20}
-  Click Element   ${MenuExplore.btnAssista}
+  Wait Until Element Is Visible    ${Categorias.btnAssista}   ${timeout_20}
+  Click Element   ${Categorias.btnAssista}
 
 
-# Menu Explore - Categorias - Texto Conteúdo exclusivo
+# Menu Explore - Texto Conteúdo exclusivo
 devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
   Wait Until Element Is Visible    ${MenuExplore.textoConteudoExclusivo}   ${timeout_20}
   Element Should Be Visible   ${MenuExplore.textoConteudoExclusivo}
@@ -2229,382 +2234,382 @@ devo ser redirecinado para a página de assinatura
 
 
 devo ser redirecinado para a página de assinatura do Telecine
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaTelecine}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Telecine.textoAssinatura}
 
 
 devo ser redirecinado para a página de assinatura do Premiere
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaPremiere}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaPremiere}
+  Wait Until Element Is Visible    ${Premiere.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Premiere.textoAssinatura}
 
 
 devo ser redirecinado para a página de assinatura do Combate
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaCombate}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaCombate}
+  Wait Until Element Is Visible    ${Combate.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Combate.textoAssinatura}
 
 
 # Menu Explore - Canais - Assista ao vivo
 selecionar "TV Globo" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.TVGlobo_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.TVGlobo_AssistaAoVivo}
+  Wait Until Element Is Visible    ${TVGlobo.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${TVGlobo.AssistaAoVivo}
 
 
 selecionar "Multishow" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.Multishow_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Multishow_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Multishow.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Multishow.AssistaAoVivo}
 
 
 selecionar "Globonews" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.Globonews_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Globonews_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Globonews.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Globonews.AssistaAoVivo}
 
 
 selecionar "SporTV" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.SporTV_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.SporTV_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${SporTV.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${SporTV.AssistaAoVivo}
 
 
 selecionar "GNT" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.GNT_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.GNT_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${GNT.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${GNT.AssistaAoVivo}
 
 
 selecionar "VIVA" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.VIVA_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.VIVA_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${VIVA.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${VIVA.AssistaAoVivo}
 
 
 selecionar "Gloob" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.Gloob_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloob_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${Gloob.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Gloob.AssistaAoVivo}
 
 
 selecionar "Gloobinho" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.Gloobinho_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloobinho_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${Gloobinho.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Gloobinho.AssistaAoVivo}
 
 
 selecionar "Megapix" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep  2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep  2s
-  Click Element    ${MenuExplore.textoMegapix}
+  Click Element    ${Megapix.textoMegapix}
 
 
 selecionar "Universal TV" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoUniversalTV}
+  Click Element    ${Universal+.textoUniversalTV}
 
 
 selecionar "Studio Universal" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoStudioUniversal}
+  Click Element    ${Universal+.textoStudioUniversal}
 
 
 selecionar "SYFY" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoSYFY}
+  Click Element    ${Universal+.textoSYFY}
 
 
 selecionar "Canal Brasil" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CanalBrasil_AssistaAoVivo}
+  Click Element    ${CanalBrasil.AssistaAoVivo}
 
 
 selecionar "Canal Off" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CanalOff_AssistaAoVivo}
+  Click Element    ${CanalOff.AssistaAoVivo}
 
 
 selecionar "BIS" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.BIS_AssistaAoVivo}
+  Click Element    ${BIS.AssistaAoVivo}
 
 
 selecionar "Modo Viagem" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.ModoViagem_AssistaAoVivo}
+  Click Element    ${ModoViagem.AssistaAoVivo}
 
 
 selecionar "Futura" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Futura_AssistaAoVivo}
+  Click Element    ${Futura.AssistaAoVivo}
 
 
 selecionar "Telecine Premium" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecinePremium}
+  Click Element    ${Telecine.textoTelecinePremium}
 
 
 selecionar "Telecine Action" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineAction}
+  Click Element    ${Telecine.textoTelecineAction}
 
 
 selecionar "Telecine Touch" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineTouch}
+  Click Element    ${Telecine.textoTelecineTouch}
 
 
 selecionar "Telecine Fun" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineFun}
+  Click Element    ${Telecine.textoTelecineFun}
 
 
 selecionar "Telecine Pipoca" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecinePipoca}
+  Click Element    ${Telecine.textoTelecinePipoca}
 
 
 selecionar "Telecine Cult" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineCult}
+  Click Element    ${Telecine.textoTelecineCult}
 
 
 selecionar "Premiere" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Premiere_AssistaAoVivo}
+  Click Element    ${Premiere.AssistaAoVivo}
 
 
 selecionar "Combate" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Combate_AssistaAoVivo}
+  Click Element    ${Combate.AssistaAoVivo}
 
 
 selecionar "CBN SP" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CBNSP_AssistaAoVivo}
+  Click Element    ${CBN.SP_AssistaAoVivo}
 
 
 selecionar "CBN RJ" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CBNRJ_AssistaAoVivo}
+  Click Element    ${CBN.RJ_AssistaAoVivo}
 
 
 # Menu Explore - Canais - Canais
 selecionar "TV Globo" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.TVGlobo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.TVGlobo_Canais}
+  Wait Until Element Is Visible    ${TVGlobo.Canais}    ${timeout_20}
+  Click Element    ${TVGlobo.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globo/'    Log To Console       Redirecionado para a página "TV Globo" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "TV Globo" em "Canais"! URL: '${url}'
 
 
 selecionar "Multishow" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.Multishow_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Multishow_Canais}
+  Wait Until Element Is Visible    ${Multishow.Canais}    ${timeout_20}
+  Click Element    ${Multishow.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/multishow/'    Log To Console       Redirecionado para a página "Multishow" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Multishow" em "Canais"! URL: '${url}'
 
 
 selecionar "Globonews" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.Globonews_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Globonews_Canais}
+  Wait Until Element Is Visible    ${Globonews.Canais}    ${timeout_20}
+  Click Element    ${Globonews.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globonews/'    Log To Console       Redirecionado para a página "Globonews" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Globonews" em "Canais"! URL: '${url}'
 
 
 selecionar "SporTV" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.SporTV_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.SporTV_Canais}
+  Wait Until Element Is Visible    ${SporTV.Canais}    ${timeout_20}
+  Click Element    ${SporTV.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/sportv/'    Log To Console       Redirecionado para a página "SporTV" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "SporTV" em "Canais"! URL: '${url}'
 
 
 selecionar "GNT" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.GNT_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.GNT_Canais}
+  Wait Until Element Is Visible    ${GNT.Canais}    ${timeout_20}
+  Click Element    ${GNT.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gnt/'    Log To Console       Redirecionado para a página "GNT" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "GNT" em "Canais"! URL: '${url}'
 
 
 selecionar "VIVA" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.VIVA_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.VIVA_Canais}
+  Wait Until Element Is Visible    ${VIVA.Canais}    ${timeout_20}
+  Click Element    ${VIVA.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/viva/'    Log To Console       Redirecionado para a página "VIVA" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "VIVA" em "Canais"! URL: '${url}'
@@ -2612,8 +2617,8 @@ selecionar "VIVA" em "Canais"
 
 selecionar "Gloob" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Gloob_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloob_Canais}
+  Wait Until Element Is Visible    ${Gloob.Canais}    ${timeout_20}
+  Click Element    ${Gloob.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloob/'    Log To Console       Redirecionado para a página "Gloob" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Gloob" em "Canais"! URL: '${url}'
@@ -2621,8 +2626,8 @@ selecionar "Gloob" em "Canais"
 
 selecionar "Gloobinho" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Gloobinho_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloobinho_Canais}
+  Wait Until Element Is Visible    ${Gloobinho.Canais}    ${timeout_20}
+  Click Element    ${Gloobinho.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloobinho/'    Log To Console       Redirecionado para a página "Gloobinho" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Gloobinho" em "Canais"! URL: '${url}'
@@ -2630,8 +2635,8 @@ selecionar "Gloobinho" em "Canais"
 
 selecionar "Megapix" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Megapix_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Megapix_Canais}
+  Wait Until Element Is Visible    ${Megapix.Canais}    ${timeout_20}
+  Click Element    ${Megapix.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/megapix/'    Log To Console       Redirecionado para a página "Megapix" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Megapix" em "Canais"! URL: '${url}'
@@ -2639,8 +2644,8 @@ selecionar "Megapix" em "Canais"
 
 selecionar "Universal+" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Universal+_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Universal+_Canais}
+  Wait Until Element Is Visible    ${Universal+.Canais}    ${timeout_20}
+  Click Element    ${Universal+.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/universal/'    Log To Console       Redirecionado para a página "Universal+" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Universal+" em "Canais"! URL: '${url}'
@@ -2648,8 +2653,8 @@ selecionar "Universal+" em "Canais"
 
 selecionar "Canal Brasil" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.CanalBrasil_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.CanalBrasil_Canais}
+  Wait Until Element Is Visible    ${CanalBrasil.Canais}    ${timeout_20}
+  Click Element    ${CanalBrasil.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-brasil/'    Log To Console       Redirecionado para a página "Canal Brasil" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Canal Brasil" em "Canais"! URL: '${url}'
@@ -2657,8 +2662,8 @@ selecionar "Canal Brasil" em "Canais"
 
 selecionar "Canal Off" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.CanalOff_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.CanalOff_Canais}
+  Wait Until Element Is Visible    ${CanalOff.Canais}    ${timeout_20}
+  Click Element    ${CanalOff.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-off/'    Log To Console       Redirecionado para a página "Canal Off" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Canal Off" em "Canais"! URL: '${url}'
@@ -2666,8 +2671,8 @@ selecionar "Canal Off" em "Canais"
 
 selecionar "BIS" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.BIS_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.BIS_Canais}
+  Wait Until Element Is Visible    ${BIS.Canais}    ${timeout_20}
+  Click Element    ${BIS.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/bis/'    Log To Console       Redirecionado para a página "BIS" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "BIS" em "Canais"! URL: '${url}'
@@ -2675,8 +2680,8 @@ selecionar "BIS" em "Canais"
 
 selecionar "Modo Viagem" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.ModoViagem_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.ModoViagem_Canais}
+  Wait Until Element Is Visible    ${ModoViagem.Canais}    ${timeout_20}
+  Click Element    ${ModoViagem.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/modo-viagem/'    Log To Console       Redirecionado para a página "Modo Viagem" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Modo Viagem" em "Canais"! URL: '${url}'
@@ -2684,8 +2689,8 @@ selecionar "Modo Viagem" em "Canais"
 
 selecionar "Futura" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Futura_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Futura_Canais}
+  Wait Until Element Is Visible    ${Futura.Canais}    ${timeout_20}
+  Click Element    ${Futura.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/futura/'    Log To Console       Redirecionado para a página "Futura" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Futura" em "Canais"! URL: '${url}'
@@ -2693,8 +2698,8 @@ selecionar "Futura" em "Canais"
 
 selecionar "Telecine" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Telecine_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Telecine_Canais}
+  Wait Until Element Is Visible    ${Telecine.Canais}    ${timeout_20}
+  Click Element    ${Telecine.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/telecine/'    Log To Console       Redirecionado para a página "Telecine" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Telecine" em "Canais"! URL: '${url}'
@@ -2702,8 +2707,8 @@ selecionar "Telecine" em "Canais"
 
 selecionar "Premiere" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Premiere_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Premiere_Canais}
+  Wait Until Element Is Visible    ${Premiere.Canais}    ${timeout_20}
+  Click Element    ${Premiere.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/premiere/'    Log To Console       Redirecionado para a página "Premiere" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Premiere" em "Canais"! URL: '${url}'
@@ -2711,8 +2716,8 @@ selecionar "Premiere" em "Canais"
 
 selecionar "Combate" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Combate_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Combate_Canais}
+  Wait Until Element Is Visible    ${Combate.Canais}    ${timeout_20}
+  Click Element    ${Combate.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/combate/'    Log To Console       Redirecionado para a página "Combate" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Combate" em "Canais"! URL: '${url}'
@@ -2720,13 +2725,13 @@ selecionar "Combate" em "Canais"
 
 # Menu Explore - Canais - Botões
 selecionar "Assista" no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnAssista_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssista_Canais}
+  Wait Until Element Is Visible    ${Canais.btnAssista}    ${timeout_20}
+  Click Element    ${Canais.btnAssista}
 
 
 selecionar "Conheça o novo plano"
-  Wait Until Element Is Visible    ${MenuExplore.btnConhecaONovoPlano_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnConhecaONovoPlano_Canais}
+  Wait Until Element Is Visible    ${Canais.btnConhecaONovoPlano}    ${timeout_20}
+  Click Element    ${Canais.btnConhecaONovoPlano}
 
 
 selecionar "Conheça o plano"
@@ -2740,138 +2745,133 @@ selecionar "Eu quero"
 
 
 selecionar "Veja Mais" no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMais_Banner}    ${timeout_20}
-  Click Element    ${MenuExplore.btnVejaMais_Banner}
+  Wait Until Element Is Visible    ${Canais.btnVejaMais_Banner}    ${timeout_20}
+  Click Element    ${Canais.btnVejaMais_Banner}
 
 
 selecionar "Assista agora" em "Agora na Tv"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssistaAgora_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssistaAgora_Canais}
-
-
-selecionar "Assine Já"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineJaBanner}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssineJaBanner}
+  Wait Until Element Is Visible    ${Canais.btnAssistaAgora}    ${timeout_20}
+  Click Element    ${Canais.btnAssistaAgora}
 
 
 selecionar "Escolha seu plano"
-  Wait Until Element Is Visible    ${MenuExplore.btnEscolhaSeuPlano}    ${timeout_20}
-  Click Button   ${MenuExplore.btnEscolhaSeuPlano}
+  Wait Until Element Is Visible    ${Canais.btnEscolhaSeuPlano}    ${timeout_20}
+  Click Button   ${Canais.btnEscolhaSeuPlano}
 
 
 selecionar "Assine Combate"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineCombate}    ${timeout_20}
-  Click Button   ${MenuExplore.btnAssineCombate}
+  Wait Until Element Is Visible    ${Combate.btnAssineCombate}    ${timeout_20}
+  Click Button   ${Combate.btnAssineCombate}
 
 
 # Menu Explore - Canais - Título
 o título "Escolha seu plano" deve estar visível
   Log      Verifica existência do texto "Escolha seu plano"
-  Wait Until Element Is Visible    ${MenuExplore.textoEscolhaSeuPlano}   ${timeout_20}
-  Element Should Be Visible     ${MenuExplore.textoEscolhaSeuPlano}
+  Wait Until Element Is Visible    ${Canais.textoEscolhaSeuPlano}   ${timeout_20}
+  Element Should Be Visible     ${Canais.textoEscolhaSeuPlano}
 
 
 # Menu Explore - Canais - Banner
 o banner deste canal deve estar visível
   Log      Verifica existência do banner em Canais
-  Wait Until Element Is Visible    ${MenuExplore.bannerCanais}   ${timeout_20}
-  Element Should Be Visible     ${MenuExplore.bannerCanais}
+  Wait Until Element Is Visible    ${Canais.banner}   ${timeout_20}
+  Element Should Be Visible     ${Canais.banner}
 
 
 # Menu Explore - Canais - "Todos os títulos - Multishow"
 devo conseguir ver o texto "Todos os títulos - Multishow"
-  Wait Until Element Is Visible    ${MenuExplore.textoTodosOsTitulos_Multishow}   ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoTodosOsTitulos_Multishow}
+  Wait Until Element Is Visible    ${Multishow.textoTodosOsTitulos}   ${timeout_20}
+  Element Should Be Visible   ${Multishow.textoTodosOsTitulos}
 
 
 # Menu Explore - Canais - "Agora no Megapix"
 selecionar "Agora no Megapix"
   Sleep      2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.textoMegapix}   ${timeout_20}
-  Click Element    ${MenuExplore.textoMegapix}
+  Wait Until Element Is Visible    ${Megapix.textoMegapix}   ${timeout_20}
+  Click Element    ${Megapix.textoMegapix}
 
 
 # Menu Explore - Canais - "Agora no Premiere"
 selecionar "Agora no Premiere"
   Sleep      2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.AgoraNoPremiere_Canais}   ${timeout_20}
-  Click Element    ${MenuExplore.AgoraNoPremiere_Canais}
+  Wait Until Element Is Visible    ${Premiere.AgoraNoPremiere_Canais}   ${timeout_20}
+  Click Element    ${Premiere.AgoraNoPremiere_Canais}
 
 
 # Menu Explore - Canais -  Universal TV
 selecionar "Universal TV"
-  Wait Until Element Is Visible    ${MenuExplore.textoUniversalTV}   ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoUniversalTV}   ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoUniversalTV}
-  Click Element    ${MenuExplore.textoUniversalTV}
+  Scroll Element Into View     ${Universal+.textoUniversalTV}
+  Click Element    ${Universal+.textoUniversalTV}
 
 
 selecionar "Studio Universal"
-  Wait Until Element Is Visible    ${MenuExplore.textoStudioUniversal}   ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoStudioUniversal}   ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoStudioUniversal}
-  Click Element    ${MenuExplore.textoStudioUniversal}
+  Scroll Element Into View     ${Universal+.textoStudioUniversal}
+  Click Element    ${Universal+.textoStudioUniversal}
 
 
 selecionar "SYFY"
-  Wait Until Element Is Visible    ${MenuExplore.textoSYFY}  ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoSYFY}  ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoSYFY}
-  Click Element    ${MenuExplore.textoSYFY}
+  Scroll Element Into View     ${Universal+.textoSYFY}
+  Click Element    ${Universal+.textoSYFY}
 
 
 # Menu Explore - Canais -  Telecine
 selecionar "Telecine Premium" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecinePremium}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecinePremium}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecinePremium}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecinePremium}
 
 
 selecionar "Telecine Action" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineAction}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineAction}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineAction}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineAction}
 
 
 selecionar "Telecine Touch" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineTouch}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineTouch}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineTouch}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineTouch}
 
 
 selecionar "Telecine Fun" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineFun}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineFun}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineFun}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineFun}
 
 
 selecionar "Telecine Pipoca" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Click Element    ${MenuExplore.btnNextTelecine_Canais}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Click Element    ${Telecine.btnNextTelecine_Canais}
   Sleep      2s
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecinePipoca}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecinePipoca}
+  Wait Until Element Is Visible    ${Telecine.textoTelecinePipoca}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecinePipoca}
 
 
 selecionar "Telecine Cult" em "Canais Telecine"
   # telecine pipoca utilizado, visto que o telecine cult não fica visível
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Click Element    ${MenuExplore.btnNextTelecine_Canais}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Click Element    ${Telecine.btnNextTelecine_Canais}
   Sleep      2s
-  Wait Until Element Is Visible     ${MenuExplore.textoTelecineCult}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineCult}
+  Wait Until Element Is Visible     ${Telecine.textoTelecineCult}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineCult}
 

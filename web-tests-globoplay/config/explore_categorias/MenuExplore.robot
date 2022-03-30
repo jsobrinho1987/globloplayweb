@@ -28,9 +28,10 @@ ${url_explore}=         Get Location
 ...                     textoConteudoExclusivo=xpath://*[text()="Conteúdo exclusivo "]
 ...                     textoAssinatura=xpath://*[text()="Os 19 canais + amados da TV por assinatura"]
 ...                     textoContaGlobo=xpath://*[text()="Uma só conta para o Globoplay e todos os produtos Globo"]
-...                     btnAssista=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div[1]/div/div[2]/div/div[4]/span[1]/span/span[1]/a
 ...                     btnConhecaOPlano=xpath://*[@class="media-cover__button-large-screen"]
 ...                     btnEuQuero=xpath://*[text()="EU QUERO"]
+...                     footer=xpath://*[@class="footer-widget"]
+
 
 &{Frame.ContaGlobo}               
 ...                     frame_contaglobo=xpath://*[@id="globoid-modal-container"]/div[1]/iframe
