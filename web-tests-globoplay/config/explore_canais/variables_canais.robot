@@ -4,7 +4,6 @@ Documentation    Elementos de Canais
 Library          SeleniumLibrary
 
 *** Variables ***
-# Variáveis estavam nomeadas como MenuExplore e foram alteradas; alterar no arquivo das keywords.
 &{Canais}
 ...                         textoAssistaAoVivo=xpath://h2[text()="Assista ao vivo"]
 ...                         textoCanais=xpath://h2[text()="Canais"]

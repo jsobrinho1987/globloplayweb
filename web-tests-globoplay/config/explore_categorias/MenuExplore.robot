@@ -1,6 +1,8 @@
 *** Settings ***
+
 Documentation       Elementos mapeados presentes no menu programas locais
 Library             SeleniumLibrary
+
 *** Variables ***
 
 ${url_explore}=         Get Location

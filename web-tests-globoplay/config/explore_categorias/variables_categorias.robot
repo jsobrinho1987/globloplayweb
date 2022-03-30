@@ -4,7 +4,6 @@ Documentation    Elementos de Categorias
 Library          SeleniumLibrary
 
 *** Variables ***
-# Variáveis estavam nomeadas como MenuExplore e foram alteradas; alterar no arquivo das keywords.
 &{Categorias}
 ...                         tituloNovelas=xpath://h3[text()="Novelas"]
 ...                         tituloSeries=xpath://h3[text()="Séries"]
