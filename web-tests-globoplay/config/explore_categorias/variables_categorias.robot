@@ -4,7 +4,6 @@ Documentation    Elementos de Categorias
 Library          SeleniumLibrary
 
 *** Variables ***
-# Variáveis estavam nomeadas como MenuExplore e foram alteradas; alterar no arquivo das keywords.
 &{Categorias}
 ...                         tituloNovelas=xpath://h3[text()="Novelas"]
 ...                         tituloSeries=xpath://h3[text()="Séries"]
@@ -13,65 +12,65 @@ Library          SeleniumLibrary
 ...                         tituloRealities=xpath://h3[text()="Realities"]
 ...                         tituloDocumentarios=xpath://h3[text()="Documentários"]
 ...                         tituloEsportes=xpath://h3[text()="Esportes"]
-...                         footer=xpath://*[@class="footer-widget"]
-...                         btnCategorias=xpath://a[text()="Categorias"]
+...                         btn=xpath://a[text()="Categorias"]
 ...                         banner=xpath://*[@class="highlight__background__picture"]
 ...                         btnVejaMaisBanner=xpath://*[@class="playkit-buttons__button--upperCase"]
 ...                         btnAssineJaBanner=xpath://*[text()="Assine já"]
 ...                         btnVerTodos=xpath://h2[text()="Ver todos"]
+...                         btnAssista=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div[1]/div/div[2]/div/div[4]/span[1]/span/span[1]/a
 
 
 &{Documentarios}
-...                         btnDocumentarios=xpath://a[@title="Documentários"]
+...                         btn=xpath://a[@title="Documentários"]
 ...                         btnTodosOsDocumentarios=xpath://h2[text()="Todos os documentários"]
 
 &{Novelas}
-...                         btnNovelas=xpath://a[@title="Novelas"]
+...                         btn=xpath://a[@title="Novelas"]
 ...                         btnTodasAsNovelas=xpath://h2[text()="Todas as Novelas"]
 ...                         btnInfantil=xpath://a[@title="Infantil"]
 
 &{Realities}
-...                         btnRealities=xpath://a[@title="Realities"]
+...                         btn=xpath://a[@title="Realities"]
 
 &{Filmes}
-...                         btnFilmes=xpath://a[@title="Filmes"]
+...                         btn=xpath://a[@title="Filmes"]
 ...                         btnTodosOsFilmes=xpath://h2[text()="Todos os filmes"]
 
 &{Series}
-...                         btnSeries=xpath://a[@title="Séries"]
+...                         btn=xpath://a[@title="Séries"]
 ...                         btnTodasAsSeries=xpath://h2[text()="Todas as séries"]
 
 &{Variedades}
-...                         btnVariedades=xpath://a[@title="Variedades"]
+...                         btn=xpath://a[@title="Variedades"]
 ...                         tituloVariedades=xpath://h1[text()="Variedades"]
-...                         Variedades_LadyNight=css:a[title="Lady Night"]
-...                         Variedades_MaisVoce=css:a[title="Mais Você"]
+...                         LadyNight=css:a[title="Lady Night"]
+...                         MaisVoce=css:a[title="Mais Você"]
 
 &{Humor}
-...                         btnHumor=xpath://a[@title="Humor"]
+...                         btn=xpath://a[@title="Humor"]
 ...                         tituloHumor=xpath://h1[text()="Humor"]
-...                         Humor_MultiTom=css:a[title="Multi Tom"]
-...                         Humor_ChoquedeCulturaShow=css:a[title="Choque de Cultura Show"]
+...                         MultiTom=css:a[title="Multi Tom"]
+...                         ChoquedeCulturaShow=css:a[title="Choque de Cultura Show"]
 
 &{Musica}
-...                         btnMusica=xpath://a[@title="Música"]
+...                         btn=xpath://a[@title="Música"]
 ...                         tituloMusica=xpath://h1[text()="Música"]
-...                         Musica_PremioMultishow=css:a[title="Prêmio Multishow"]
-...                         Musica_RobertoCarlosEspecial=css:a[title="Roberto Carlos Especial"]
+...                         PremioMultishow=css:a[title="Prêmio Multishow"]
+...                         RobertoCarlosEspecial=css:a[title="Roberto Carlos Especial"]
 
 &{Esportes}
-...                         btnEsportes=xpath://a[@title="Esportes"]
+...                         btn=xpath://a[@title="Esportes"]
 ...                         Esportes_EsporteEspetacular=css:a[title="Esporte Espetacular"]
 ...                         tituloEsportesTodosOsTitulos=xpath://h1[text()="Esportes - Todos os títulos"]
 
 &{Jornalismo}
-...                         btnJornalismo=xpath://a[@title="Jornalismo"]
+...                         btn=xpath://a[@title="Jornalismo"]
 ...                         tituloJornalismo=xpath://h1[text()="Jornalismo"]
-...                         Jornalismo_JornalDasDez=css:a[title="Jornal das Dez"]
-...                         Jornalismo_JornalNacional=css:a[title="Jornal Nacional"]
+...                         JornalDasDez=css:a[title="Jornal das Dez"]
+...                         JornalNacional=css:a[title="Jornal Nacional"]
 
 &{ProgramasLocais}
-...                         btnProgramasLocais=xpath://a[@title="Programas Locais"]
+...                         btn=xpath://a[@title="Programas Locais"]
 ...                         tituloProgramasLocais=xpath://h1[text()="Programas Locais"]
 ...                         tituloAcre=xpath://*[text()="Acre"]
 ...                         tituloAlagoas=xpath://*[text()="Alagoas"]
