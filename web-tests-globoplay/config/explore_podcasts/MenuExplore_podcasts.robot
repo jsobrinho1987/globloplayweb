@@ -8,6 +8,9 @@ Library             SeleniumLibrary
 ...                     explore=xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/header[1]/nav[1]/a[6]/nav[1]
 ...                     pod=CSS:nav.categories-navigation>a:nth-last-of-type(2)
 ...                     lista=CSS:nav.header__items>a:nth-last-of-type(1)
+...                     veja_mais=id=action-button-Veja mais
+...                     roda_pe=xpath:/div[@class='footer-widget--long grid']
+...                     cookie=CSS:div[class="cookie-banner-lgpd_text-box"]   
 ...                     originais_globoplay=CSS:a[title="Originais Globoplay"]
 ...                     mais_ouvidos=CSS:a[title="Mais Ouvidos"]
 ...                     lançamentos_imperdiveis=CSS:a[title="Lançamentos Imperdíveis"]
@@ -160,6 +163,7 @@ Library             SeleniumLibrary
 ...                     dialogos_vituais=CSS:a[title="Diálogos Virtuais"]
 ...                     engajadxs=CSS:a[title="#Engajadxs - Como Será?"]
 ...                     agora_assim=CSS:a[title="Agora é Assim?"]
+...                     conversas_paralelas=CSS:a[title="Conversas Paralelas"]
 #---Podcasts Cultura Pop---#
 ...                     cena_aberta=CSS:a[title="Cena Aberta"]
 ...                     to_trace=CSS:a[title="Tô na Trace"]

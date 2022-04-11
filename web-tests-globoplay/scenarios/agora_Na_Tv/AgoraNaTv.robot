@@ -1,64 +1,105 @@
 *** Settings ***
 Documentation   Acesso ao submenu Canais
 
-Default Tags    Canais
+# Default Tags    Canais
 
-# IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/environment.robot
+# IMPORT OS DADOS DOS BROWSER DE EXECUÇÃO DO NAVEGADOR
+Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
 
-# O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
+#ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
 
-# O QUE FAZER ANTES DE CADA UM DOS TESTES - ABRIR NAVEGADOR
+# ANTES DE CADA UM DOS TESTES - ABRIR NAVEGADOR
 Test Setup          Before Scenario
 
-# O QUE FAZER APÓS CADA UM DOS TESTES - FECHAR NAVEGADOR
+# APÓS CADA UM DOS TESTES - FECHAR NAVEGADOR
 Test Teardown       After Scenario
 
 *** Test Cases ***
 
+#------------------------------------#
+# ACESSOS ANONIMO
+#------------------------------------#
 
-### User Anônimo
-
-Acessar conteúdo aovivo Todos com usuário anônimo
+# [Tags]      Acessa   Agora na TV
+Acessar conteúdo de "Agora na TV" com usuário anônimo
     Dado que sou um usuário anônimo
     E que estou na home
-    Quando clicar no menu "Agora na TV"
-    E clicar no sub menu todos
-    E clicar no aovivo todos
-    Então vejo o tapume com a mensagem Aproveite
+    Então seleciona o menu "Agora na TV"
 
-# Acessar conteúdo aovivo Gratuito com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu gratuitos
-#     E clicar no aovivo gratuitos
-#     Então vejo o tapume com a mensagem Aproveite
 
-# Acessar conteúdo aovivo Mais Canais com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu maiscanais
-#     E clicar no aovivo maiscanais
-#     Então vejo o tapume com a mensagem Conteúdo exclusivo
+# [Tags]      Agora na TV    TODOS
+Acessar conteúdo de Agora na TV na opção "Todos" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu Todos
+    Então seleciona os canais da playlist
 
-# Acessar conteúdo aovivo Filmes com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu filmes
-#     E clicar no aovivo megapix
-#     Então vejo o tapume com a mensagem Conteúdo exclusivo
 
-# Acessar conteúdo aovivo Esportes com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu esportes
-#     E clicar no aovivo sportv
-#     Então vejo o tapume com a mensagem Conteúdo exclusivo
+# [Tags]      Agora na TV    BBB
+Acessar conteúdo de Agora na TV na opção "BBB" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu BBB
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    Gratuito
+Acessar conteúdo de Agora na TV na opção "Gratuito" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu Gratuitos
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    +Canais
+Acessar conteúdo de Agora na TV na opção "+Canais" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu +Canais
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    Filmes e Séries
+Acessar conteúdo de Agora na TV na opção "Filmes e Séries" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu "Filmes e Séries"
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    Esportes
+Acessar conteúdo de Agora na TV na opção "Esportes" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu "Esportes"
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    Jornalismo
+Acessar conteúdo de Agora na TV na opção "Jornalismo" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu "Jornalismo"
+    Então seleciona os canais da playlist
+
+
+# [Tags]      Agora na TV    Infantil
+Acessar conteúdo de Agora na TV na opção "Infantil" com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então seleciona o menu "Agora na TV"
+    E clica no sub menu "Infantil"
+    Então seleciona os canais da playlist
+
+
 
 # Acessar conteúdo aovivo Jornalismo com usuário anônimo
 #     Dado que sou um usuário anônimo
@@ -197,12 +238,12 @@ Acessar conteúdo aovivo Todos com usuário anônimo
 #     Então não vejo o tapume com a mensagem Conteúdo exclusivo
 
 
-Navegar no troca de canais
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Quando clicar no menu "Agora na TV"
-    E clicar no sub menu todos
-    Então troco o canal selecionado
+# Navegar no troca de canais
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Quando clicar no menu "Agora na TV"
+#     E clicar no sub menu todos
+#     Então troco o canal selecionado
 
 # Acessar o EPG pelo link programação
 #     Dado que sou um usuário anônimo

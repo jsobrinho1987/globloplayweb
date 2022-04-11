@@ -19,8 +19,7 @@ Resource                ../web-tests-globoplay/config/explore_categorias/MenuExp
 Resource                ../web-tests-globoplay/config/explore_podcasts/MenuExplore_podcasts.robot
 # Resource                ../web-tests-globoplay/config/MenuExplore_Locators.robot
 # Resource                ../web-tests-globoplay/config/MenuExplore_SubmenuProgramasLocais_Locators.robot
-# Resource                ../web-tests-globoplay/config/Canais_Locators.robot
-# Resource                ../web-tests-globoplay/config/AgoraNaTvLocators.robot
+Resource                ../web-tests-globoplay/config/agora_Na_Tv/AgoraNaTvLocators.robot
 # Resource                ../web-tests-globoplay/config/TitlePage_Locators.robot
 # Resource                ../web-tests-globoplay/config/AtivarContaLocators.robot
 # Resource                ../web-tests-globoplay/config/MenuBusca_Locators.robot
@@ -48,6 +47,7 @@ ${url_mao_armada}           https://globoplay.globo.com/podcasts/a-mao-armada/7b
 ${url_papo_parente}         https://globoplay.globo.com/podcasts/papo-de-parente/325d6028-6db1-48a1-9853-cd87da6e0f23
 ${url_mais_ouvidos}         https://globoplay.globo.com/podcasts/categorias/podcasts-mais-ouvidos/
 
+${url_agora_tv}             https://globoplay.globo.com/tv-globo/ao-vivo
 
 #${PROXY}                proxy.globoi.com:3128   #192.168.0.108:8888 # IP:PORT or HOST:PORT
 
@@ -59,7 +59,7 @@ ${browserOptions_firefox}       #add_argument("--headless");
 ...                             add_argument("--disable-infobars");
 ...                             add_argument("--disable-dev-shm-usage");
 ...                             add_argument("--user-agent= Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0")
-#...                            add_argument("--proxy-server=http://${PROXY}")
+# ...                             add_argument("--proxy-server=http://${PROXY}")
 
 
 #CONFIGURAÇÕES DO BROWSER CHROME
@@ -71,8 +71,8 @@ ${browserOptions_chrome}        #add_argument("--headless");
 ...                             add_argument("--disable-dev-shm-usage");
 ...                             add_argument("--user-agent= GloboplayNative/1.0.0M");
 ...                             add_argument("window-size=1400,600");
-...                             add_experimental_option("excludeSwitches", ["enable-automation"])
-...                             add_experimental_option('useAutomationExtension', False)
+# ...                             add_experimental_option("excludeSwitches", ["enable-automation"])
+# ...                             add_experimental_option('useAutomationExtension', False)
 #...                            add_argument("--proxy-server=http://${PROXY}")
 
 
@@ -88,12 +88,13 @@ Before Suite
     Empty Directory                 ${path_screenshots}/${SUITE NAME}
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
-    Remove files    ${EXECDIR}/geckodriver-*.log
+    Remove files    ${EXECDIR}/web-tests-globoplay/geckodriver-*.log
 
 
 Before Scenario
     #ABRIR O BROWSER NA URL CONFIGURADA NAS VARIABLES ACIMA
     Open Browser                    ${url}  firefox     options=${browserOptions_firefox}
+    # Open Browser                    ${url}  chrome      option = Options()
 
     # --- MAXIMIZA O NAVEGADOR FULL ---
     Maximize Browser Window
@@ -114,12 +115,12 @@ Before Scenario
     END
 
     #AGUARDAR A HOME SER CARREGADA
-    Wait Until Element Is Visible   ${pageHome.btnMenuHome}     20s
+    Wait Until Element Is Visible   ${homePage.pagina}     20s
 
 
 After Scenario
     Set Screenshot Directory    ${path_screenshots}/${SUITE NAME}
-    Capture Page Screenshot
+    Capture Page Screenshot     
     Remove Files                ${EXECDIR}/selenium-screenshot*
     Close Browser
 

@@ -9,7 +9,7 @@ Library    SeleniumLibrary
 que sou um usuário anônimo
     # Acessa Home_Locator
     Log        Verifica acesso Globoplay
-    Wait Until Element Is Visible   ${pageHome.btnMenuHome}
+    Wait Until Element Is Visible   ${homePage.pagina}
 
     # CASO HAJA ALGUM USUÁRIO LOGADO
     # ${user_anonimo}=    BuiltIn.Run Keyword And Ignore Error   Element Should Be Visible    ${MenuMinhaConta_Perfil.foto_anonimo}
@@ -621,13 +621,6 @@ sair do player VOD
     Wait until element is visible   ${pageTitle.title_name}      10s
 
 
-clicar no menu "Agora na TV"
-    Wait until element is visible   ${pageHome.btnMenuAgoraNaTV}      20s
-    Click element   ${pageHome.btnMenuAgoraNaTV}
-    Wait until element is visible   ${pageCanaisAoVivo.gradePgm}    20s
-
-
-
 assistir canal ao vivo por ${tempo}
     #AGUARDA O CARREGAMENTO DO PLAYER
     Wait until element is visible   ${pageCanaisAoVivo.gradePgm}    20s
@@ -742,7 +735,7 @@ voltar
     Wait until element is visible   ${pageTitle.voltar_button}  5s
     Press Keys  ${SubItem_Titulos.titulos}  ARROW_LEFT+ARROW_LEFT+ARROW_LEFT+ARROW_LEFT+ARROW_LEFT+ENTER
 
-o destaque premium deve ser exibido
+o destaque premium deve exibir
     Wait until element is visible   ${pageHome.HighlightPremium}    10s
 
 
@@ -869,8 +862,8 @@ acessar um destaque premium VOD
         ...         ELSE IF     ${i} == ${itens_trilho_highlight_premium} - 1     EXIT FOR LOOP
         # ELSE AVANCE PARA O PRÓXIMO ITEM DO TRILHO
         ...         ELSE        Click Element   ${pageHome.HighlightPremium_Item_${i+2}}
-
-        EXIT FOR LOOP IF    '${condition_highlight_premium_vod[0]}' == 'PASS'
+ 
+       EXIT FOR LOOP IF    '${condition_highlight_premium_vod[0]}' == 'PASS'
 
     END
 
@@ -935,7 +928,7 @@ acessar a programação via destaque premium
     ...         ELSE    Log  "TESTE APROVADO. A FALHA OCORREU POIS O BUTTON PROGRAMAÇÃO NÃO FOI CONFIGURADO PARA EXIBIÇÃO NO HIGHLIGHT PREMIUM"
 
 
-canal ao vivo deve ser exibido
+canal ao vivo deve exibir
     Wait until element is visible   ${pageCanaisAoVivo.gradePgm}    10s
 
 grade de programação deve ser exibida
@@ -1134,37 +1127,1576 @@ que estou na home
     Run Keyword If    '${url}' == 'https://globoplay.globo.com/'    Log To Console     Redirecionado para a página de Home
     ...         ELSE   Log To Console     <Não redirecinado para a página de Home> RETORNA URL: '${url}'
 
-    Wait Until Element Is Visible   ${pageHome.btnMenuHome}     20s
+    Wait Until Element Is Visible   ${homePage.pagina}     50s
 
-#VALIDA CARROSSEL HOME
-destaque do carrossel deve ser exibido
+############################################
+#   VALIDA CARROSSEL HOME
+############################################
+
+destaque do carrossel deve exibir
     Log To Console     Verifica carrosel
-    Wait Until Element Is Visible   ${carrossel.carrossel_home}     20s
+    Wait Until Element Is Visible   ${homeBanner.carrossel_home}     20s
 
-apresenta as imagens do banner
+apresenta as imagens dos banner
     Log To Console     Verifica imagens do banner
-    Wait Until Element Is Visible   ${pageHome.carrossel_imagem}     20s
-
-#VALIDA TRILHO CANAIS AO VIVO
-destaque do trilho de Canais Ao Vivo deve ser exibido
-    Log To Console    Verifica o trilho de Canais Ao Vivo
-    Wait Until Element Is Visible   ${canais_vivo.canais}     15s
-
-valida o trilho de rolagem dos de Canais Ao Vivo
-    Log      Verifica o trilho de novidade
-    Wait Until Element Is Visible   ${pageHome.carrossel_imagem}     30s
-
-#VALIDA TRILHO TOP 10
-o Top 10 deve ser exibido
-    Log To Console    Verifica o Top 10
-    Wait Until Element Is Visible   ${pageHome.top_10}     30s
-    Wait Until Element Is Visible   ${pageHome.carrossel_imagem}     30s
-
-exibição do trilho de destaque na home
-    Log      Verifica o trilho de novidade
-    Wait Until Element Is Visible   ${pageHome.carrossel_imagem}     30s
 
 
+    FOR   ${x}  IN RANGE    20
+         ${banner}=  BuiltIn.Run Keyword And Ignore Error    Get Text   xpath=//html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[1]/div/div[${x}+1]   
+         Run Keyword If  '${banner[0]}' == ('PASS', None)   Sleep   1s 
+
+         Press Keys  ${homeTrilho.trilho_sonovelao}   ARROW_RIGHT
+
+         Log To Console    Banners = '${x}'
+         Exit For Loop If    '${banner[0]}' == ('FAIL')  
+         ${x}=    Evaluate    ${x} + 1
+    END
+
+############################################
+#   VALIDA TRILHO DE SÓ NOVELÃO  
+############################################
+
+o trilho de "Só novelão" deve exibir
+    Log      Verifica exibição do trilho de Só novelão
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_01}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_01}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_sonovelao}     30s
+                ${title_sonovelao}=  Get Text   ${homeTitle.title_sonovelao}
+
+                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN
+          END
+    END
+    
+
+realiza o trilho da grid de Só novelão
+   Wait Until Element Is Visible   ${homeTrilho.trilho_sonovelao}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${trilho_sonovelao}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${trilho_sonovelao[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${trilho_sonovelao[0]}' == 'FAIL'
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[3]/div[1]/*
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_01}     20s
+                      Press Keys  ${homeTrilho.continua_01}   ARROW_RIGHT
+                ELSE
+                      # Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${trilho_sonovelao[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+############################################
+#   VALIDA TRILHO DE CANAIS AO VIVO
+############################################
+
+o trilho de Canais Ao Vivo deve exibir
+    Log      Verifica exibição do trilho de Canais Ao Vivo
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_02}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_02}
+          IF    '${valor[0]}' == 'PASS'         
+
+                Wait Until Element Is Visible   ${homeTitle.title_canalvivo}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_canalvivo}
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+          END
+    END   
+
+
+realiza o trilho da grid de Canais Ao Vivo
+   Wait Until Element Is Visible   ${homeTrilho.trilho_canalvivo}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${trilho_canalvivo}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[4]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${trilho_canalvivo[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${trilho_canalvivo[0]}' == 'FAIL'
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[4]/div/div[2]/div[3]/div
+
+                IF  '${condition[0]}' == 'PASS'
+
+                      Wait Until Element Is Visible   ${homeTrilho.continua_02}     20s
+                      Press Keys  ${homeTrilho.continua_02}   ARROW_RIGHT
+
+                ELSE  
+                      
+                      Exit For Loop If    '${trilho_canalvivo[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+############################################
+#   VALIDA TRILHO DE SÉRIES MAIS VISTAS
+############################################
+
+o trilho das Séries mais vistas deve exibir
+    Log      Verifica exibição do trilho das Séries mais vistas
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_03}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_03}
+          IF    '${valor[0]}' == 'PASS'
+
+            Press Keys   NONE  PAGE_DOWN PAGE_DOWN  PAGE_DOWN  PAGE_DOWN  
+          
+            Wait Until Element Is Visible   ${homeTitle.title_seriemaisvista}     30s
+            ${title_canalvivo}=  Get Text   ${homeTitle.title_seriemaisvista}
+            Press Keys   NONE   ARROW_DOWN
+
+            Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+            Press Keys   NONE   PAGE_DOWN
+            Sleep   1s
+          END
+    END    
+
+realiza o trilho da grid das Séries mais vistas
+   Wait Until Element Is Visible   ${homeTrilho.trilho_seriemaisvista}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${trilho_seriemaisvista}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[5]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${trilho_seriemaisvista[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${trilho_seriemaisvista[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[5]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_03}     20s
+                      Press Keys  ${homeTrilho.continua_03}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${trilho_seriemaisvista[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+############################################
+#   VALIDA TRILHO DE CANAIS
+############################################
+
+o trilho de Canais deve exibir
+    Log      Verifica exibição do trilho de Canais
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_05}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_05}
+          IF    '${valor[0]}' == 'PASS'
+          
+            Wait Until Element Is Visible   ${homeTitle.title_canal}     30s
+            ${title_canalvivo}=  Get Text   ${homeTitle.title_canal}
+
+            Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+            Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+          END
+    END
+    
+
+realiza o trilho da grid de Canais
+   Wait Until Element Is Visible   ${homeTrilho.trilho_seriemaisvista}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${trilho_canal}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[7]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${trilho_canal[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${trilho_canal[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[7]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_04}     20s
+                      Press Keys  ${homeTrilho.continua_04}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${trilho_canal[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+############################################
+#    VALIDA TRILHO DE NOVIDADES
+############################################
+
+o trilho de Novidades deve exibir
+    Log      Verifica exibição do trilho de Novidades
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_05}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_05}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_novidade}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_novidade}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN
+          END
+          
+    END
+
+realiza o trilho da grid de Novidades
+   Wait Until Element Is Visible   ${homeTrilho.novidade}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${trilho_novidade}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[8]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${trilho_novidade[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${trilho_novidade[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[8]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_05}     20s
+                      Press Keys  ${homeTrilho.continua_05}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${trilho_novidade[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+##############################################
+#    VALIDA TRILHO DE +ESTREIAS NO +CANAIS
+##############################################
+
+o trilho de Estreias no +Canais deve exibir
+    Log      Verifica exibição do trilho de Estreias no +Canais
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_06}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_06}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_estreias_canais}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_estreias_canais}
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de Estreias no +Canais
+   Wait Until Element Is Visible   ${homeTrilho.estreias_canais}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${estreias_canais}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[9]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${estreias_canais[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${estreias_canais[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[9]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_06}     20s
+                      Press Keys  ${homeTrilho.continua_06}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${estreias_canais[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+#####################################################
+#    VALIDA TRILHO DE SÉRIES QUE DÃO O QUE FALAR
+#####################################################
+
+o trilho de "Séries que dão o que falar" deve exibir
+    Log      Verifica exibição do trilho de "Séries que dão o que falar"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_07}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_07}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_seriesquefalar}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_seriesquefalar}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Séries que dão o que falar"
+   Wait Until Element Is Visible   ${homeTrilho.seriesquefalar}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${seriesquefalar}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[10]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[10]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_07}     20s
+                      Press Keys  ${homeTrilho.continua_07}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+########################################################
+#    VALIDA TRILHO DE AO VIVO BBB
+########################################################
+
+o trilho de "Ao Vivo no BBB" deve exibir
+    Log      Verifica exibição do trilho de "Ao Vivo no BBB"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_09}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_09}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_vivobbb}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_vivobbb}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Ao Vivo no BBB"
+   Wait Until Element Is Visible   ${homeTrilho.vivobbb}     30s
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[12]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[12]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_09}     20s
+                      Press Keys  ${homeTrilho.continua_09}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################
+#    VALIDA TRILHO DE ASSISTA NO DISCORERY+
+########################################################
+
+o trilho de "Assista no Discovery+" deve exibir
+    Log      Verifica exibição do trilho de "Assista no Discovery+"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_10}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_10}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_assista_discovery}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_assista_discovery}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Assista no Discovery+"
+   Wait Until Element Is Visible   ${homeTrilho.assista_discovery}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_10}     20s
+                      Press Keys  ${homeTrilho.continua_10}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################
+#    VALIDA TRILHO DE ASSISTA NO Top 10 - Em Alta
+########################################################
+
+o trilho de "Top 10 - Em Alta" deve exibir
+    Log      Verifica exibição do trilho de "Top 10 - Em Alta"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_11}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_11}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_top10alta}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_top10alta}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Top 10 - Em Alta"
+   Wait Until Element Is Visible   ${homeTrilho.top10alta}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_11}     20s
+                      Press Keys  ${homeTrilho.continua_11}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################
+#    VALIDA TRILHO DE ASSISTA NO Categorias
+########################################################
+
+o trilho de "Categorias" deve exibir
+    Log      Verifica exibição do trilho de "Categorias"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_12}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_12}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_categorias}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_categorias}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Categorias"
+   Wait Until Element Is Visible   ${homeTrilho.categorias}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[15]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[15]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_12}     20s
+                      Press Keys  ${homeTrilho.continua_12}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+
+########################################################
+#    VALIDA TRILHO DE ASSISTA NO "Tramas latinas"
+########################################################
+
+o trilho de "Tramas latinas" deve exibir
+    Log      Verifica exibição do trilho de "Tramas latinas"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_13}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_13}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_tramaslatinas}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_tramaslatinas}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Tramas latinas"
+   Wait Until Element Is Visible   ${homeTrilho.tramaslatinas}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[18]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[18]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_13}     20s
+                      Press Keys  ${homeTrilho.continua_13}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+##############################################################
+#    VALIDA TRILHO DE ASSISTA NO "Participantes Pipoca"
+##############################################################
+
+o trilho de "Participantes Pipoca" deve exibir
+    Log      Verifica exibição do trilho de "Participantes Pipoca"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_14}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_14}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_participapipoca}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_participapipoca}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Participantes Pipoca"
+   Wait Until Element Is Visible   ${homeTrilho.participapipoca}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[19]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[19]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_14}     20s
+                      Press Keys  ${homeTrilho.continua_14}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+############################################################
+#    VALIDA TRILHO DE ASSISTA NO "Participantes Camarote"
+############################################################
+
+o trilho de "Participantes Camarote" deve exibir
+    Log      Verifica exibição do trilho de "Participantes Camarote"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_15}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_15}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_participacamarote}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_participacamarote}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Participantes Camarote"
+   Wait Until Element Is Visible   ${homeTrilho.participacamarote}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[20]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[20]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_15}     20s
+                      Press Keys  ${homeTrilho.continua_15}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Os filmes que todos estão vendo"
+###################################################################
+
+o trilho de "Os filmes que todos estão vendo" deve exibir
+    Log      Verifica exibição do trilho de "Os filmes que todos estão vendo"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_16}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_16}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_filmesvendo}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_filmesvendo}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid "Os filmes que todos estão vendo"
+   Wait Until Element Is Visible   ${homeTrilho.filmesvendo}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[21]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[21]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_16}     20s
+                      Press Keys  ${homeTrilho.continua_16}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+    
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Top 10 - Mais Consumidos"
+###################################################################
+
+o trilho de "Top 10 - Mais Consumidos" deve exibir
+    Log      Verifica exibição do trilho de "Top 10 - Mais Consumidos"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_17}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_17}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_top10maisconsumidos}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_top10maisconsumidos}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Top 10 - Mais Consumidos"
+   Wait Until Element Is Visible   ${homeTrilho.top10maisconsumidos}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[22]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[22]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_17}     20s
+                      Press Keys  ${homeTrilho.continua_17}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Navegue pelo Globoplay"
+###################################################################
+
+o trilho de "Navegue pelo Globoplay" deve exibir
+    Log      Verifica exibição do trilho de "Navegue pelo Globoplay"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_18}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_18}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_naveguegloboplay}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_naveguegloboplay}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Navegue pelo Globoplay"
+   Wait Until Element Is Visible   ${homeTrilho.naveguegloboplay}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[23]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[23]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_18}     20s
+                      Press Keys  ${homeTrilho.continua_18}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Assista no Disney+"
+###################################################################
+
+o trilho de "Assista no Disney+" deve exibir
+    Log      Verifica exibição do trilho de "Assista no Disney+"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_19}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_19}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_assistadisney}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_assistadisney}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Assista no Disney+"
+   Wait Until Element Is Visible   ${homeTrilho.assistadisney}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[24]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[24]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_19}     20s
+                      Press Keys  ${homeTrilho.continua_19}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Grandes sucessos do cinema"
+###################################################################
+
+o trilho de "Grandes sucessos do cinema" deve exibir
+    Log      Verifica exibição do trilho de "Grandes sucessos do cinema"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_20}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_20}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_grandessucesso}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_grandessucesso}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Grandes sucessos do cinema"
+   Wait Until Element Is Visible   ${homeTrilho.grandessucesso}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[25]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[25]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_20}     20s
+                      Press Keys  ${homeTrilho.continua_20}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Em alta no Telecine"
+###################################################################
+
+o trilho de "Em alta no Telecine" deve exibir
+    Log      Verifica exibição do trilho de "Assista no Disney+"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_21}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_21}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_grandessucesso}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_grandessucesso}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Em alta no Telecine"
+   Wait Until Element Is Visible   ${homeTrilho.grandessucesso}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[26]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[26]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_21}     20s
+                      Press Keys  ${homeTrilho.continua_21}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Assista de graça"
+###################################################################
+
+o trilho de "Assista de graça" deve exibir
+    Log      Verifica exibição do trilho de "Assista de graça"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_22}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_22}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_assistagraça}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_assistagraça}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Assista de graça"
+   Wait Until Element Is Visible   ${homeTrilho.assistagraça}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[27]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[27]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_22}     20s
+                      Press Keys  ${homeTrilho.continua_22}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Podcasts"
+###################################################################
+
+o trilho de "Podcasts" deve exibir
+    Log      Verifica exibição do trilho de "Podcasts"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_23}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_23}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_podcasts}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_podcasts}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Podcasts"
+   Wait Until Element Is Visible   ${homeTrilho.podcasts}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[16]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[16]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_23}     20s
+                      Press Keys  ${homeTrilho.continua_23}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Novelas que marcaram época"
+###################################################################
+
+o trilho de "Novelas que marcaram época" deve exibir
+    Log      Verifica exibição do trilho de "Novelas que marcaram época"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_24}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_24}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_novelasepoca}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_novelasepoca}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Novelas que marcaram época"
+   Wait Until Element Is Visible   ${homeTrilho.novelasepoca}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[28]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[28]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_24}     20s
+                      Press Keys  ${homeTrilho.continua_24}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Produções Originais Globoplay"
+###################################################################
+
+o trilho de "Produções Originais Globoplay" deve exibir
+    Log      Verifica exibição do trilho de "Produções Originais Globoplay"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_25}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_25}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_originaisgloboplay}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_originaisgloboplay}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Produções Originais Globoplay"
+       Wait Until Element Is Visible   ${homeTrilho.originaisgloboplay}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[29]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[29]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_25}     20s
+                      Press Keys  ${homeTrilho.continua_25}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Séries premiadas"
+###################################################################
+
+o trilho de "Séries premiadas" deve exibir
+    Log      Verifica exibição do trilho de "Séries premiadas"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_26}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_26}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_sogloboplay}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_sogloboplay}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Séries premiadas"
+   Wait Until Element Is Visible   ${homeTrilho.sogloboplay}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[31]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[31]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_26}     20s
+                      Press Keys  ${homeTrilho.continua_26}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Só no Globoplay"
+###################################################################
+
+o trilho de "Só no Globoplay" deve exibir
+    Log      Verifica exibição do trilho de "Produções Originais Globoplay"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_27}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_27}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_originaisgloboplay}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_originaisgloboplay}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Só no Globoplay"
+       Wait Until Element Is Visible   ${homeTrilho.originaisgloboplay}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[32]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[32]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_27}     20s
+                      Press Keys  ${homeTrilho.continua_27}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Os favoritos da criançada"
+###################################################################
+
+o trilho de "Os favoritos da criançada" deve exibir
+    Log      Verifica exibição do trilho de "Os favoritos da criançada"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_28}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_28}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.tltle_criancada}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.tltle_criancada}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Os favoritos da criançada"
+   Wait Until Element Is Visible   ${homeTrilho.criancada}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[33]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[33]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_28}     20s
+                      Press Keys  ${homeTrilho.continua_28}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+###################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Sucessos no Globoplay"
+###################################################################
+
+o trilho de "Sucessos no Globoplay" deve exibir
+    Log      Verifica exibição do trilho de "Sucessos no Globoplay"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_29}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_29}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_sucessosgloboplay}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_sucessosgloboplay}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Sucessos no Globoplay"
+       Wait Until Element Is Visible   ${homeTrilho.sucessosgloboplay}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[35]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[35]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_29}     20s
+                      Press Keys  ${homeTrilho.continua_29}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Documentários sobre Personalidades"
+########################################################################
+
+o trilho de "Documentários sobre Personalidades" deve exibir
+    Log      Verifica exibição do trilho de "Documentários sobre Personalidades"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_30}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_30}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_personalidades}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_personalidades} 
+
+                # Press Keys  ${homeTitle.title_personalidades}   ARROW_RIGHT
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Documentários sobre Personalidades"
+       Wait Until Element Is Visible   ${homeTrilho.personalidades}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[36]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[36]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_30}     20s
+                      Click element  ${homeTrilho.continua_30}
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################################
+#    VALIDA TRILHO DE ASSISTA NO "As notícias mais quentes"
+########################################################################
+
+o trilho de "As notícias mais quentes" deve exibir
+    Log      Verifica exibição do trilho de "As notícias mais quentes"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_31}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_31}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_noticiasmais}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_noticiasmais}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "As notícias mais quentes"
+       Wait Until Element Is Visible   ${homeTrilho.noticiasmais}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[37]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[37]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_31}     20s
+                      Press Keys  ${homeTrilho.continua_31}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Vídeos mais vistos"
+########################################################################
+
+o trilho de "Vídeos mais vistos" deve exibir
+    Log      Verifica exibição do trilho de "Vídeos mais vistos"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_32}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_32}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_videosmais}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_videosmais}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Vídeos mais vistos"
+   Wait Until Element Is Visible   ${homeTrilho.videosmais}     30s
+
+   FOR   ${i}  IN RANGE    100
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[39]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[39]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_32}     20s
+                      Press Keys  ${homeTrilho.continua_32}   ARROW_RIGHT
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+########################################################################
+#    VALIDA TRILHO DE ASSISTA NO "Continue navegando"
+########################################################################
+
+o trilho de "Continue navegando" deve exibir
+    Log      Verifica exibição do trilho de "Continue navegando"
+
+    FOR   ${i}  IN RANGE    200
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_33}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_33}
+          IF    '${valor[0]}' == 'PASS'
+          
+                Wait Until Element Is Visible   ${homeTitle.title_continuenavegando}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_continuenavegando}
+                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+
+                Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+          ELSE
+
+                # Execute JavaScript    window.scrollTo(0,200)
+
+                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          END
+    END
+
+realiza o trilho da grid de "Continue navegando"
+   Wait Until Element Is Visible   ${homeTrilho.continuenavegando}     30s
+
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[40]/div/div[2]/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[40]/div/div[2]/div[3]/div
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${homeTrilho.continua_33}     20s
+                      Press Keys  ${homeTrilho.continua_33}   ARROW_RIGHT
+                      # Press Keys    ${homeTrilho.continuenavegando}    TAB
+                ELSE
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END
+
+
+##############################################################
 
 clicar no menu "Explore"
     Wait until element is visible   ${pageHome.btnMenuExplore}      20s
@@ -1209,12 +2741,166 @@ clicar no menu "Busca"
     Click element   ${pageHome.btnMenuBusca}
 
 
+
+#---------------------------------------------------------------------#
+#                VALIDAÇÃO DOS CENÁRIOS DE AGORA NA TV                #
+#---------------------------------------------------------------------#
+
+seleciona o menu "Agora na TV"
+    Log To Console    Seleciona botão do menu "Agora na TV"
+
+    Run Keyword If    '${url_agora_tv}' == 'https://globoplay.globo.com/tv-globo/ao-vivo'    Log To Console     Redirecionado para a página de Agora na TV
+    ...         ELSE   Log To Console     <Não redirecinado para a página de Agora na TV> RETORNA URL: '${url_agora_tv}'
+
+    Wait until element is visible   ${page_agoratv.agora_tv}  50s
+    Click element   ${page_agoratv.agora_tv}
+    Wait until element is visible   ${page_agoratv.btn_assistir}  50s
+
+
+########################################################
+#    VALIDA OPÇÃO DE CANAIS DA PLAYLIST
+########################################################
+
+seleciona os canais da playlist
+    Wait until element is visible   ${page_agoratv.canais}  20s
+
+    # @{canal}=   Get WebElements   xpath://*[@id="playkit-channels-navigation"]/div[2]/ul/li[1]/div
+
+    Press Keys   ${page_agoratv.canais}   ARROW_DOWN
+
+    FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="playkit-channels-navigation"]/div[2]/ul/li[${i+1}]/div
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         Log To Console    Canais = '${i}'
+        #  Exit For Loop If    '${resultado[0]}' == ('FAIL')  
+         ${x}=    Evaluate    ${i} + 1
+         Exit For Loop If    '${resultado[0]}' == ('FAIL')  
+        
+         Press Keys  NONE   ARROW_DOWN        
+
+    END
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV TODOS
+########################################################
+
+clica no sub menu Todos
+    Log To Console    Seleciona sub menu Todos
+
+    Wait until element is visible   ${menuTv.todos}  20s
+    Sleep   2s
+    Click element   ${menuTv.todos}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV BBB
+########################################################
+
+clica no sub menu BBB
+    Log To Console    Seleciona sub menu BBB
+
+    Sleep   2s
+    Wait until element is visible   ${menuTv.bbb}  20s
+
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.bbb}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV GRATUITOS
+########################################################
+
+clica no sub menu Gratuitos
+    Log To Console    Seleciona sub menu Gratuitos
+    
+    Sleep   2s
+    Wait until element is visible   ${menuTv.gratuitos}  20s
+
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.gratuitos}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV +CANAIS
+########################################################
+
+clica no sub menu +Canais
+    Log To Console    Seleciona sub menu +Canais
+    
+    Sleep   2s
+    Wait until element is visible   ${menuTv.maiscanais}  20s
+    
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.maiscanais}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV FILMES E SÉRIES
+########################################################
+
+clica no sub menu "Filmes e Séries"
+    Log To Console    Seleciona sub menu "Filmes e Séries"
+    
+    Sleep   2s
+    Wait until element is visible   ${menuTv.filmes}  20s
+    
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.filmes}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV ESPORTES
+########################################################
+
+clica no sub menu "Esportes"
+    Log To Console    Seleciona sub menu "Esportes"
+    
+    Sleep   2s
+    Click Element   ${homePage.cookie}
+    Wait until element is visible   ${menuTv.esportes}  20s
+    
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.esportes}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV JORNALISMO
+########################################################
+
+clica no sub menu "Jornalismo"
+    Log To Console    Seleciona sub menu "Jornalismo"
+    
+    Sleep   2s
+    Click Element   ${homePage.cookie}
+    Wait until element is visible   ${menuTv.jornalismo}  20s
+    
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.jornalismo}
+
+
+########################################################
+#    VALIDA OPÇÃO AGORA NA TV INFANTIL
+########################################################
+
+clica no sub menu "Infantil"
+    Log To Console    Seleciona sub menu "Infantil"
+    
+    Sleep   2s
+    Click Element   ${homePage.cookie}
+    Wait until element is visible   ${menuTv.infantil}  20s
+    
+    Click element   ${menuTv.todos}
+    Click element   ${menuTv.infantil}
+
 #---------------------------------------------------------------------#
 #                  VALIDAÇÃO DOS CENÁRIOS DE EXPLORE                  #
 #---------------------------------------------------------------------#
 
 seleciona o menu Explore
     Log To Console    Seleciona botão Explore
+    Wait Until Element Is Visible   ${menu_podcasts.explore}     20s
     Click element   ${menu_podcasts.explore}
 
 direciona para a página do Explore
@@ -1223,13 +2909,8 @@ direciona para a página do Explore
     Run Keyword If    '${url_explore}' == 'https://globoplay.globo.com/categorias/'    Log To Console     Redirecionado para a página de Explore
     ...         ELSE   Log To Console     <Não redirecinado para a página de Explore> RETORNA URL: '${url_explore}'
 
-#    ${pageExplore.aba_categoria}=  set variable 
-#    Run Keyword If    '${pageExplore.aba_categoria}' == 'Categorias'    Log To Console    Retorno OK
-#    Run Keyword If    '${pageExplore.aba_categoria}' == ''    Log To Console    Retorno NOK
-
     Wait Until Element Is Visible   ${pageExplore.categorias_lista}     20s
     Click element   ${menu_podcasts.explore}
-
 
 #---------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE PODCASTS             #
@@ -1363,14 +3044,43 @@ seleciona opção "A República das Milícias"
 seleciona opção "Abuso"
     Log To Console    Valida opção "Abuso"
     Wait Until Element Is Visible   ${podcasts.abuso}     20s
-    Click element   ${podcasts.abuso}
+    # Click element   ${podcasts.abuso}
+
+    Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT
+    
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.abuso}   ${timeout_20}
+    ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.abuso}
+    IF    '${valor[0]}' == 'PASS'
+      Click Element   ${podcasts.abuso}
+    ELSE
+      Click Element   ${menu_podcasts.veja_mais}
+    END
 
 # Valida cenários PODCASTS Original Globoplay (Pistoleiros)
 
 seleciona opção "Pistoleiros"
     Log To Console    Valida opção "Pistoleiros"
-    Wait Until Element Is Visible   ${podcasts.pistoleiros}     20s
-    Click element   ${podcasts.pistoleiros}
+   
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.pistoleiros}   ${timeout_20}
+    ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.pistoleiros}
+    IF    '${valor[0]}' == 'PASS'
+       Click Element   ${podcasts.pistoleiros}
+    ELSE
+       Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+
+       IF    '${valor[0]}' == 'FAIL'
+         Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+         Click Element   ${menu_podcasts.cookie}
+         Click Element   ${menu_podcasts.veja_mais}
+         Wait Until Element Is Visible   ${podcasts.pistoleiros}     20s
+         Click Element   ${podcasts.pistoleiros}
+       ELSE
+         Wait Until Element Is Visible   ${podcasts.pistoleiros}     20s
+         Click Element   ${podcasts.pistoleiros}
+
+       END
+   END
+
 
 
 # Valida cenários PODCASTS Original Globoplay (BBB - Big Brother Brasil)
@@ -1394,19 +3104,93 @@ seleciona opção "Lady Night"
     Wait Until Element Is Visible   ${podcasts.lady_night}     20s
     Click element   ${podcasts.lady_night}
 
+# Valida cenários PODCASTS Original Globoplay (O Assunto)
 seleciona opção "O Assunto"
     Log To Console    Valida opção "O Assunto"
     Wait Until Element Is Visible   ${podcasts.assunto}     20s
-    Click element   ${podcasts.assunto}
+    # Click element   ${podcasts.assunto}
+
+    Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT
+    
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.assunto}   ${timeout_20}
+    ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.assunto}
+    IF    '${valor[0]}' == 'PASS'
+      Click Element   ${podcasts.assunto}
+    ELSE
+      Press Keys   NONE   ARROW_RIGHT
+    END
+
+# Valida cenários PODCASTS Original Globoplay (E aí Gay?)
+seleciona opção "E aí Gay?"
+    Log To Console    Valida opção "E aí Gay?"
+    
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.ai_gay}   ${timeout_20}
+    ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.ai_gay}
+    IF    '${valor[0]}' == 'PASS'
+       Click Element   ${podcasts.ai_gay}
+    ELSE
+       Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+
+       IF    '${valor[0]}' == 'FAIL'
+         Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+         Click Element   ${menu_podcasts.cookie}
+         Click Element   ${menu_podcasts.veja_mais}
+         Wait Until Element Is Visible   ${podcasts.ai_gay}     20s
+         Click Element   ${podcasts.ai_gay}
+       ELSE
+         Wait Until Element Is Visible   ${podcasts.ai_gay}     20s
+         Click Element   ${podcasts.ai_gay}
+
+       END
+     END
+
+# Valida cenários PODCASTS Original Globoplay (Isso é Fantástico)
+seleciona opção "Isso é Fantástico"
+    Log To Console    Valida opção "Isso é Fantástico"
+    Wait Until Element Is Visible   ${podcasts.isso_fantastico}     20s
+    # Click element   ${podcasts.isso_fantastico}
+    
+    Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT
+    
+    Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.isso_fantastico}   ${timeout_20}
+    ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.isso_fantastico}
+    IF    '${valor[0]}' == 'PASS'
+      Click Element   ${podcasts.isso_fantastico}
+    ELSE
+      Press Keys   NONE   ARROW_RIGHT
+    END
+
+seleciona opção "Conversas Paralelas"
+    Log To Console    Valida opção "Conversas Paralelas"
+    
+        Run Keyword And Ignore Error    Wait Until Element Is Visible    ${podcasts.conversas_paralelas}   ${timeout_20}
+        ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${podcasts.conversas_paralelas}
+        IF    '${valor[0]}' == 'PASS'
+           Click Element   ${podcasts.conversas_paralelas}
+        ELSE
+           Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+
+            IF    '${valor[0]}' == 'FAIL'
+              Press Keys   NONE   ARROW_RIGHT ARROW_RIGHT ARROW_RIGHT
+              Click Element   ${menu_podcasts.cookie}
+              Click Element   ${menu_podcasts.veja_mais}
+              Wait Until Element Is Visible   ${podcasts.conversas_paralelas}     20s
+              Click Element   ${podcasts.conversas_paralelas}
+            ELSE
+              Wait Until Element Is Visible   ${podcasts.conversas_paralelas}     20s
+              Click Element   ${podcasts.conversas_paralelas}
+
+            END
+        END
 
 #----------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CATEGORIA             #
 #----------------------------------------------------------------------#
 
-sou um usuário anônimo
-  Log      Abre o site do produto sem logar
-  Open Browser    ${globoplay_home}   ${browser}
-  Maximize Browser Window
+# sou um usuário anônimo
+#   Log      Abre o site do produto sem logar
+#   Open Browser    ${globoplay_home}   ${browser}
+#   Maximize Browser Window
 
 
 #E que estou na home
@@ -1432,13 +3216,13 @@ devo ver a solicitação de login com a Conta Globo
 
 # Menu Explore
 selecionar "Categorias"
-  Wait Until Element Is Visible    ${MenuExplore.btnCategorias}   ${timeout_20}
-  Click Element    ${MenuExplore.btnCategorias}
+  Wait Until Element Is Visible    ${Categorias.btn}   ${timeout_20}
+  Click Element    ${Categorias.btn}
 
 
 selecionar "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.btnCanais}   ${timeout_20}
-  Click Element    ${MenuExplore.btnCanais}
+  Wait Until Element Is Visible    ${Canais.btn}   ${timeout_20}
+  Click Element    ${Canais.btn}
 
 #----------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CATEGORIA             #
@@ -1446,8 +3230,8 @@ selecionar "Canais"
 
 # Menu Explore - Categorias - Página
 o título "Novelas" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloNovelas}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloNovelas}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloNovelas}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloNovelas}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Novelas" ficou visível.
   ELSE
@@ -1456,8 +3240,8 @@ o título "Novelas" deve estar visível
 
 
 o título "Séries" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloSeries}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloSeries}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloSeries}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloSeries}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Séries" ficou visível.
   ELSE
@@ -1466,8 +3250,8 @@ o título "Séries" deve estar visível
 
 
 o título "Filmes" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloFilmes}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloFilmes}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloFilmes}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${CategoriastituloFilmes}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Filmes" ficou visível.
   ELSE
@@ -1476,8 +3260,8 @@ o título "Filmes" deve estar visível
 
 
 o título "Infantil" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloInfantil}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloInfantil}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloInfantil}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloInfantil}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Infantil" ficou visível.
   ELSE
@@ -1486,8 +3270,8 @@ o título "Infantil" deve estar visível
 
 
 o título "Realities" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloRealities}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloRealities}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloRealities}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloRealities}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Realities" ficou visível.
   ELSE
@@ -1496,8 +3280,8 @@ o título "Realities" deve estar visível
 
 
 o título "Documentários" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloDocumentarios}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloDocumentarios}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloDocumentarios}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloDocumentarios}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Documentários" ficou visível.
   ELSE
@@ -1506,8 +3290,8 @@ o título "Documentários" deve estar visível
 
 
 o título "Esportes" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloEsportes}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloEsportes}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloEsportes}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloEsportes}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Esportes" ficou visível.
   ELSE
@@ -1516,8 +3300,8 @@ o título "Esportes" deve estar visível
 
 
 o título "Variedades" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloVariedades}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloVariedades}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloVariedades}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloVariedades}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Variedades" ficou visível.
   ELSE
@@ -1526,8 +3310,8 @@ o título "Variedades" deve estar visível
 
 
 o título "Humor" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloHumor}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloHumor}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloHumor}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloHumor}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Humor" ficou visível.
   ELSE
@@ -1536,8 +3320,8 @@ o título "Humor" deve estar visível
 
 
 o título "Música" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloMusica}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloMusica}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloMusica}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloMusica}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Música" ficou visível.
   ELSE
@@ -1546,8 +3330,8 @@ o título "Música" deve estar visível
 
 
 o título "Jornalismo" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloJornalismo}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloJornalismo}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloJornalismo}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloJornalismo}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Jornalismo" ficou visível.
   ELSE
@@ -1556,8 +3340,8 @@ o título "Jornalismo" deve estar visível
 
 
 o título "Programas Locais" deve estar visível
-  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${MenuExplore.tituloProgramasLocais}   ${timeout_20}
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${MenuExplore.tituloProgramasLocais}
+  Run Keyword And Ignore Error    Wait Until Element Is Visible    ${Categorias.tituloProgramasLocais}   ${timeout_20}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Categorias.tituloProgramasLocais}
   IF    '${valor[0]}' == 'PASS'
     Log To Console    O título "Programas Locais" ficou visível.
   ELSE
@@ -1640,64 +3424,64 @@ devo ser redirecinado para a página "Programas Locais"
 
 # Menu Explore - Categorias - Conteúdos
 selecionar "Documentários"
-  Click Element    ${MenuExplore.btnDocumentarios}
+  Click Element    ${Documentarios.btn}
 
 
 selecionar "Novelas"
-  Click Element    ${MenuExplore.btnNovelas}
+  Click Element    ${Novelas.btn}
 
 
 selecionar "Infantil"
-  Wait Until Element Is Visible    ${MenuExplore.btnInfantil}    ${timeout_20}
-  Click Element    ${MenuExplore.btnInfantil}
+  Wait Until Element Is Visible    ${Infantil.btn}    ${timeout_20}
+  Click Element    ${Infantil.btn}
 
 
 selecionar "Realities"
-  Click Element    ${MenuExplore.btnRealities}
+  Click Element    ${Realities.btn}
 
 
 selecionar "Filmes"
-  Click Element    ${MenuExplore.btnFilmes}
+  Click Element    ${Filmes.btn}
 
 
 selecionar "Séries"
-  Click Element    ${MenuExplore.btnSeries}
+  Click Element    ${Series.btn}
 
 
 selecionar "Variedades"
-  Click Element    ${MenuExplore.btnVariedades}
+  Click Element    ${Variedades.btn}
 
 
 selecionar "Humor"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnHumor}
+  Click Element    ${Humor.btn}
 
 
 selecionar "Música"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnMusica}
+  Click Element    ${Musica.btn}
 
 
 selecionar "Esportes"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnEsportes}
+  Click Element    ${Esportes.btn}
 
 
 selecionar "Jornalismo"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnJornalismo}
+  Click Element    ${Jornalismo.btn}
 
 
 selecionar "Programas Locais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.btnProgramasLocais}
+  Click Element    ${ProgramasLocais.btn}
 
 
 # Menu Explore - Categorias - Banner
 o banner deve estar visível
   Log      Verifica existência do banner na Categoria escolhida
   Sleep  2s
-  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible     ${MenuExplore.banner}
+  ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible     ${Categorias.banner}
   Run Keyword If    '${valor[0]}' == 'PASS'     Log To Console    Mostrou o banner.
   ...       ELSE    Log To Console    Não mostrou o banner.
 
@@ -1705,37 +3489,42 @@ o banner deve estar visível
 # Menu Explore - Categorias - Veja Mais Banner
 selecionar "Veja Mais"
   Log      Verifica o Veja Mais recomendado no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMaisBanner}   ${timeout_20}
-  Click Element   ${MenuExplore.btnVejaMaisBanner}
+  Wait Until Element Is Visible    ${Categorias.btnVejaMaisBanner}   ${timeout_20}
+  Click Element   ${Categorias.btnVejaMaisBanner}
+
+
+selecionar "Assine Já"
+  Wait Until Element Is Visible    ${Categorias.btnAssineJaBanner}    ${timeout_20}
+  Click Element    ${Categorias.btnAssineJaBanner}
 
 
 # Menu Explore - Categorias - Assine Já Banner
 devo conseguir ver o botão "Assine já"
   Log      Verifica o Assine Já ao clilcar no recomendado no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineJaBanner}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnAssineJaBanner}
+  Wait Until Element Is Visible    ${Categorias.btnAssineJaBanner}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnAssineJaBanner}
 
 
 # Menu Explore - Categorias&Canais - Botão "Veja Mais" em Ver Todos
 selecionar "Veja Mais" em Ver Todos
   Log  ...
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVerTodos}   ${timeout_20}
-  Click Element    ${MenuExplore.btnVerTodos}
+  Wait Until Element Is Visible    ${Categorias.btnVerTodos}   ${timeout_20}
+  Click Element    ${Categorias.btnVerTodos}
 
 
 # Menu Explore - Categorias - Ver Todos
 devo conseguir localizar o botão "Veja mais"
   Log      Verifica a existência do botão "Veja Mais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMais}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnVejaMais}
+  Wait Until Element Is Visible    ${Categorias.btnVejaMais}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnVejaMais}
 
 
 devo conseguir localizar "Todos os documentários"
   Log      Verifica a existência de Todos os documentários
-  Wait Until Element Is Visible    ${MenuExplore.btnTodosOsDocumentarios}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodosOsDocumentarios}
+  Wait Until Element Is Visible    ${Documentarios.btnTodosOsDocumentarios}   ${timeout_20}
+  Element Should Be Visible    ${Documentarios.btnTodosOsDocumentarios}
 
 
 devo conseguir localizar "Todas as novelas"
@@ -1743,320 +3532,320 @@ devo conseguir localizar "Todas as novelas"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
   #Wait Until Element Is Visible    ${MenuExplore.btnTodasAsNovelas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodasAsNovelas}
+  Element Should Be Visible    ${Novelas.btnTodasAsNovelas}
 
 
 devo conseguir localizar "Todos os filmes"
   Log      Verifica a existência de Todos os filmes
-  Wait Until Element Is Visible    ${MenuExplore.btnTodosOsFilmes}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodosOsFilmes}
+  Wait Until Element Is Visible    ${Filmes.btnTodosOsFilmes}   ${timeout_20}
+  Element Should Be Visible    ${Filmes.btnTodosOsFilmes}
 
 
 devo conseguir localizar "Todas as séries"
   Log      Verifica a existência de Todas as séries
-  Wait Until Element Is Visible    ${MenuExplore.btnTodasAsSeries}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnTodasAsSeries}
+  Wait Until Element Is Visible    ${Series.btnTodasAsSeries}   ${timeout_20}
+  Element Should Be Visible    ${Series.btnTodasAsSeries}
 
 
 devo conseguir localizar "Esportes - Todos os títulos"
   Log      Verifica a existência de "Esportes - Todos os títulos"
-  Wait Until Element Is Visible    ${MenuExplore.tituloEsportesTodosOsTitulos}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloEsportesTodosOsTitulos}
+  Wait Until Element Is Visible    ${Esportes.tituloEsportesTodosOsTitulos}   ${timeout_20}
+  Element Should Be Visible    ${Esportes.tituloEsportesTodosOsTitulos}
 
 
 # Menu Explore - Categorias&Canais - Títulos
 devo conseguir localizar "Ver todos"
   Log      Verifica a existência do botão Veja mais ao final da página
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.btnVerTodos}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.btnVerTodos}
+  Wait Until Element Is Visible    ${Categorias.btnVerTodos}   ${timeout_20}
+  Element Should Be Visible    ${Categorias.btnVerTodos}
 
 
 # Menu Explore - Categorias - ProgramasLocais
 selecionar "Acre"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAcre}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAcre}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAcre}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAcre}
 
 
 selecionar "Alagoas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAlagoas}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAlagoas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAlagoas}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAlagoas}
 
 
 selecionar "Amapá"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmapa}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAmapa}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmapa}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAmapa}
 
 
 selecionar "Amazonas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmazonas}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloAmazonas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmazonas}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloAmazonas}
 
 
 selecionar "Bahia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloBahia}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloBahia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloBahia}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloBahia}
 
 
 selecionar "Ceará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloCeara}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloCeara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloCeara}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloCeara}
 
 
 selecionar "Distrito Federal"
-  Wait Until Element Is Visible    ${MenuExplore.tituloDistritoFederal}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloDistritoFederal}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloDistritoFederal}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloDistritoFederal}
 
 
 selecionar "Espírito Santo"
-  Wait Until Element Is Visible    ${MenuExplore.tituloEspiritoSanto}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloEspiritoSanto}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloEspiritoSanto}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloEspiritoSanto}
 
 
 selecionar "Goiás"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGoias}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloGoias}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGoias}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloGoias}
 
 
 selecionar "Maranhão"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMaranhao}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMaranhao}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMaranhao}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMaranhao}
 
 
 selecionar "Mato Grosso"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrosso}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMatoGrosso}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrosso}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMatoGrosso}
 
 
 selecionar "Mato Grosso do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrossoDoSul}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMatoGrossoDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMatoGrossoDoSul}
 
 
 selecionar "Minas Gerais"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMinasGerais}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloMinasGerais}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMinasGerais}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloMinasGerais}
 
 
 selecionar "Paraná"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParana}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloParana}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParana}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloParana}
 
 
 selecionar "Paraíba"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParaiba}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloParaiba}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParaiba}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloParaiba}
 
 
 selecionar "Pará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPara}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPara}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPara}
 
 
 selecionar "Pernambuco"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPernambuco}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPernambuco}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPernambuco}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPernambuco}
 
 
 selecionar "Piauí"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPiaui}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloPiaui}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPiaui}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloPiaui}
 
 
 selecionar "Rio Grande do Norte"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoNorte}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioGrandeDoNorte}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioGrandeDoNorte}
 
 
 selecionar "Rio Grande do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoSul}   ${timeout_20}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioGrandeDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoSul}   ${timeout_20}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioGrandeDoSul}
 
 
 selecionar "Rio de Janeiro"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioDeJaneiro}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRioDeJaneiro}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioDeJaneiro}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRioDeJaneiro}
 
 
 selecionar "Rondônia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRondonia}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRondonia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRondonia}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRondonia}
 
 
 selecionar "Roraima"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRoraima}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloRoraima}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRoraima}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloRoraima}
 
 
 selecionar "Santa Catarina"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSantaCatarina}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSantaCatarina}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSantaCatarina}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSantaCatarina}
 
 
 selecionar "Sergipe"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSergipe}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSergipe}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSergipe}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSergipe}
 
 
 selecionar "São Paulo"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloSaoPaulo}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloSaoPaulo}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSaoPaulo}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloSaoPaulo}
 
 
 selecionar "Tocantins"
   Sleep  2s
   Scroll Element Into View    ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.tituloTocantins}   ${timeout_20}
-  Click Element    ${MenuExplore.tituloTocantins}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloTocantins}   ${timeout_20}
+  Click Element    ${ProgramasLocais.tituloTocantins}
 
 
 # Menu Explore - Categorias - ProgramasLocais
 devo conseguir ver o texto "Acre"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAcre}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAcre}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAcre}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAcre}
 
 
 devo conseguir ver o texto "Alagoas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAlagoas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAlagoas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAlagoas}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAlagoas}
 
 
 devo conseguir ver o texto "Amapá"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmapa}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAmapa}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmapa}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAmapa}
 
 
 devo conseguir ver o texto "Amazonas"
-  Wait Until Element Is Visible    ${MenuExplore.tituloAmazonas}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloAmazonas}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloAmazonas}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloAmazonas}
 
 
 devo conseguir ver o texto "Bahia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloBahia}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloBahia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloBahia}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloBahia}
 
 
 devo conseguir ver o texto "Ceará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloCeara}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloCeara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloCeara}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloCeara}
 
 
 devo conseguir ver o texto "Distrito Federal"
-  Wait Until Element Is Visible    ${MenuExplore.tituloDistritoFederal}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloDistritoFederal}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloDistritoFederal}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloDistritoFederal}
 
 
 devo conseguir ver o texto "Grande Vitória, ES"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGrandeVitoria}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloGrandeVitoria}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGrandeVitoria}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloGrandeVitoria}
 
 
 devo conseguir ver o texto "Goiás"
-  Wait Until Element Is Visible    ${MenuExplore.tituloGoias}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloGoias}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloGoias}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloGoias}
 
 
 devo conseguir ver o texto "Maranhão"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMaranhao}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMaranhao}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMaranhao}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMaranhao}
 
 
 devo conseguir ver o texto "Mato Grosso"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrosso}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMatoGrosso}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrosso}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMatoGrosso}
 
 
 devo conseguir ver o texto "Mato Grosso do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMatoGrossoDoSul}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMatoGrossoDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMatoGrossoDoSul}
 
 
 devo conseguir ver o texto "Minas Gerais"
-  Wait Until Element Is Visible    ${MenuExplore.tituloMinasGerais}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloMinasGerais}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloMinasGerais}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloMinasGerais}
 
 
 devo conseguir ver o texto "Paraná"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParana}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloParana}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParana}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloParana}
 
 
 devo conseguir ver o texto "Paraíba"
-  Wait Until Element Is Visible    ${MenuExplore.tituloParaiba}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloParaiba}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloParaiba}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloParaiba}
 
 
 devo conseguir ver o texto "Pará"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPara}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPara}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPara}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPara}
 
 
 devo conseguir ver o texto "Pernambuco"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPernambuco}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPernambuco}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPernambuco}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPernambuco}
 
 
 devo conseguir ver o texto "Piauí"
-  Wait Until Element Is Visible    ${MenuExplore.tituloPiaui}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloPiaui}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloPiaui}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloPiaui}
 
 
 devo conseguir ver o texto "Rio Grande do Norte"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoNorte}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioGrandeDoNorte}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioGrandeDoNorte}
 
 
 devo conseguir ver o texto "Rio Grande do Sul"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioGrandeDoSul}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioGrandeDoSul}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioGrandeDoSul}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioGrandeDoSul}
 
 
 devo conseguir ver o texto "Rio de Janeiro"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRioDeJaneiro}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRioDeJaneiro}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRioDeJaneiro}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRioDeJaneiro}
 
 
 devo conseguir ver o texto "Rondônia"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRondonia}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRondonia}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRondonia}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRondonia}
 
 
 devo conseguir ver o texto "Roraima"
-  Wait Until Element Is Visible    ${MenuExplore.tituloRoraima}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloRoraima}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloRoraima}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloRoraima}
 
 
 devo conseguir ver o texto "Santa Catarina"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSantaCatarina}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSantaCatarina}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSantaCatarina}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSantaCatarina}
 
 
 devo conseguir ver o texto "Sergipe"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSergipe}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSergipe}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSergipe}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSergipe}
 
 
 devo conseguir ver o texto "São Paulo"
-  Wait Until Element Is Visible    ${MenuExplore.tituloSaoPaulo}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloSaoPaulo}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloSaoPaulo}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloSaoPaulo}
 
 
 devo conseguir ver o texto "Tocantins"
-  Wait Until Element Is Visible    ${MenuExplore.tituloTocantins}   ${timeout_20}
-  Element Should Be Visible    ${MenuExplore.tituloTocantins}
+  Wait Until Element Is Visible    ${ProgramasLocais.tituloTocantins}   ${timeout_20}
+  Element Should Be Visible    ${ProgramasLocais.tituloTocantins}
 
 
 # Menu Explore - Categorias - Conteúdo
 selecionar "Lady Night"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Variedades_LadyNight}
+  Click Element    ${Variedades.LadyNight}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/lady-night/t/8sgfsb8qRH/'
     Log To Console    Redirecionado para "Lady Night".
@@ -2068,7 +3857,7 @@ selecionar "Lady Night"
 selecionar "Mais Você"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Variedades_MaisVoce}
+  Click Element    ${Variedades.MaisVoce}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/mais-voce/t/n9Vq6SMvsm/'
     Log To Console    Redirecionado para "Mais Você".
@@ -2079,8 +3868,8 @@ selecionar "Mais Você"
 
 selecionar "Multi Tom"
   Sleep  2s
-  Scroll Element Into View     ${MenuExplore.Humor_MultiTom}
-  Click Element    ${MenuExplore.Humor_MultiTom}
+  Scroll Element Into View     ${Humor.MultiTom}
+  Click Element    ${Humor.MultiTom}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/multi-tom/t/cmVr1RjCT8/'
     Log To Console    Redirecionado para "Multi Tom".
@@ -2091,8 +3880,8 @@ selecionar "Multi Tom"
 
 selecionar "Choque de Cultura Show"
   Sleep  2s
-  Scroll Element Into View     ${MenuExplore.Humor_ChoquedeCulturaShow}
-  Click Element    ${MenuExplore.Humor_ChoquedeCulturaShow}
+  Scroll Element Into View     ${Humor.ChoquedeCulturaShow}
+  Click Element    ${Humor.ChoquedeCulturaShow}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/choque-de-cultura-show/t/FBqg2t8Cq2/'
     Log To Console    Redirecionado para "Choque de Cultura Show".
@@ -2104,7 +3893,7 @@ selecionar "Choque de Cultura Show"
 selecionar "Prêmio Multishow"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Musica_PremioMultishow}
+  Click Element    ${Musica.PremioMultishow}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/premio-multishow/t/RpX7XmkDQM/'
     Log To Console    Redirecionado para "Prêmio Multishow".
@@ -2116,7 +3905,7 @@ selecionar "Prêmio Multishow"
 selecionar "Roberto Carlos Especial"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Musica_RobertoCarlosEspecial}
+  Click Element    ${Musica.RobertoCarlosEspecial}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/roberto-carlos-especial/t/kXRnfccg1q/'
     Log To Console    Redirecionado para "Roberto Carlos Especial".
@@ -2128,7 +3917,7 @@ selecionar "Roberto Carlos Especial"
 selecionar "Esporte Espetacular"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Esportes_EsporteEspetacular}
+  Click Element    ${Esportes.EsporteEspetacular}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/esporte-espetacular/t/Jm2mfGZHfq/'
     Log To Console    Redirecionado para "Esporte Espetacular".
@@ -2140,8 +3929,8 @@ selecionar "Esporte Espetacular"
 selecionar "Jornal das Dez"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Jornalismo_JornalDasDez}   ${timeout_20}
-  Click Element    ${MenuExplore.Jornalismo_JornalDasDez}
+  Wait Until Element Is Visible    ${Jornalismo_JornalDasDez}   ${timeout_20}
+  Click Element    ${Jornalismo.JornalDasDez}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/jornal-das-dez/t/NSWghfyn6w/'
     Log To Console    Redirecionado para "Jornal das Dez".
@@ -2153,7 +3942,7 @@ selecionar "Jornal das Dez"
 selecionar "Jornal Nacional"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Click Element    ${MenuExplore.Jornalismo_JornalNacional}
+  Click Element    ${Jornalismo_JornalNacional}
   ${url}=    Get Location
   IF    '${url}' == 'https://globoplay.globo.com/jornal-nacional/t/MyCrVrr6gW/'
     Log To Console    Redirecionado para "Jornal Nacional".
@@ -2162,7 +3951,7 @@ selecionar "Jornal Nacional"
   END
 
 
-# Menu Explore - Categorias - Botão "Conheça o plano"
+# Menu Explore - Botão "Conheça o plano"
 devo conseguir ver o botão "Conheça o plano"
   Wait Until Element Is Visible    ${MenuExplore.btnConhecaOPlano}   ${timeout_20}
   Element Should Be Visible   ${MenuExplore.btnConhecaOPlano}
@@ -2170,11 +3959,11 @@ devo conseguir ver o botão "Conheça o plano"
 
 # Menu Explore - Categorias - Botão "Assista"
 selecionar "Assista"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssista}   ${timeout_20}
-  Click Element   ${MenuExplore.btnAssista}
+  Wait Until Element Is Visible    ${Categorias.btnAssista}   ${timeout_20}
+  Click Element   ${Categorias.btnAssista}
 
 
-# Menu Explore - Categorias - Texto Conteúdo exclusivo
+# Menu Explore - Texto Conteúdo exclusivo
 devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
   Wait Until Element Is Visible    ${MenuExplore.textoConteudoExclusivo}   ${timeout_20}
   Element Should Be Visible   ${MenuExplore.textoConteudoExclusivo}
@@ -2229,382 +4018,382 @@ devo ser redirecinado para a página de assinatura
 
 
 devo ser redirecinado para a página de assinatura do Telecine
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaTelecine}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Telecine.textoAssinatura}
 
 
 devo ser redirecinado para a página de assinatura do Premiere
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaPremiere}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaPremiere}
+  Wait Until Element Is Visible    ${Premiere.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Premiere.textoAssinatura}
 
 
 devo ser redirecinado para a página de assinatura do Combate
-  Wait Until Element Is Visible    ${MenuExplore.textoAssinaturaCombate}    ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoAssinaturaCombate}
+  Wait Until Element Is Visible    ${Combate.textoAssinatura}    ${timeout_20}
+  Element Should Be Visible   ${Combate.textoAssinatura}
 
 
 # Menu Explore - Canais - Assista ao vivo
 selecionar "TV Globo" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.TVGlobo_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.TVGlobo_AssistaAoVivo}
+  Wait Until Element Is Visible    ${TVGlobo.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${TVGlobo.AssistaAoVivo}
 
 
 selecionar "Multishow" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.Multishow_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Multishow_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Multishow.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Multishow.AssistaAoVivo}
 
 
 selecionar "Globonews" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.Globonews_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Globonews_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Globonews.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Globonews.AssistaAoVivo}
 
 
 selecionar "SporTV" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.SporTV_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.SporTV_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${SporTV.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${SporTV.AssistaAoVivo}
 
 
 selecionar "GNT" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.GNT_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.GNT_AssistaAoVivo}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${GNT.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${GNT.AssistaAoVivo}
 
 
 selecionar "VIVA" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.VIVA_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.VIVA_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${VIVA.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${VIVA.AssistaAoVivo}
 
 
 selecionar "Gloob" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.Gloob_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloob_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${Gloob.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Gloob.AssistaAoVivo}
 
 
 selecionar "Gloobinho" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
-  Wait Until Element Is Visible    ${MenuExplore.Gloobinho_AssistaAoVivo}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloobinho_AssistaAoVivo}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
+  Wait Until Element Is Visible    ${Gloobinho.AssistaAoVivo}    ${timeout_20}
+  Click Element    ${Gloobinho.AssistaAoVivo}
 
 
 selecionar "Megapix" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep  2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep  2s
-  Click Element    ${MenuExplore.textoMegapix}
+  Click Element    ${Megapix.textoMegapix}
 
 
 selecionar "Universal TV" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoUniversalTV}
+  Click Element    ${Universal+.textoUniversalTV}
 
 
 selecionar "Studio Universal" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoStudioUniversal}
+  Click Element    ${Universal+.textoStudioUniversal}
 
 
 selecionar "SYFY" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoSYFY}
+  Click Element    ${Universal+.textoSYFY}
 
 
 selecionar "Canal Brasil" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CanalBrasil_AssistaAoVivo}
+  Click Element    ${CanalBrasil.AssistaAoVivo}
 
 
 selecionar "Canal Off" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CanalOff_AssistaAoVivo}
+  Click Element    ${CanalOff.AssistaAoVivo}
 
 
 selecionar "BIS" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.BIS_AssistaAoVivo}
+  Click Element    ${BIS.AssistaAoVivo}
 
 
 selecionar "Modo Viagem" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.ModoViagem_AssistaAoVivo}
+  Click Element    ${ModoViagem.AssistaAoVivo}
 
 
 selecionar "Futura" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Futura_AssistaAoVivo}
+  Click Element    ${Futura.AssistaAoVivo}
 
 
 selecionar "Telecine Premium" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecinePremium}
+  Click Element    ${Telecine.textoTelecinePremium}
 
 
 selecionar "Telecine Action" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineAction}
+  Click Element    ${Telecine.textoTelecineAction}
 
 
 selecionar "Telecine Touch" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineTouch}
+  Click Element    ${Telecine.textoTelecineTouch}
 
 
 selecionar "Telecine Fun" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineFun}
+  Click Element    ${Telecine.textoTelecineFun}
 
 
 selecionar "Telecine Pipoca" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecinePipoca}
+  Click Element    ${Telecine.textoTelecinePipoca}
 
 
 selecionar "Telecine Cult" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.textoTelecineCult}
+  Click Element    ${Telecine.textoTelecineCult}
 
 
 selecionar "Premiere" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Premiere_AssistaAoVivo}
+  Click Element    ${Premiere.AssistaAoVivo}
 
 
 selecionar "Combate" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.Combate_AssistaAoVivo}
+  Click Element    ${Combate.AssistaAoVivo}
 
 
 selecionar "CBN SP" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CBNSP_AssistaAoVivo}
+  Click Element    ${CBN.SP_AssistaAoVivo}
 
 
 selecionar "CBN RJ" no "Assista ao vivo"
-  Wait Until Element Is Visible    ${MenuExplore.btnNextAssistaAoVivo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Wait Until Element Is Visible    ${Canais.btnNextAssistaAoVivo}    ${timeout_20}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.btnNextAssistaAoVivo_Canais}
+  Click Element    ${Canais.btnNextAssistaAoVivo}
   Sleep   2s
-  Click Element    ${MenuExplore.CBNRJ_AssistaAoVivo}
+  Click Element    ${CBN.RJ_AssistaAoVivo}
 
 
 # Menu Explore - Canais - Canais
 selecionar "TV Globo" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.TVGlobo_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.TVGlobo_Canais}
+  Wait Until Element Is Visible    ${TVGlobo.Canais}    ${timeout_20}
+  Click Element    ${TVGlobo.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globo/'    Log To Console       Redirecionado para a página "TV Globo" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "TV Globo" em "Canais"! URL: '${url}'
 
 
 selecionar "Multishow" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.Multishow_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Multishow_Canais}
+  Wait Until Element Is Visible    ${Multishow.Canais}    ${timeout_20}
+  Click Element    ${Multishow.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/multishow/'    Log To Console       Redirecionado para a página "Multishow" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Multishow" em "Canais"! URL: '${url}'
 
 
 selecionar "Globonews" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.Globonews_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Globonews_Canais}
+  Wait Until Element Is Visible    ${Globonews.Canais}    ${timeout_20}
+  Click Element    ${Globonews.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globonews/'    Log To Console       Redirecionado para a página "Globonews" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Globonews" em "Canais"! URL: '${url}'
 
 
 selecionar "SporTV" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.SporTV_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.SporTV_Canais}
+  Wait Until Element Is Visible    ${SporTV.Canais}    ${timeout_20}
+  Click Element    ${SporTV.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/sportv/'    Log To Console       Redirecionado para a página "SporTV" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "SporTV" em "Canais"! URL: '${url}'
 
 
 selecionar "GNT" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.GNT_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.GNT_Canais}
+  Wait Until Element Is Visible    ${GNT.Canais}    ${timeout_20}
+  Click Element    ${GNT.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gnt/'    Log To Console       Redirecionado para a página "GNT" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "GNT" em "Canais"! URL: '${url}'
 
 
 selecionar "VIVA" em "Canais"
-  Wait Until Element Is Visible    ${MenuExplore.VIVA_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.VIVA_Canais}
+  Wait Until Element Is Visible    ${VIVA.Canais}    ${timeout_20}
+  Click Element    ${VIVA.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/viva/'    Log To Console       Redirecionado para a página "VIVA" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "VIVA" em "Canais"! URL: '${url}'
@@ -2612,8 +4401,8 @@ selecionar "VIVA" em "Canais"
 
 selecionar "Gloob" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Gloob_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloob_Canais}
+  Wait Until Element Is Visible    ${Gloob.Canais}    ${timeout_20}
+  Click Element    ${Gloob.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloob/'    Log To Console       Redirecionado para a página "Gloob" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Gloob" em "Canais"! URL: '${url}'
@@ -2621,8 +4410,8 @@ selecionar "Gloob" em "Canais"
 
 selecionar "Gloobinho" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Gloobinho_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Gloobinho_Canais}
+  Wait Until Element Is Visible    ${Gloobinho.Canais}    ${timeout_20}
+  Click Element    ${Gloobinho.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloobinho/'    Log To Console       Redirecionado para a página "Gloobinho" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Gloobinho" em "Canais"! URL: '${url}'
@@ -2630,8 +4419,8 @@ selecionar "Gloobinho" em "Canais"
 
 selecionar "Megapix" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Megapix_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Megapix_Canais}
+  Wait Until Element Is Visible    ${Megapix.Canais}    ${timeout_20}
+  Click Element    ${Megapix.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/megapix/'    Log To Console       Redirecionado para a página "Megapix" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Megapix" em "Canais"! URL: '${url}'
@@ -2639,8 +4428,8 @@ selecionar "Megapix" em "Canais"
 
 selecionar "Universal+" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Universal+_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Universal+_Canais}
+  Wait Until Element Is Visible    ${Universal+.Canais}    ${timeout_20}
+  Click Element    ${Universal+.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/universal/'    Log To Console       Redirecionado para a página "Universal+" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Universal+" em "Canais"! URL: '${url}'
@@ -2648,8 +4437,8 @@ selecionar "Universal+" em "Canais"
 
 selecionar "Canal Brasil" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.CanalBrasil_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.CanalBrasil_Canais}
+  Wait Until Element Is Visible    ${CanalBrasil.Canais}    ${timeout_20}
+  Click Element    ${CanalBrasil.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-brasil/'    Log To Console       Redirecionado para a página "Canal Brasil" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Canal Brasil" em "Canais"! URL: '${url}'
@@ -2657,8 +4446,8 @@ selecionar "Canal Brasil" em "Canais"
 
 selecionar "Canal Off" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.CanalOff_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.CanalOff_Canais}
+  Wait Until Element Is Visible    ${CanalOff.Canais}    ${timeout_20}
+  Click Element    ${CanalOff.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-off/'    Log To Console       Redirecionado para a página "Canal Off" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Canal Off" em "Canais"! URL: '${url}'
@@ -2666,8 +4455,8 @@ selecionar "Canal Off" em "Canais"
 
 selecionar "BIS" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.BIS_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.BIS_Canais}
+  Wait Until Element Is Visible    ${BIS.Canais}    ${timeout_20}
+  Click Element    ${BIS.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/bis/'    Log To Console       Redirecionado para a página "BIS" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "BIS" em "Canais"! URL: '${url}'
@@ -2675,8 +4464,8 @@ selecionar "BIS" em "Canais"
 
 selecionar "Modo Viagem" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.ModoViagem_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.ModoViagem_Canais}
+  Wait Until Element Is Visible    ${ModoViagem.Canais}    ${timeout_20}
+  Click Element    ${ModoViagem.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/modo-viagem/'    Log To Console       Redirecionado para a página "Modo Viagem" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Modo Viagem" em "Canais"! URL: '${url}'
@@ -2684,8 +4473,8 @@ selecionar "Modo Viagem" em "Canais"
 
 selecionar "Futura" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Futura_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Futura_Canais}
+  Wait Until Element Is Visible    ${Futura.Canais}    ${timeout_20}
+  Click Element    ${Futura.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/futura/'    Log To Console       Redirecionado para a página "Futura" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Futura" em "Canais"! URL: '${url}'
@@ -2693,8 +4482,8 @@ selecionar "Futura" em "Canais"
 
 selecionar "Telecine" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Telecine_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Telecine_Canais}
+  Wait Until Element Is Visible    ${Telecine.Canais}    ${timeout_20}
+  Click Element    ${Telecine.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/telecine/'    Log To Console       Redirecionado para a página "Telecine" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Telecine" em "Canais"! URL: '${url}'
@@ -2702,8 +4491,8 @@ selecionar "Telecine" em "Canais"
 
 selecionar "Premiere" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Premiere_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Premiere_Canais}
+  Wait Until Element Is Visible    ${Premiere.Canais}    ${timeout_20}
+  Click Element    ${Premiere.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/premiere/'    Log To Console       Redirecionado para a página "Premiere" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Premiere" em "Canais"! URL: '${url}'
@@ -2711,8 +4500,8 @@ selecionar "Premiere" em "Canais"
 
 selecionar "Combate" em "Canais"
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.Combate_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.Combate_Canais}
+  Wait Until Element Is Visible    ${Combate.Canais}    ${timeout_20}
+  Click Element    ${Combate.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/combate/'    Log To Console       Redirecionado para a página "Combate" em "Canais".
   ...       ELSE    Log To Console    Não redirecinado para a página "Combate" em "Canais"! URL: '${url}'
@@ -2720,13 +4509,13 @@ selecionar "Combate" em "Canais"
 
 # Menu Explore - Canais - Botões
 selecionar "Assista" no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnAssista_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssista_Canais}
+  Wait Until Element Is Visible    ${Canais.btnAssista}    ${timeout_20}
+  Click Element    ${Canais.btnAssista}
 
 
 selecionar "Conheça o novo plano"
-  Wait Until Element Is Visible    ${MenuExplore.btnConhecaONovoPlano_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnConhecaONovoPlano_Canais}
+  Wait Until Element Is Visible    ${Canais.btnConhecaONovoPlano}    ${timeout_20}
+  Click Element    ${Canais.btnConhecaONovoPlano}
 
 
 selecionar "Conheça o plano"
@@ -2740,138 +4529,132 @@ selecionar "Eu quero"
 
 
 selecionar "Veja Mais" no banner
-  Wait Until Element Is Visible    ${MenuExplore.btnVejaMais_Banner}    ${timeout_20}
-  Click Element    ${MenuExplore.btnVejaMais_Banner}
+  Wait Until Element Is Visible    ${Canais.btnVejaMais_Banner}    ${timeout_20}
+  Click Element    ${Canais.btnVejaMais_Banner}
 
 
 selecionar "Assista agora" em "Agora na Tv"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssistaAgora_Canais}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssistaAgora_Canais}
-
-
-selecionar "Assine Já"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineJaBanner}    ${timeout_20}
-  Click Element    ${MenuExplore.btnAssineJaBanner}
+  Wait Until Element Is Visible    ${Canais.btnAssistaAgora}    ${timeout_20}
+  Click Element    ${Canais.btnAssistaAgora}
 
 
 selecionar "Escolha seu plano"
-  Wait Until Element Is Visible    ${MenuExplore.btnEscolhaSeuPlano}    ${timeout_20}
-  Click Button   ${MenuExplore.btnEscolhaSeuPlano}
+  Wait Until Element Is Visible    ${Canais.btnEscolhaSeuPlano}    ${timeout_20}
+  Click Button   ${Canais.btnEscolhaSeuPlano}
 
 
 selecionar "Assine Combate"
-  Wait Until Element Is Visible    ${MenuExplore.btnAssineCombate}    ${timeout_20}
-  Click Button   ${MenuExplore.btnAssineCombate}
+  Wait Until Element Is Visible    ${Combate.btnAssineCombate}    ${timeout_20}
+  Click Button   ${Combate.btnAssineCombate}
 
 
 # Menu Explore - Canais - Título
 o título "Escolha seu plano" deve estar visível
   Log      Verifica existência do texto "Escolha seu plano"
-  Wait Until Element Is Visible    ${MenuExplore.textoEscolhaSeuPlano}   ${timeout_20}
-  Element Should Be Visible     ${MenuExplore.textoEscolhaSeuPlano}
+  Wait Until Element Is Visible    ${Canais.textoEscolhaSeuPlano}   ${timeout_20}
+  Element Should Be Visible     ${Canais.textoEscolhaSeuPlano}
 
 
 # Menu Explore - Canais - Banner
 o banner deste canal deve estar visível
   Log      Verifica existência do banner em Canais
-  Wait Until Element Is Visible    ${MenuExplore.bannerCanais}   ${timeout_20}
-  Element Should Be Visible     ${MenuExplore.bannerCanais}
+  Wait Until Element Is Visible    ${Canais.banner}   ${timeout_20}
+  Element Should Be Visible     ${Canais.banner}
 
 
 # Menu Explore - Canais - "Todos os títulos - Multishow"
 devo conseguir ver o texto "Todos os títulos - Multishow"
-  Wait Until Element Is Visible    ${MenuExplore.textoTodosOsTitulos_Multishow}   ${timeout_20}
-  Element Should Be Visible   ${MenuExplore.textoTodosOsTitulos_Multishow}
+  Wait Until Element Is Visible    ${Multishow.textoTodosOsTitulos}   ${timeout_20}
+  Element Should Be Visible   ${Multishow.textoTodosOsTitulos}
 
 
 # Menu Explore - Canais - "Agora no Megapix"
 selecionar "Agora no Megapix"
   Sleep      2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.textoMegapix}   ${timeout_20}
-  Click Element    ${MenuExplore.textoMegapix}
+  Wait Until Element Is Visible    ${Megapix.textoMegapix}   ${timeout_20}
+  Click Element    ${Megapix.textoMegapix}
 
 
 # Menu Explore - Canais - "Agora no Premiere"
 selecionar "Agora no Premiere"
   Sleep      2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Wait Until Element Is Visible    ${MenuExplore.AgoraNoPremiere_Canais}   ${timeout_20}
-  Click Element    ${MenuExplore.AgoraNoPremiere_Canais}
+  Wait Until Element Is Visible    ${Premiere.AgoraNoPremiere_Canais}   ${timeout_20}
+  Click Element    ${Premiere.AgoraNoPremiere_Canais}
 
 
 # Menu Explore - Canais -  Universal TV
 selecionar "Universal TV"
-  Wait Until Element Is Visible    ${MenuExplore.textoUniversalTV}   ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoUniversalTV}   ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoUniversalTV}
-  Click Element    ${MenuExplore.textoUniversalTV}
+  Scroll Element Into View     ${Universal+.textoUniversalTV}
+  Click Element    ${Universal+.textoUniversalTV}
 
 
 selecionar "Studio Universal"
-  Wait Until Element Is Visible    ${MenuExplore.textoStudioUniversal}   ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoStudioUniversal}   ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoStudioUniversal}
-  Click Element    ${MenuExplore.textoStudioUniversal}
+  Scroll Element Into View     ${Universal+.textoStudioUniversal}
+  Click Element    ${Universal+.textoStudioUniversal}
 
 
 selecionar "SYFY"
-  Wait Until Element Is Visible    ${MenuExplore.textoSYFY}  ${timeout_20}
+  Wait Until Element Is Visible    ${Universal+.textoSYFY}  ${timeout_20}
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.textoSYFY}
-  Click Element    ${MenuExplore.textoSYFY}
+  Scroll Element Into View     ${Universal+.textoSYFY}
+  Click Element    ${Universal+.textoSYFY}
 
 
 # Menu Explore - Canais -  Telecine
 selecionar "Telecine Premium" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecinePremium}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecinePremium}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecinePremium}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecinePremium}
 
 
 selecionar "Telecine Action" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineAction}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineAction}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineAction}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineAction}
 
 
 selecionar "Telecine Touch" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineTouch}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineTouch}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineTouch}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineTouch}
 
 
 selecionar "Telecine Fun" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecineFun}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineFun}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Wait Until Element Is Visible    ${Telecine.textoTelecineFun}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineFun}
 
 
 selecionar "Telecine Pipoca" em "Canais Telecine"
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Click Element    ${MenuExplore.btnNextTelecine_Canais}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Click Element    ${Telecine.btnNextTelecine_Canais}
   Sleep      2s
-  Wait Until Element Is Visible    ${MenuExplore.textoTelecinePipoca}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecinePipoca}
+  Wait Until Element Is Visible    ${Telecine.textoTelecinePipoca}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecinePipoca}
 
 
 selecionar "Telecine Cult" em "Canais Telecine"
   # telecine pipoca utilizado, visto que o telecine cult não fica visível
   Sleep  2s
   Scroll Element Into View     ${MenuExplore.footer}
-  Scroll Element Into View     ${MenuExplore.Telecine_textoCanaisTelecine}
-  Click Element    ${MenuExplore.btnNextTelecine_Canais}
+  Scroll Element Into View     ${Telecine.textoCanaisTelecine}
+  Click Element    ${Telecine.btnNextTelecine_Canais}
   Sleep      2s
-  Wait Until Element Is Visible     ${MenuExplore.textoTelecineCult}   ${timeout_20}
-  Click Element    ${MenuExplore.textoTelecineCult}
-
+  Wait Until Element Is Visible     ${Telecine.textoTelecineCult}   ${timeout_20}
+  Click Element    ${Telecine.textoTelecineCult}
