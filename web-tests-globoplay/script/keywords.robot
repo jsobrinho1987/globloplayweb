@@ -2704,8 +2704,8 @@ clicar no menu "Explore"
 
 
 clicar em "Categorias"
-    Wait until element is visible   ${MenuExplore.btnCategorias}    20s
-    Click element   ${MenuExplore.btnCategorias}
+    Wait until element is visible   ${Categorias.btn}    20s
+    Click element   ${Categorias.btn}
 
 
 clicar na categoria ${categoria}
@@ -4657,4 +4657,9 @@ selecionar "Telecine Cult" em "Canais Telecine"
   Click Element    ${Telecine.btnNextTelecine_Canais}
   Sleep      2s
   Wait Until Element Is Visible     ${Telecine.textoTelecineCult}   ${timeout_20}
+<<<<<<< HEAD
   Click Element    ${Telecine.textoTelecineCult}
+=======
+  Click Element    ${Telecine.textoTelecineCult}
+
+>>>>>>> 94bcc07a76d2a35a68903753361268a1b01c4859
