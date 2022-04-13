@@ -26,32 +26,56 @@ Library          SeleniumLibrary
 
 &{Novelas}
 ...                         btn=xpath://a[@title="Novelas"]
-...                         btnTodasAsNovelas=xpath://h2[text()="Todas as Novelas"]
 ...                         btnInfantil=xpath://a[@title="Infantil"]
-...                         trilho_LancamentosMaisRecentes=xpath://h2[text()="Lançamentos mais recentes"]
-...                         trilho_NoArNaTVGlobo=xpath://h2[text()="No ar na TV Globo"]
-...                         trilho_NoArNoVIVA=xpath://h2[text()="No ar no VIVA"]
-...                         trilho_NovelasEstrangeiras=xpath://h2[text()="Novelas Estrangeiras"]
-...                         trilho_Anos2020=xpath://h2[text()="Anos 2020"]
-...                         trilho_Anos2015-2019=xpath://h2[text()="Anos 2015-2019"]
-...                         trilho_Anos2010-2014=xpath://h2[text()="Anos 2010-2014"]
-...                         trilho_Anos2000=xpath://h2[text()="Anos 2000"]
-...                         trilho_Anos90=xpath://h2[text()="Anos 90"]
-...                         trilho_Anos70-80=xpath://h2[text()="Anos 70 e 80"]
-...                         trilho_Malhacao=xpath://h2[text()="Malhação"]
-...                         trilho_MemoriasDaTV=xpath://h2[text()="Memória da TV"]
-...                         trilho_TodasAsNovelas=xpath://h2[text()="Todas as Novelas"]
 
 &{Realities}
 ...                         btn=xpath://a[@title="Realities"]
 
 &{Filmes}
 ...                         btn=xpath://a[@title="Filmes"]
-...                         btnTodosOsFilmes=xpath://h2[text()="Todos os filmes"]
+...                         TodosOsFilmes=xpath://h2[text()="Todos os filmes"]
 
 &{Series}
 ...                         btn=xpath://a[@title="Séries"]
-...                         btnTodasAsSeries=xpath://h2[text()="Todas as séries"]
+
+&{categoriasTrilho}
+# dentro de novelas
+...                         lancamentosmaisrecentes=xpath://h2[text()="Lançamentos mais recentes"]
+...                         noarnatvglobo=xpath://h2[text()="No ar na TV Globo"]
+...                         noarnoVIVA=xpath://h2[text()="No ar no VIVA"]
+...                         novelasestrangeiras=xpath://h2[text()="Novelas Estrangeiras"]
+...                         anos2020=xpath://h2[text()="Anos 2020"]
+...                         anos2015-2019=xpath://h2[text()="Anos 2015-2019"]
+...                         anos2010-2014=xpath://h2[text()="Anos 2010-2014"]
+...                         anos2000=xpath://h2[text()="Anos 2000"]
+...                         anos90=xpath://h2[text()="Anos 90"]
+...                         anos70-80=xpath://h2[text()="Anos 70 e 80"]
+...                         malhacao=xpath://h2[text()="Malhação"]
+...                         memoriasdatv=xpath://h2[text()="Memória da TV"]
+...                         todasasnovelas=xpath://h2[text()="Todas as Novelas"]
+# dentro de séries
+...                         escolhapelogenero=xpath://h2[text()="Escolha pelo gênero"]
+...                         novidades=xpath://h2[text()="Novidades"]
+...                         originaisgloboplay=xpath://h2[text()="Originais Globoplay"]
+...                         comedia=xpath://h2[text()="Comédia"]
+...                         acao=xpath://h2[text()="Ação"]
+...                         seriesbrasileiras=xpath://h2[text()="Séries brasileiras"]
+...                         exclusivogloboplay=xpath://h2[text()="Exclusivo Globoplay"]
+...                         seriesmedicas=xpath://h2[text()="Séries médicas"]
+...                         seriesdeepoca=xpath://h2[text()="Séries de época"]
+...                         premiadas=xpath://h2[text()="Premiadas"]
+...                         sessaonostalgia=xpath://h2[text()="Sessão nostalgia"]
+...                         paraverrapidinho=xpath://h2[text()="Para ver rapidinho"]
+...                         sucessosnogloboplay=xpath://h2[text()="Sucessos no Globoplay"]
+...                         seriescompletas=xpath://h2[text()="Séries completas"]
+...                         franquiasespin-offs=xpath://h2[text()="Franquias e spin-offs"]
+...                         misterio=xpath://h2[text()="Mistério"]
+...                         seriesdaglobo=xpath://h2[text()="Séries da Globo"]
+...                         novastemporadas=xpath://h2[text()="Novas temporadas"]
+...                         paraverdegraca=xpath://h2[text()="Para ver de graça"]
+...                         faroeste=xpath://h2[text()="Faroeste"]
+...                         podcasts=xpath://h2[text()="Podcasts"]
+...                         todasasseries=xpath://h2[text()="Todas as séries"]
 
 &{Variedades}
 ...                         btn=xpath://a[@title="Variedades"]
