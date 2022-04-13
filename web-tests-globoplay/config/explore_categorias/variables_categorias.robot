@@ -33,7 +33,6 @@ Library          SeleniumLibrary
 
 &{Filmes}
 ...                         btn=xpath://a[@title="Filmes"]
-...                         TodosOsFilmes=xpath://h2[text()="Todos os filmes"]
 
 &{Series}
 ...                         btn=xpath://a[@title="Séries"]
@@ -76,6 +75,23 @@ Library          SeleniumLibrary
 ...                         faroeste=xpath://h2[text()="Faroeste"]
 ...                         podcasts=xpath://h2[text()="Podcasts"]
 ...                         todasasseries=xpath://h2[text()="Todas as séries"]
+# dentro de filmes
+...                         grandessucessos=xpath://h2[text()="Grandes sucessos"]
+...                         maisassistidos=xpath://h2[text()="Mais assistidos"]
+...                         assistafilmesaovivo=xpath://h2[text()="Assista Filmes Ao Vivo"]
+...                         romance=xpath://h2[text()="Romance"]
+...                         filmesexclusivos=xpath://h2[text()="Filmes exclusivos"]
+...                         premiados=xpath://h2[text()="Premiados"]
+...                         animes=xpath://h2[text()="Animes"]
+...                         tesourosparacinefilos=xpath://h2[text()="Tesouros para cinéfilos"]
+...                         cinelistdotelecine=xpath://h2[text()="Cinelists do Telecine"]
+...                         novosclassicosbrasileiros=xpath://h2[text()="Novos clássicos brasileiros"]
+...                         filmesnacionais=xpath://h2[text()="Filmes nacionais"]
+...                         jasaoclassicos= xpath://h2[text()="Já são clássicos"]
+...                         classicosdocinemabrasileiro=xpath://h2[text()="Clássicos do cinema brasileiro"]
+...                         infantil=xpath://h2[text()="Infantil"]
+...                         todososfilmes=xpath://h2[text()="Todos os filmes"]
+
 
 &{Variedades}
 ...                         btn=xpath://a[@title="Variedades"]
