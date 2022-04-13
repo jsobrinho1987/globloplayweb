@@ -26,7 +26,9 @@ Library          SeleniumLibrary
 
 &{Novelas}
 ...                         btn=xpath://a[@title="Novelas"]
-...                         btnInfantil=xpath://a[@title="Infantil"]
+
+&{Infantil}
+...                         btn=xpath://a[@title="Infantil"]
 
 &{Realities}
 ...                         btn=xpath://a[@title="Realities"]
@@ -91,7 +93,26 @@ Library          SeleniumLibrary
 ...                         classicosdocinemabrasileiro=xpath://h2[text()="Clássicos do cinema brasileiro"]
 ...                         infantil=xpath://h2[text()="Infantil"]
 ...                         todososfilmes=xpath://h2[text()="Todos os filmes"]
-
+# dentro de infantil
+...                         sonogloboplay=xpath://h2[text()="Só no Globoplay"]
+...                         acabaramdechegar=xpath://h2[text()="Acabaram de chegar"]
+...                         osmaisvistospelagalera!=xpath://h2[text()="Os mais vistos pela galera!"]
+...                         personagens=xpath://h2[text()="Personagens"]
+...                         filmes=xpath://h2[text()="Filmes"]
+...                         paracriancasmaisnovas=xpath://h2[text()="Para crianças mais novas"]
+...                         mundodabarbie=xpath://h2[text()="Mundo da Barbie"]
+...                         pokemon=xpath://h2[text()="Pokémon"]
+...                         assistaaovivo=xpath://h2[text()="Assista ao Vivo"]
+...                         heroisdolego=xpath://h2[text()="Heróis de Lego"]
+...                         paracriancasmaisvelhas=xpath://h2[text()="Para crianças mais velhas"]
+...                         superpoderosos=xpath://h2[text()="Superpoderosos"]
+...                         trabalhoemequipe=xpath://h2[text()="Trabalho em equipe"]
+...                         episodioscurtos=xpath://h2[text()="Episódios curtos"]
+...                         personagensclassicos=xpath://h2[text()="Personagens clássicos"]
+...                         animaisfalantes=xpath://h2[text()="Animais falantes"]
+...                         meninasnocomando=xpath://h2[text()="Meninas no comando"]
+...                         paraassistiremfamilia=xpath://h2[text()="Para assistir em família"]
+...                         vertodos=xpath://h2[text()="Ver todos"]
 
 &{Variedades}
 ...                         btn=xpath://a[@title="Variedades"]
