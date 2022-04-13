@@ -35,6 +35,7 @@ Resource                ../web-tests-globoplay/config/agora_Na_Tv/AgoraNaTvLocat
 # Resource                ../web-tests-globoplay/config/Player_Locators.robot
 Resource                BDDptbr.robot
 Resource                ../web-tests-globoplay/script/keywords.robot
+Resource                ../web-tests-globoplay/config/explore_categorias/variables_categorias.robot
 
 
 *** Variables ***
