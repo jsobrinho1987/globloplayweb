@@ -1,7 +1,6 @@
 *** Settings ***
-Documentation   Acesso tela de Explore e valida opção Podcasts
 
-# Default Tags    Ajuda  Minha Conta
+Documentation  Validação dos elementos de Esportes
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
 Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
@@ -16,32 +15,129 @@ Test Setup          Before Scenario
 Test Teardown       After Scenario
 
 *** Test Case ***
-# Localizar o banner de "Esportes"
-Acessar Esportes pelo menu Explore com um usuário anônimo e localizar o banner
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Esportes"
-  Então o banner deve estar visível
+# # Localizar o banner de "Esportes"
+# Acessar Esportes pelo menu Explore com um usuário anônimo e localizar o banner
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Esportes"
+#   Então o banner deve estar visível
 
-# Localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" ao clicar em "Assista" o Esporte Espetacular
-Localizar a solicitação de login/cadastramento ao acessar o "Esporte Espetacular" através do menu Explore com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Esportes"
-  E selecionar "Esporte Espetacular"
-  E selecionar "Assista"
-  Então devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
+# # Localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" ao clicar em "Assista" o Esporte Espetacular
+# Localizar a solicitação de login/cadastramento ao acessar o "Esporte Espetacular" através do menu Explore com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Esportes"
+#   E selecionar "Esporte Espetacular"
+#   E selecionar "Assista"
+#   Então devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
 
-# Localizar "Ver todos"
-Acessar Esportes pelo menu Explore com um usuário anônimo e localizar "Ver todos"
+# # Localizar "Ver todos"
+# Acessar Esportes pelo menu Explore com um usuário anônimo e localizar "Ver todos"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Esportes"
+#   E selecionar "Veja Mais" em Ver Todos
+#   Então devo conseguir localizar "Esportes - Todos os títulos"
+
+# Validação dos Trilhos de Esportes
+Validar exibição do trilho "Esportes ao vivo" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
-  E selecionar "Esportes"
-  E selecionar "Veja Mais" em Ver Todos
-  Então devo conseguir localizar "Esportes - Todos os títulos"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Esportes ao vivo"
+
+Validar exibição do trilho "Grandes Eventos" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Grandes Eventos"
+
+Validar exibição do trilho "Copa do Mundo 2022" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Copa do Mundo 2022"
+
+Validar exibição do trilho "Futebol" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Futebol"
+
+Validar exibição do trilho "Globo Esporte" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Globo Esporte"
+
+Validar exibição do trilho "Lutas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Lutas"
+
+Validar exibição do trilho "No asfalto" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "No asfalto"
+
+Validar exibição do trilho "No mar" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "No mar"
+
+Validar exibição do trilho "+ esportes" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "+ esportes"
+
+Validar exibição do trilho "Documentários" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Documentários"
+
+Validar exibição do trilho "Podcasts" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Podcasts"
+
+Validar exibição do trilho "Ver todos" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar o trilho "Ver todos"
