@@ -34,6 +34,7 @@ Test Teardown       After Scenario
 #   E selecionar "Veja Mais"
 #   Então devo conseguir ver o botão "Conheça o plano"
 
+# Validação dos Trilhos de Filmes
 Validar exibição do trilho "Escolha pelo gênero" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home

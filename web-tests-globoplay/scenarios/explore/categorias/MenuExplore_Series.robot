@@ -34,6 +34,7 @@ Test Teardown       After Scenario
 #   E selecionar "Veja Mais"
 #   Então devo conseguir ver o botão "Assine já"
 
+# Validação dos Trilhos de Série
 Validar exibição do trilho "Escolha pelo gênero" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
