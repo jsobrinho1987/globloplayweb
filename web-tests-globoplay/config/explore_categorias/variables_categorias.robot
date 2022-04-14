@@ -147,6 +147,22 @@ Library          SeleniumLibrary
 ...                         nomar=xpath://h2[text()="No mar"]
 ...                         +esportes=xpath://h2[text()="+ esportes"]
 ...                         documentarios=xpath://h2[text()="Documentários"]
+# dentro de BBB
+...                         aovivonobbb22=xpath://h2[text()="Ao Vivo no BBB 22"]
+...                         ultimasdobbb22=xpath://h2[text()="Últimas do BBB 22"]
+...                         osmelhoresmomentosdafesta=xpath://h2[text()="Os Melhores Momentos da Festa"]
+...                         bigterapia=xpath://h2[text()="Big Terapia"]
+...                         clickbbb22=xpath://h2[text()="Click BBB 22"]
+...                         participantespipoca=xpath://h2[text()="Participantes Pipoca"]
+...                         participantescamarote=xpath://h2[text()="Participantes Camarote"]
+...                         programasnaintegra=xpath://h2[text()="Programas na íntegra"]
+...                         programasbbb=xpath://h2[text()="Programas BBB"]
+...                         titulosmencionadospelosbrothersesisters=xpath://h2[text()="Títulos mencionados pelos brothers e sisters"]
+...                         podcastssobreobbb22=xpath://h2[text()="Podcasts sobre o BBB 22"]
+...                         omelhordobbb=xpath://h2[text()="O melhor do BBB"]
+
+&{BBB}
+...                         btn=xpath://a[@title="BBB"]
 
 &{Variedades}
 ...                         btn=xpath://a[@title="Variedades"]
