@@ -136,6 +136,17 @@ Library          SeleniumLibrary
 ...                         musica=xpath://h2[text()="Música"]
 ...                         esportesradicais=xpath://h2[text()="Esportes Radicais"]
 ...                         esportes=xpath://h2[text()="Esportes"]
+# dentro de esportes
+...                         esportesaovivo=xpath://h2[text()="Esportes ao vivo"]  
+...                         grandeseventos=xpath://h2[text()="Grandes Eventos"]
+...                         copadomundo2022=xpath://h2[Text()="Copa do Mundo 2022"]
+...                         futebol=xpath://h2[text()="Futebol"]
+...                         globoesporte=xpath://h2[text()="Globo Esporte"]
+...                         lutas=xpath://h2[text()="Lutas"]
+...                         noasfalto=xpath://h2[text()="No asfalto"]
+...                         nomar=xpath://h2[text()="No mar"]
+...                         +esportes=xpath://h2[text()="+ esportes"]
+...                         documentarios=xpath://h2[text()="Documentários"]
 
 &{Variedades}
 ...                         btn=xpath://a[@title="Variedades"]
