@@ -32,7 +32,7 @@ Test Teardown       After Scenario
 #   E selecionar "Categorias"
 #   E selecionar "BBB"
 #   E selecionar "Assista" no banner
-#   Então devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
+#   Então devo conseguir ver o texto "Exclusivo para assinantes do produto Globoplay"
 
 # # Validação dos Trilhos de BBB
 # Validar exibição do trilho "Ao Vivo no BBB 22" com um usuário anônimo
