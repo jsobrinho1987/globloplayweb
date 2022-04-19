@@ -42,6 +42,7 @@ Validar exibição do trilho "Escolha pelo gênero" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Escolha pelo gênero"
+  E realiza a validação do grid do trilho "Escolha pelo gênero"
 
 Validar exibição do trilho "Grandes sucessos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -50,7 +51,8 @@ Validar exibição do trilho "Grandes sucessos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Grandes sucessos"
-  
+  E realiza a validação do grid do trilho "Grandes sucessos"
+
 Validar exibição do trilho "Novidades" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -58,6 +60,7 @@ Validar exibição do trilho "Novidades" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Novidades"
+  E realiza a validação do grid do trilho "Novidades"
 
 Validar exibição do trilho "Mais assistidos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -66,6 +69,7 @@ Validar exibição do trilho "Mais assistidos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Mais assistidos"
+  E realiza a validação do grid do trilho "Mais assistidos"
 
 Validar exibição do trilho "Assista Filmes Ao Vivo" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -74,6 +78,7 @@ Validar exibição do trilho "Assista Filmes Ao Vivo" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Assista Filmes Ao Vivo"
+  E realiza a validação do grid do trilho "Assista Filmes Ao Vivo"
 
 Validar exibição do trilho "Romance" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -82,6 +87,7 @@ Validar exibição do trilho "Romance" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Romance"
+  E realiza a validação do grid do trilho "Romance"
 
 Validar exibição do trilho "Filmes exclusivos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -90,6 +96,7 @@ Validar exibição do trilho "Filmes exclusivos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Filmes exclusivos"
+  E realiza a validação do grid do trilho "Filmes exclusivos"
 
 Validar exibição do trilho "Premiados" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -98,6 +105,7 @@ Validar exibição do trilho "Premiados" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Premiados"
+  E realiza a validação do grid do trilho "Premiados"
 
 Validar exibição do trilho "Comédia" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -106,6 +114,7 @@ Validar exibição do trilho "Comédia" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Comédia"
+  E realiza a validação do grid do trilho "Comédia"
 
 Validar exibição do trilho "Animes" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -114,6 +123,7 @@ Validar exibição do trilho "Animes" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Animes"
+  E realiza a validação do grid do trilho "Animes"
 
 Validar exibição do trilho "Tesouros para cinéfilos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -122,6 +132,7 @@ Validar exibição do trilho "Tesouros para cinéfilos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Tesouros para cinéfilos"
+  E realiza a validação do grid do trilho "Tesouros para cinéfilos"
 
 Validar exibição do trilho "Cinelists do Telecine" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -130,6 +141,7 @@ Validar exibição do trilho "Cinelists do Telecine" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Cinelists do Telecine"
+  E realiza a validação do grid do trilho "Cinelists do Telecine"
 
 Validar exibição do trilho "Novos clássicos brasileiros" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -138,6 +150,7 @@ Validar exibição do trilho "Novos clássicos brasileiros" com um usuário anô
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Novos clássicos brasileiros"
+  E realiza a validação do grid do trilho "Novos clássicos brasileiros"
 
 Validar exibição do trilho "Filmes nacionais" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -146,6 +159,7 @@ Validar exibição do trilho "Filmes nacionais" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Filmes nacionais"
+  E realiza a validação do grid do trilho "Filmes nacionais"
 
 Validar exibição do trilho "Já são clássicos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -154,6 +168,7 @@ Validar exibição do trilho "Já são clássicos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Já são clássicos"
+  E realiza a validação do grid do trilho "Já são clássicos"
 
 Validar exibição do trilho "Clássicos do cinema brasileiro" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -162,6 +177,7 @@ Validar exibição do trilho "Clássicos do cinema brasileiro" com um usuário a
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Clássicos do cinema brasileiro"
+  E realiza a validação do grid do trilho "Clássicos do cinema brasileiro"
 
 Validar exibição do trilho "Infantil" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -170,6 +186,7 @@ Validar exibição do trilho "Infantil" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Infantil"
+  E realiza a validação do grid do trilho "Infantil"
 
 Validar exibição do trilho "Podcasts" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -178,6 +195,7 @@ Validar exibição do trilho "Podcasts" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Podcasts"
+  E realiza a validação do grid do trilho "Podcasts"
 
 Validar exibição do trilho "Todos os filmes" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -186,3 +204,4 @@ Validar exibição do trilho "Todos os filmes" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Filmes"
   Então devo conseguir localizar o trilho "Todos os filmes"
+  E realiza a validação do grid do trilho "Todos os filmes"

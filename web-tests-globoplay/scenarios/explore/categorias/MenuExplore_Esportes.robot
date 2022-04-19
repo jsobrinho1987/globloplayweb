@@ -53,6 +53,7 @@ Validar exibição do trilho "Esportes ao vivo" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Esportes ao vivo"
+  E realiza a validação do grid do trilho "Esportes ao vivo"
 
 Validar exibição do trilho "Grandes Eventos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -61,6 +62,7 @@ Validar exibição do trilho "Grandes Eventos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Grandes Eventos"
+  E realiza a validação do grid do trilho "Grandes Eventos"
 
 Validar exibição do trilho "Copa do Mundo 2022" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -69,6 +71,7 @@ Validar exibição do trilho "Copa do Mundo 2022" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Copa do Mundo 2022"
+  E realiza a validação do grid do trilho "Copa do Mundo 2022"
 
 Validar exibição do trilho "Futebol" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -77,6 +80,7 @@ Validar exibição do trilho "Futebol" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Futebol"
+  E realiza a validação do grid do trilho "Futebol"
 
 Validar exibição do trilho "Globo Esporte" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -85,6 +89,7 @@ Validar exibição do trilho "Globo Esporte" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Globo Esporte"
+  E realiza a validação do grid do trilho "Globo Esporte"
 
 Validar exibição do trilho "Lutas" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -93,6 +98,7 @@ Validar exibição do trilho "Lutas" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Lutas"
+  E realiza a validação do grid do trilho "Lutas"
 
 Validar exibição do trilho "No asfalto" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -101,6 +107,7 @@ Validar exibição do trilho "No asfalto" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "No asfalto"
+  E realiza a validação do grid do trilho "No asfalto"
 
 Validar exibição do trilho "No mar" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -109,6 +116,7 @@ Validar exibição do trilho "No mar" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "No mar"
+  E realiza a validação do grid do trilho "No mar"
 
 Validar exibição do trilho "+ esportes" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -117,6 +125,7 @@ Validar exibição do trilho "+ esportes" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "+ esportes"
+  E realiza a validação do grid do trilho "+ esportes"
 
 Validar exibição do trilho "Documentários" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -125,6 +134,7 @@ Validar exibição do trilho "Documentários" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Documentários"
+  E realiza a validação do grid do trilho "Documentários"
 
 Validar exibição do trilho "Podcasts" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -133,6 +143,7 @@ Validar exibição do trilho "Podcasts" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Podcasts"
+  E realiza a validação do grid do trilho "Podcasts"
 
 Validar exibição do trilho "Ver todos" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -141,3 +152,4 @@ Validar exibição do trilho "Ver todos" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Ver todos"
+  E realiza a validação do grid do trilho "Ver todos"

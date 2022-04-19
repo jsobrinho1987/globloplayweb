@@ -42,6 +42,7 @@ Validar exibição do trilho "Lançamentos mais recentes" com um usuário anôni
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Lançamentos mais recentes"
+  E realiza a validação do grid do trilho "Lançamentos mais recentes"
 
 Validar exibição do trilho "No ar na TV Globo" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -50,6 +51,7 @@ Validar exibição do trilho "No ar na TV Globo" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "No ar na TV Globo"
+  E realiza a validação do grid do trilho "No ar na TV Globo"
 
 Validar exibição do trilho "No ar no VIVA" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -58,6 +60,7 @@ Validar exibição do trilho "No ar no VIVA" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "No ar no VIVA"
+  E realiza a validação do grid do trilho "No ar no VIVA"
 
 Validar exibição do trilho "Novelas Estrangeiras" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -66,6 +69,7 @@ Validar exibição do trilho "Novelas Estrangeiras" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Novelas Estrangeiras"
+  E realiza a validação do grid do trilho "Novelas Estrangeiras"
 
 Validar exibição do trilho "Anos 2020" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -74,6 +78,7 @@ Validar exibição do trilho "Anos 2020" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 2020"
+  E realiza a validação do grid do trilho "Anos 2020"
 
 Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -82,6 +87,7 @@ Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 2015-2019"
+  E realiza a validação do grid do trilho "Anos 2015-2019"
 
 Validar exibição do trilho "Anos 2010-2014" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -90,6 +96,7 @@ Validar exibição do trilho "Anos 2010-2014" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 2010-2014"
+  E realiza a validação do grid do trilho "Anos 2010-2014"
 
 Validar exibição do trilho "Anos 2000" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -98,6 +105,7 @@ Validar exibição do trilho "Anos 2000" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 2000"
+  E realiza a validação do grid do trilho "Anos 2000"
 
 Validar exibição do trilho "Anos 90" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -106,6 +114,7 @@ Validar exibição do trilho "Anos 90" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 90"
+  E realiza a validação do grid do trilho "Anos 90"
 
 Validar exibição do trilho "Anos 70 e 80" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -114,6 +123,7 @@ Validar exibição do trilho "Anos 70 e 80" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Anos 70 e 80"
+  E realiza a validação do grid do trilho "Anos 70 e 80"
 
 Validar exibição do trilho "Malhação" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -122,6 +132,7 @@ Validar exibição do trilho "Malhação" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Malhação"
+  E realiza a validação do grid do trilho "Malhação"
 
 Validar exibição do trilho "Memória da TV" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -130,6 +141,7 @@ Validar exibição do trilho "Memória da TV" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Memória da TV"
+  E realiza a validação do grid do trilho "Memória da TV"
 
 Validar exibição do trilho "Todas as Novelas" com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -138,3 +150,12 @@ Validar exibição do trilho "Todas as Novelas" com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Novelas"
   Então devo conseguir localizar o trilho "Todas as Novelas"
+  E realiza a validação do grid do trilho "Todas as Novelas"
+
+# # Validar exibição dos títulos do trilho "Todas as Novelas" com um usuário anônimo
+  # Dado que sou um usuário anônimo
+  # E que estou na home
+  # Quando clicar no menu "Explore"
+  # E selecionar "Categorias"
+  # E selecionar "Novelas"
+  # Então devo conseguir localizar todos os títulos do trilho "Todas as Novelas"
