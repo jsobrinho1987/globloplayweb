@@ -153,3 +153,108 @@ Validar exibição do trilho "Ver todos" com um usuário anônimo
   E selecionar "Esportes"
   Então devo conseguir localizar o trilho "Ver todos"
   E realiza a validação do grid do trilho "Ver todos"
+
+# Validação dos títulos dos Trilhos de Esportes
+Validar exibição dos títulos do trilho "Esportes ao vivo" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Esportes ao vivo"
+
+Validar exibição dos títulos do trilho "Grandes Eventos" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Grandes Eventos"
+
+Validar exibição dos títulos do trilho "Copa do Mundo 2022" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Copa do Mundo 2022"
+
+Validar exibição dos títulos do trilho "Futebol" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Futebol"
+
+Validar exibição dos títulos do trilho "Globo Esporte" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Globo Esporte"
+
+Validar exibição dos títulos do trilho "Lutas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Lutas"
+
+Validar exibição dos títulos do trilho "No asfalto" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "No asfalto"
+
+Validar exibição dos títulos do trilho "No mar" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "No mar"
+
+Validar exibição dos títulos do trilho "+ esportes" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "+ esportes"
+
+Validar exibição dos títulos do trilho "Documentários" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Documentários"
+
+Validar exibição dos títulos do trilho "" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho ""
+
+Validar exibição dos títulos do trilho "Podcasts" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Podcasts"
+
+Validar exibição dos títulos do trilho "Ver todos" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Esportes"
+  Então devo conseguir localizar todos os títulos do trilho "Ver todos"

@@ -232,3 +232,181 @@ Validar exibição do trilho "Todas as séries" com um usuário anônimo
   E selecionar "Séries"
   Então devo conseguir localizar o trilho "Todas as séries"
   E realiza a validação do grid do trilho "Todas as séries"
+
+# Validação dos títulos dos Trilhos de Séries
+Validar exibição dos títulos do trilho "Escolha pelo gênero" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Escolha pelo gênero"
+
+Validar exibição dos títulos do trilho "Novidades" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Novidades"
+
+Validar exibição dos títulos do trilho "Originais Globoplay" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Originais Globoplay"
+
+Validar exibição dos títulos do trilho "Comédia" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Comédia"
+
+Validar exibição dos títulos do trilho "Ação" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Ação"
+
+Validar exibição dos títulos do trilho "Séries brasileiras" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Séries brasileiras"
+
+Validar exibição dos títulos do trilho "Exclusivo Globoplay" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Exclusivo Globoplay"
+
+Validar exibição dos títulos do trilho "Séries médicas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Séries médicas"
+
+Validar exibição dos títulos do trilho "Séries de época" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Séries de época"
+
+Validar exibição dos títulos do trilho "Premiadas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Premiadas"
+
+Validar exibição dos títulos do trilho "Sessão nostalgia" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Sessão nostalgia"
+
+Validar exibição dos títulos do trilho "Para ver rapidinho" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Para ver rapidinho"
+
+Validar exibição dos títulos do trilho "Sucessos no Globoplay" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Sucessos no Globoplay"
+
+Validar exibição dos títulos do trilho "Séries completas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Séries completas"
+
+Validar exibição dos títulos do trilho "Franquias e spin-offs" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Franquias e spin-offs"
+
+Validar exibição dos títulos do trilho "Mistério" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Mistério"
+
+Validar exibição dos títulos do trilho "Séries da Globo" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Séries da Globo"
+
+Validar exibição dos títulos do trilho "Novas temporadas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Novas temporadas"
+
+Validar exibição dos títulos do trilho "Para ver de graça" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Para ver de graça"
+
+Validar exibição dos títulos do trilho "Faroeste" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Faroeste"
+
+Validar exibição dos títulos do trilho "Podcasts" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Podcasts"
+
+Validar exibição dos títulos do trilho "Todas as séries" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Séries"
+  Então devo conseguir localizar todos os títulos do trilho "Todas as séries"
+

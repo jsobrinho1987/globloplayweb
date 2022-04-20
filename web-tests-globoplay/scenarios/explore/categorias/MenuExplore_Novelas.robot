@@ -152,10 +152,107 @@ Validar exibição do trilho "Todas as Novelas" com um usuário anônimo
   Então devo conseguir localizar o trilho "Todas as Novelas"
   E realiza a validação do grid do trilho "Todas as Novelas"
 
-# # Validar exibição dos títulos do trilho "Todas as Novelas" com um usuário anônimo
-  # Dado que sou um usuário anônimo
-  # E que estou na home
-  # Quando clicar no menu "Explore"
-  # E selecionar "Categorias"
-  # E selecionar "Novelas"
-  # Então devo conseguir localizar todos os títulos do trilho "Todas as Novelas"
+# Validação dos títulos dos Trilhos de Novelas
+Validar exibição dos títulos do trilho "Lançamentos mais recentes" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Lançamentos mais recentes"
+
+Validar exibição dos títulos do trilho "No ar na TV Globo" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "No ar na TV Globo"
+
+Validar exibição dos títulos do trilho "No ar no VIVA" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "No ar no VIVA"
+
+Validar exibição dos títulos do trilho "Novelas Estrangeiras" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Novelas Estrangeiras"
+
+Validar exibição dos títulos do trilho "Anos 2020" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 2020"
+
+Validar exibição dos títulos do trilho "Anos 2015-2019" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 2015-2019"
+
+Validar exibição dos títulos do trilho "Anos 2010-2014" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 2010-2014"
+
+Validar exibição dos títulos do trilho "Anos 2000" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 2000"
+
+Validar exibição dos títulos do trilho "Anos 90" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 90"
+
+Validar exibição dos títulos do trilho "Anos 70 e 80" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Anos 70 e 80"
+
+Validar exibição dos títulos do trilho "Malhação" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Malhação"
+
+Validar exibição dos títulos do trilho "Memória da TV" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Memória da TV"
+
+Validar exibição dos títulos do trilho "Todas as Novelas" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar todos os títulos do trilho "Todas as Novelas"

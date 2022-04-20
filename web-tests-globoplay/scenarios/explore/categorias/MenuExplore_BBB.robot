@@ -142,3 +142,100 @@ Validar exibição do trilho "O melhor do BBB" com um usuário anônimo
   E selecionar "BBB"
   Então devo conseguir localizar o trilho "O melhor do BBB"
   E realiza a validação do grid do trilho "O melhor do BBB"
+
+# Validação dos títulos dos Trilhos de BBB
+Validar exibição dos títulos do trilho "Ao Vivo no BBB 22" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Ao Vivo no BBB 22"
+
+Validar exibição dos títulos do trilho "Últimas do BBB 22" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Últimas do BBB 22"
+
+Validar exibição dos títulos do trilho "Os Melhores Momentos da Festa" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Os Melhores Momentos da Festa"
+
+Validar exibição dos títulos do trilho "Big Terapia" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Big Terapia"
+
+Validar exibição dos títulos do trilho "Click BBB 22" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Click BBB 22"
+
+Validar exibição dos títulos do trilho "Participantes Pipoca" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Participantes Pipoca"
+
+Validar exibição dos títulos do trilho "Participantes Camarote" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Participantes Camarote"
+
+Validar exibição dos títulos do trilho "Programas na íntegra" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Programas na íntegra"
+
+Validar exibição dos títulos do trilho "Programas BBB" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Programas BBB"
+
+Validar exibição dos títulos do trilho "Títulos mencionados pelos brothers e sisters" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Títulos mencionados pelos brothers e sisters"
+
+Validar exibição dos títulos do trilho "Podcasts sobre o BBB 22" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "Podcasts sobre o BBB 22"
+
+Validar exibição dos títulos do trilho "O melhor do BBB" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo conseguir localizar todos os títulos do trilho "O melhor do BBB"

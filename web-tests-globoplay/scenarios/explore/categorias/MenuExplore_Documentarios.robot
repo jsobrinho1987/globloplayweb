@@ -269,3 +269,212 @@ Validar exibição do trilho "Esportes" com um usuário anônimo
   E selecionar "Documentários"
   Então devo conseguir localizar o trilho "Esportes"
   E realiza a validação do grid do trilho "Esportes"
+
+# Validação dos títulos dos Trilhos de Documentários
+Validar exibição dos títulos do trilho "Originais Globoplay" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Originais Globoplay"
+
+Validar exibição dos títulos do trilho "Novidades" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Novidades"
+
+Validar exibição dos títulos do trilho "Filmes mais vistos" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Filmes mais vistos"
+
+Validar exibição dos títulos do trilho "Biografias" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Biografias"
+
+Validar exibição dos títulos do trilho "Nacionais" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Nacionais"
+
+Validar exibição dos títulos do trilho "Crime e Investigação" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Crime e Investigação"
+
+Validar exibição dos títulos do trilho "História" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "História"
+
+Validar exibição dos títulos do trilho "LGBTQIA+" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "LGBTQIA+"
+
+Validar exibição dos títulos do trilho "Ciência e Tecnologia" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Ciência e Tecnologia"
+
+Validar exibição dos títulos do trilho "Artes" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Artes"
+
+Validar exibição dos títulos do trilho "Só no Globoplay" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Só no Globoplay"
+
+Validar exibição dos títulos do trilho "Estilo de Vida" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Estilo de Vida"
+
+Validar exibição dos títulos do trilho "Premiados" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Premiados"
+
+Validar exibição dos títulos do trilho "Família Real" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Família Real"
+
+Validar exibição dos títulos do trilho "Questões Sociais" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Questões Sociais"
+
+Validar exibição dos títulos do trilho "Saúde" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Saúde"
+
+Validar exibição dos títulos do trilho "Diversidade e Identidade" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Diversidade e Identidade"
+
+Validar exibição dos títulos do trilho "Retratos de Uma Vida" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Retratos de Uma Vida"
+
+Validar exibição dos títulos do trilho "Dirigidos por Mulheres" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Dirigidos por Mulheres"
+
+Validar exibição dos títulos do trilho "Política" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Política"
+
+Validar exibição dos títulos do trilho "Cinema" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Cinema"
+
+Validar exibição dos títulos do trilho "Meio ambiente" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Meio ambiente"
+
+Validar exibição dos títulos do trilho "Eduardo Coutinho" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Eduardo Coutinho"
+
+Validar exibição dos títulos do trilho "Música" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Música"
+
+Validar exibição dos títulos do trilho "Esportes Radicais" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Esportes Radicais"
+
+Validar exibição dos títulos do trilho "Esportes" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Documentários"
+  Então devo conseguir localizar todos os títulos do trilho "Esportes"
