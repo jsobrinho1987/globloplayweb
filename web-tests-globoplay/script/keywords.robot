@@ -2733,8 +2733,8 @@ realiza o trilho da grid de "Continue navegando"
 ##############################################################
 
 clicar no menu "Explore"
-    Wait until element is visible   ${pageHome.btnMenuExplore}      20s
-    Click element   ${pageHome.btnMenuExplore}
+    Wait until element is visible   ${MenuExplore.btn}      20s
+    Click element   ${MenuExplore.btn}
 
 
 clicar em "Categorias"
@@ -3250,7 +3250,7 @@ devo ver a solicitação de login com a Conta Globo
 
 # Menu Explore
 selecionar "Categorias"
-  Wait Until Element Is Visible    ${Categorias.btn}   ${timeout_20}
+  Sleep  2s
   Click Element    ${Categorias.btn}
 
 
@@ -3462,6 +3462,7 @@ selecionar "Documentários"
 
 
 selecionar "Novelas"
+  Sleep   2s
   Click Element    ${Novelas.btn}
 
 
@@ -3553,32 +3554,6 @@ devo conseguir localizar o botão "Veja mais"
   Scroll Element Into View     ${MenuExplore.footer}
   Wait Until Element Is Visible    ${Categorias.btnVejaMais}   ${timeout_20}
   Element Should Be Visible    ${Categorias.btnVejaMais}
-
-
-devo conseguir localizar "Todos os documentários"
-  Log      Verifica a existência de Todos os documentários
-  Wait Until Element Is Visible    ${Documentarios.btnTodosOsDocumentarios}   ${timeout_20}
-  Element Should Be Visible    ${Documentarios.btnTodosOsDocumentarios}
-
-
-devo conseguir localizar "Todas as novelas"
-  Log      Verifica a existência de Todas as novelas
-  Sleep  2s
-  Scroll Element Into View     ${MenuExplore.footer}
-  #Wait Until Element Is Visible    ${MenuExplore.btnTodasAsNovelas}   ${timeout_20}
-  Element Should Be Visible    ${Novelas.btnTodasAsNovelas}
-
-
-devo conseguir localizar "Todos os filmes"
-  Log      Verifica a existência de Todos os filmes
-  Wait Until Element Is Visible    ${Filmes.btnTodosOsFilmes}   ${timeout_20}
-  Element Should Be Visible    ${Filmes.btnTodosOsFilmes}
-
-
-devo conseguir localizar "Todas as séries"
-  Log      Verifica a existência de Todas as séries
-  Wait Until Element Is Visible    ${Series.btnTodasAsSeries}   ${timeout_20}
-  Element Should Be Visible    ${Series.btnTodasAsSeries}
 
 
 devo conseguir localizar "Esportes - Todos os títulos"
@@ -4001,6 +3976,7 @@ selecionar "Assista"
 devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
   Wait Until Element Is Visible    ${MenuExplore.textoConteudoExclusivo}   ${timeout_20}
   Element Should Be Visible   ${MenuExplore.textoConteudoExclusivo}
+
 
 #---------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CANAIS               #

@@ -1,24 +1,18 @@
-# Avaliações
-# - [x] Quantidade de episódios
-# - [x] Conteúdos disponíveis
-# - [x] Tag assinante
-# - [x] Acessar o conteúdo e pela busca
-# - [x] Recomendados
-# - [x] Temporada
-# - [x] Varredura ponto a ponto (olhar se cada episódio aparece)
-# - [x] Checar as abas dentro da série
-# - [x] Clicar no episódio e ver o que apresenta
-# - [ ] Pegar a descrição do capítulo selecionado
-
-
 *** Settings ***
 
-Documentation  Acesso ao conteúdo de séries
-Library        SeleniumLibrary
-Resource       /Users/thalias/Documents/menu_explore/script/keywords.robot
-Resource       /Users/thalias/Documents/menu_explore/keywords/variables.robot
-Resource       /Users/thalias/Documents/menu_explore/config/BDD-pt-br.robot
-Test Teardown  Close Browser
+Documentation  Acesso ao conteúdo de Séries
+
+# IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
+Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+
+# O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
+Suite Setup         Before Suite
+
+# O QUE FAZER ANTES DE CADA UM DOS TESTES - ABRIR NAVEGADOR
+Test Setup          Before Scenario
+
+# O QUE FAZER APÓS CADA UM DOS TESTES - FECHAR NAVEGADOR
+Test Teardown       After Scenario
 
 *** Test Case *** 
 
