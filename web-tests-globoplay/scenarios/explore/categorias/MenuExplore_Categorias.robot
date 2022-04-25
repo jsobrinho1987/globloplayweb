@@ -1,7 +1,6 @@
 *** Settings ***
-Documentation   Acesso tela de Explore e valida opção Podcasts
 
-# Default Tags    Ajuda  Minha Conta
+Documentation  Validação dos elementos de Categorias
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
 Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
