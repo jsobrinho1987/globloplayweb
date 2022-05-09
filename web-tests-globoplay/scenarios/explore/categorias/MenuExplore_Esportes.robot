@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Esportes
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -44,6 +44,8 @@ Test Teardown       After Scenario
 #   E selecionar "Esportes"
 #   E selecionar "Veja Mais" em Ver Todos
 #   Então devo conseguir localizar "Esportes - Todos os títulos"
+
+#------------------------ Novos cenários
 
 # Validação dos Trilhos de Esportes
 Validar exibição do trilho "Esportes ao vivo" com um usuário anônimo

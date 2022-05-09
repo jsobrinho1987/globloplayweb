@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Infantil
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -33,6 +33,8 @@ Test Teardown       After Scenario
 #   E selecionar "Infantil"
 #   E selecionar "Veja Mais"
 #   Então devo conseguir ver o botão "Assine já"
+
+#------------------------ Novos cenários
 
 # Validação dos Trilhos de Infantil
 Validar exibição do trilho "Só no Globoplay" com um usuário anônimo

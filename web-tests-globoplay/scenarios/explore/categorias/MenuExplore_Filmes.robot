@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Filmes
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -33,6 +33,8 @@ Test Teardown       After Scenario
 #   E selecionar "Filmes"
 #   E selecionar "Veja Mais"
 #   Então devo conseguir ver o botão "Conheça o plano"
+
+#------------------------ Novos cenários
 
 # Validação dos Trilhos de Filmes
 Validar exibição do trilho "Escolha pelo gênero" com um usuário anônimo
