@@ -1145,7 +1145,7 @@ apresenta as imagens dos banner
          ${banner}=  BuiltIn.Run Keyword And Ignore Error    Get Text   xpath=//html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[1]/div/div[${x}+1]   
          Run Keyword If  '${banner[0]}' == ('PASS', None)   Sleep   1s 
 
-         Press Keys  ${homeTrilho.trilho_sonovelao}   ARROW_RIGHT
+         Press Keys  ${homeTrilho.sonovelao}   ARROW_RIGHT
 
          Log To Console    Banners = '${x}'
          Exit For Loop If    '${banner[0]}' == ('FAIL')  
@@ -1157,7 +1157,9 @@ apresenta as imagens dos banner
 ############################################
 
 o trilho de "Só novelão" deve exibir
-    Log      Verifica exibição do trilho de Só novelão
+    Log      Verifica exibição do trilho de "Só novelão"
+
+    # ${status}=    Run Keyword And Return status    Should Be true   
 
     FOR   ${i}  IN RANGE    200
           Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_01}   ${timeout_20}
@@ -1172,27 +1174,27 @@ o trilho de "Só novelão" deve exibir
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN
+                Log      Trilho de "Só novelão" não identificado.
           END
     END
     
 
 realiza o trilho da grid de Só novelão
-   Wait Until Element Is Visible   ${homeTrilho.trilho_sonovelao}     30s
+   Wait Until Element Is Visible   ${homeTrilho.sonovelao}     30s
    
    FOR   ${i}  IN RANGE    200
          
-         ${trilho_sonovelao}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[2]/div/div[2]/div[2]/div/div[${i+1}]
-         Run Keyword If  '${trilho_sonovelao[0]}' == ('PASS', None)   Sleep   2s
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só novelãoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${trilho_sonovelao[0]}' == 'FAIL'
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[2]/span[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[3]/div[1]/*
+         IF    '${resultado[0]}' == 'FAIL'
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só novelãoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_01}     20s
                       Press Keys  ${homeTrilho.continua_01}   ARROW_RIGHT
                 ELSE
-                      # Log To Console    Trilho = '${i}'
-                      Exit For Loop If    '${trilho_sonovelao[0]}' == ('FAIL')     
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
@@ -1206,43 +1208,47 @@ realiza o trilho da grid de Só novelão
 ############################################
 
 o trilho de Canais Ao Vivo deve exibir
-    Log      Verifica exibição do trilho de Canais Ao Vivo
+    Log      Verifica exibição do trilho de "Canais Ao Vivo"
 
     FOR   ${i}  IN RANGE    200
           Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_02}   ${timeout_20}
           ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_02}
-          IF    '${valor[0]}' == 'PASS'         
+          IF    '${valor[0]}' == 'PASS'
 
-                Wait Until Element Is Visible   ${homeTitle.title_canalvivo}     30s
-                ${title_canalvivo}=  Get Text   ${homeTitle.title_canalvivo}
+            Press Keys   NONE   PAGE_DOWN  PAGE_DOWN  PAGE_DOWN
+          
+            Wait Until Element Is Visible   ${homeTitle.title_canalvivo}     50s
+            ${title_canalvivo}=  Get Text   ${homeTitle.title_canalvivo}
 
-                Exit For Loop If    '${valor[0]}' == ('PASS')
+            Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+            # Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+            Log      Trilho das "Canais Ao Vivo" não identificado.
+
           END
-    END   
+    END
 
 
 realiza o trilho da grid de Canais Ao Vivo
-   Wait Until Element Is Visible   ${homeTrilho.trilho_canalvivo}     30s
+   Wait Until Element Is Visible   ${homeTrilho.canalvivo}     30s
    
    FOR   ${i}  IN RANGE    200
          
-         ${trilho_canalvivo}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[4]/div/div[2]/div[2]/div/div[${i+1}]
-         Run Keyword If  '${trilho_canalvivo[0]}' == ('PASS', None)   Sleep   2s
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Canais Ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${trilho_canalvivo[0]}' == 'FAIL'
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[4]/div/div[2]/div[3]/div
+         IF    '${resultado[0]}' == 'FAIL'
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Canais Ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 
                 IF  '${condition[0]}' == 'PASS'
-
-                      Wait Until Element Is Visible   ${homeTrilho.continua_02}     20s
+ 
+                      Wait Until Element Is Visible   ${homeTrilho.continua_02}     50s
                       Press Keys  ${homeTrilho.continua_02}   ARROW_RIGHT
 
                 ELSE  
-                      
-                      Exit For Loop If    '${trilho_canalvivo[0]}' == ('FAIL')     
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
@@ -1255,44 +1261,44 @@ realiza o trilho da grid de Canais Ao Vivo
 #   VALIDA TRILHO DE SÉRIES MAIS VISTAS
 ############################################
 
-o trilho das Séries mais vistas deve exibir
-    Log      Verifica exibição do trilho das Séries mais vistas
+o trilho das "Séries mais vistas" deve exibir
+    Log      Verifica exibição do trilho das "Séries mais vistas"
 
-    FOR   ${i}  IN RANGE    200
+     FOR   ${i}  IN RANGE    200
           Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_03}   ${timeout_20}
           ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_03}
           IF    '${valor[0]}' == 'PASS'
 
-            Press Keys   NONE  PAGE_DOWN PAGE_DOWN  PAGE_DOWN  PAGE_DOWN  
+            Press Keys   NONE   PAGE_DOWN  PAGE_DOWN
           
-            Wait Until Element Is Visible   ${homeTitle.title_seriemaisvista}     30s
+            Wait Until Element Is Visible   ${homeTitle.title_seriemaisvista}     50s
             ${title_canalvivo}=  Get Text   ${homeTitle.title_seriemaisvista}
-            Press Keys   NONE   ARROW_DOWN
 
             Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-            Press Keys   NONE   PAGE_DOWN
-            Sleep   1s
-          END
-    END    
+            Log      Trilho das "Séries mais vistas" não identificado.
 
-realiza o trilho da grid das Séries mais vistas
-   Wait Until Element Is Visible   ${homeTrilho.trilho_seriemaisvista}     30s
+          END
+    END
+
+realiza o trilho da grid das "Séries mais vistas"
+   Wait Until Element Is Visible   ${homeTrilho.seriemaisvista}     30s
    
    FOR   ${i}  IN RANGE    200
          
-         ${trilho_seriemaisvista}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[5]/div/div[2]/div[2]/div/div[${i+1}]
-         Run Keyword If  '${trilho_seriemaisvista[0]}' == ('PASS', None)   Sleep   2s
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'As séries mais vistas')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${trilho_seriemaisvista[0]}' == 'FAIL'
+         IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[5]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'As séries mais vistas')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_03}     20s
                       Press Keys  ${homeTrilho.continua_03}   ARROW_RIGHT
                 ELSE
-                      Exit For Loop If    '${trilho_seriemaisvista[0]}' == ('FAIL')     
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
@@ -1309,8 +1315,8 @@ o trilho de Canais deve exibir
     Log      Verifica exibição do trilho de Canais
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_05}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_05}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_04}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_04}
           IF    '${valor[0]}' == 'PASS'
           
             Wait Until Element Is Visible   ${homeTitle.title_canal}     30s
@@ -1319,27 +1325,29 @@ o trilho de Canais deve exibir
             Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-            Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+              Sleep    60ms
+              Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
     
 
 realiza o trilho da grid de Canais
-   Wait Until Element Is Visible   ${homeTrilho.trilho_seriemaisvista}     30s
+   Wait Until Element Is Visible   ${homeTrilho.canal}     30s
    
    FOR   ${i}  IN RANGE    200
          
-         ${trilho_canal}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[7]/div/div[2]/div[2]/div/div[${i+1}]
-         Run Keyword If  '${trilho_canal[0]}' == ('PASS', None)   Sleep   2s
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CanaisVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${trilho_canal[0]}' == 'FAIL'
+         IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[7]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CanaisVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_04}     20s
                       Press Keys  ${homeTrilho.continua_04}   ARROW_RIGHT
                 ELSE
-                      Exit For Loop If    '${trilho_canal[0]}' == ('FAIL')     
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
@@ -1362,12 +1370,12 @@ o trilho de Novidades deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_novidade}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_novidade}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
-
+                 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
           
     END
@@ -1377,17 +1385,18 @@ realiza o trilho da grid de Novidades
    
    FOR   ${i}  IN RANGE    200
          
-         ${trilho_novidade}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[8]/div/div[2]/div[2]/div/div[${i+1}]
-         Run Keyword If  '${trilho_novidade[0]}' == ('PASS', None)   Sleep   2s
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${trilho_novidade[0]}' == 'FAIL'
+         IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[8]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_05}     20s
                       Press Keys  ${homeTrilho.continua_05}   ARROW_RIGHT
                 ELSE
-                      Exit For Loop If    '${trilho_novidade[0]}' == ('FAIL')     
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
@@ -1414,7 +1423,8 @@ o trilho de Estreias no +Canais deve exibir
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1423,16 +1433,17 @@ realiza o trilho da grid de Estreias no +Canais
    
    FOR   ${i}  IN RANGE    200
          
-         ${estreias_canais}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[9]/div/div[2]/div[2]/div/div[${i+1}]
+         ${estreias_canais}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${estreias_canais[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${estreias_canais[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[9]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_06}     20s
                       Press Keys  ${homeTrilho.continua_06}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${estreias_canais[0]}' == ('FAIL')     
                 END
          END
@@ -1456,12 +1467,12 @@ o trilho de "Séries que dão o que falar" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_seriesquefalar}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_seriesquefalar}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1470,16 +1481,17 @@ realiza o trilho da grid de "Séries que dão o que falar"
    
    FOR   ${i}  IN RANGE    200
          
-         ${seriesquefalar}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[10]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Séries que dão o que falar')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[10]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Séries que dão o que falar')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_07}     20s
                       Press Keys  ${homeTrilho.continua_07}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1503,11 +1515,11 @@ o trilho de "Ao Vivo no BBB" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_vivobbb}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_vivobbb}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
+                Sleep    60ms
                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
@@ -1517,16 +1529,17 @@ realiza o trilho da grid de "Ao Vivo no BBB"
    
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[12]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Ao Vivo no BBBVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[12]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Ao Vivo no BBBVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_09}     20s
                       Press Keys  ${homeTrilho.continua_09}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1551,11 +1564,11 @@ o trilho de "Assista no Discovery+" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_assista_discovery}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_assista_discovery}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
+                Sleep    60ms
                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
@@ -1565,16 +1578,17 @@ realiza o trilho da grid de "Assista no Discovery+"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista no Discovery+')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista no Discovery+')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_10}     20s
                       Press Keys  ${homeTrilho.continua_10}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1599,12 +1613,12 @@ o trilho de "Top 10 - Em Alta" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_top10alta}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_top10alta}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1613,16 +1627,17 @@ realiza o trilho da grid de "Top 10 - Em Alta"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Top 10 - Em AltaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[14]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Top 10 - Em AltaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_11}     20s
                       Press Keys  ${homeTrilho.continua_11}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1647,12 +1662,12 @@ o trilho de "Categorias" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_categorias}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_categorias}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1661,16 +1676,17 @@ realiza o trilho da grid de "Categorias"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[15]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CategoriasVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[15]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CategoriasVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_12}     20s
                       Press Keys  ${homeTrilho.continua_12}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1696,12 +1712,12 @@ o trilho de "Tramas latinas" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_tramaslatinas}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_tramaslatinas}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1710,16 +1726,17 @@ realiza o trilho da grid de "Tramas latinas"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[18]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Tramas latinas')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[18]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Tramas latinas')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_13}     20s
                       Press Keys  ${homeTrilho.continua_13}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1744,12 +1761,12 @@ o trilho de "Participantes Pipoca" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_participapipoca}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_participapipoca}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1758,16 +1775,17 @@ realiza o trilho da grid de "Participantes Pipoca"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[19]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Participantes Pipoca')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[19]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Participantes Pipoca')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_14}     20s
                       Press Keys  ${homeTrilho.continua_14}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1792,12 +1810,12 @@ o trilho de "Participantes Camarote" deve exibir
           
                 Wait Until Element Is Visible   ${homeTitle.title_participacamarote}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_participacamarote}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1806,16 +1824,17 @@ realiza o trilho da grid de "Participantes Camarote"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[20]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Participantes Camarote')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[20]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Participantes Camarote')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
                       Wait Until Element Is Visible   ${homeTrilho.continua_15}     20s
                       Press Keys  ${homeTrilho.continua_15}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1834,36 +1853,37 @@ o trilho de "Os filmes que todos estão vendo" deve exibir
     Log      Verifica exibição do trilho de "Os filmes que todos estão vendo"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_16}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_16}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.08}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_08}
           IF    '${valor[0]}' == 'PASS'
           
-                Wait Until Element Is Visible   ${homeTitle.title_filmesvendo}     30s
-                ${title_canalvivo}=  Get Text   ${homeTitle.title_filmesvendo}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
+                Wait Until Element Is Visible   ${homeTitle.title_filmesstodovendo}     30s
+                ${title_canalvivo}=  Get Text   ${homeTitle.title_filmesstodovendo}
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
 realiza o trilho da grid "Os filmes que todos estão vendo"
-   Wait Until Element Is Visible   ${homeTrilho.filmesvendo}     30s
+   Wait Until Element Is Visible   ${homeTrilho.filmesstodovendo}     30s
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[21]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Os filmes que todos estão vendo')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[21]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Os filmes que todos estão vendo')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_16}     20s
-                      Press Keys  ${homeTrilho.continua_16}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_08}     20s
+                      Press Keys  ${homeTrilho.continua_08}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1882,18 +1902,18 @@ o trilho de "Top 10 - Mais Consumidos" deve exibir
     Log      Verifica exibição do trilho de "Top 10 - Mais Consumidos"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_17}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_17}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_16}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_16}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_top10maisconsumidos}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_top10maisconsumidos}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1902,16 +1922,17 @@ realiza o trilho da grid de "Top 10 - Mais Consumidos"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[22]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Top 10 - Mais Consumidos')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[22]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Top 10 - Mais Consumidos')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_17}     20s
-                      Press Keys  ${homeTrilho.continua_17}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_16}     20s
+                      Press Keys  ${homeTrilho.continua_16}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1930,18 +1951,18 @@ o trilho de "Navegue pelo Globoplay" deve exibir
     Log      Verifica exibição do trilho de "Navegue pelo Globoplay"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_18}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_18}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_17}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_17}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_naveguegloboplay}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_naveguegloboplay}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1950,16 +1971,17 @@ realiza o trilho da grid de "Navegue pelo Globoplay"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[23]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Navegue pelo Globoplay')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[23]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Navegue pelo Globoplay')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_18}     20s
-                      Press Keys  ${homeTrilho.continua_18}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_17}     20s
+                      Press Keys  ${homeTrilho.continua_17}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -1978,18 +2000,18 @@ o trilho de "Assista no Disney+" deve exibir
     Log      Verifica exibição do trilho de "Assista no Disney+"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_19}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_19}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_18}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_18}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_assistadisney}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_assistadisney}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -1998,16 +2020,17 @@ realiza o trilho da grid de "Assista no Disney+"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[24]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista no Disney+')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[24]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista no Disney+')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_19}     20s
-                      Press Keys  ${homeTrilho.continua_19}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_18}     20s
+                      Press Keys  ${homeTrilho.continua_18}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2026,18 +2049,18 @@ o trilho de "Grandes sucessos do cinema" deve exibir
     Log      Verifica exibição do trilho de "Grandes sucessos do cinema"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_20}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_20}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_19}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_19}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_grandessucesso}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_grandessucesso}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2046,16 +2069,17 @@ realiza o trilho da grid de "Grandes sucessos do cinema"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[25]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Grandes sucessos do cinema')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[25]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Grandes sucessos do cinema')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_20}     20s
-                      Press Keys  ${homeTrilho.continua_20}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_19}     20s
+                      Press Keys  ${homeTrilho.continua_19}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2075,18 +2099,18 @@ o trilho de "Em alta no Telecine" deve exibir
     Log      Verifica exibição do trilho de "Assista no Disney+"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_21}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_21}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_20}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_20}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_grandessucesso}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_grandessucesso}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2095,16 +2119,17 @@ realiza o trilho da grid de "Em alta no Telecine"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[26]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Em alta no TelecineVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[26]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Em alta no TelecineVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_21}     20s
-                      Press Keys  ${homeTrilho.continua_21}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_20}     20s
+                      Press Keys  ${homeTrilho.continua_20}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2123,18 +2148,18 @@ o trilho de "Assista de graça" deve exibir
     Log      Verifica exibição do trilho de "Assista de graça"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_22}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_22}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_21}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_21}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_assistagraça}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_assistagraça}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2143,16 +2168,17 @@ realiza o trilho da grid de "Assista de graça"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[27]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista de graçaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[27]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista de graçaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_22}     20s
-                      Press Keys  ${homeTrilho.continua_22}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_21}     20s
+                      Press Keys  ${homeTrilho.continua_21}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2171,41 +2197,43 @@ o trilho de "Podcasts" deve exibir
     Log      Verifica exibição do trilho de "Podcasts"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_23}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_23}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.22}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_22}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_podcasts}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_podcasts}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
+
 
 realiza o trilho da grid de "Podcasts"
    Wait Until Element Is Visible   ${homeTrilho.podcasts}     30s
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[16]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'PodcastsVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[16]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'PodcastsVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_23}     20s
-                      Press Keys  ${homeTrilho.continua_23}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_22}     20s
+                      Press Keys  ${homeTrilho.continua_22}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
 
-        #  Log To Console    Trilho = '${i}'
+        #  Log To Console  podcasts  Trilho = '${i}'
          ${x}=    Evaluate    ${i} + 1
         
     END
@@ -2219,18 +2247,18 @@ o trilho de "Novelas que marcaram época" deve exibir
     Log      Verifica exibição do trilho de "Novelas que marcaram época"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_24}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_24}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_23}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_23}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_novelasepoca}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_novelasepoca}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2239,16 +2267,17 @@ realiza o trilho da grid de "Novelas que marcaram época"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[28]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Novelas que marcaram época')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[28]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Novelas que marcaram época')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_24}     20s
-                      Press Keys  ${homeTrilho.continua_24}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_23}     20s
+                      Press Keys  ${homeTrilho.continua_23}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2267,18 +2296,17 @@ o trilho de "Produções Originais Globoplay" deve exibir
     Log      Verifica exibição do trilho de "Produções Originais Globoplay"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_25}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_25}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_24}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_24}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_originaisgloboplay}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_originaisgloboplay}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2287,16 +2315,17 @@ realiza o trilho da grid de "Produções Originais Globoplay"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[29]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Produções Originais GloboplayVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[29]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Produções Originais GloboplayVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_25}     20s
-                      Press Keys  ${homeTrilho.continua_25}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_24}     20s
+                      Press Keys  ${homeTrilho.continua_24}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2315,18 +2344,18 @@ o trilho de "Séries premiadas" deve exibir
     Log      Verifica exibição do trilho de "Séries premiadas"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_26}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_26}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_25}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_25}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_sogloboplay}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_sogloboplay}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2335,16 +2364,17 @@ realiza o trilho da grid de "Séries premiadas"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[31]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Séries premiadasVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[31]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Séries premiadasVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_26}     20s
-                      Press Keys  ${homeTrilho.continua_26}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_25}     20s
+                      Press Keys  ${homeTrilho.continua_25}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2363,18 +2393,18 @@ o trilho de "Só no Globoplay" deve exibir
     Log      Verifica exibição do trilho de "Produções Originais Globoplay"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_27}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_27}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_26}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_26}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_originaisgloboplay}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_originaisgloboplay}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2383,16 +2413,17 @@ realiza o trilho da grid de "Só no Globoplay"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[32]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só no GloboplayVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[32]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só no GloboplayVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_27}     20s
-                      Press Keys  ${homeTrilho.continua_27}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_26}     20s
+                      Press Keys  ${homeTrilho.continua_26}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2411,18 +2442,18 @@ o trilho de "Os favoritos da criançada" deve exibir
     Log      Verifica exibição do trilho de "Os favoritos da criançada"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_28}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_28}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_27}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_27}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.tltle_criancada}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.tltle_criancada}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2431,16 +2462,17 @@ realiza o trilho da grid de "Os favoritos da criançada"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[33]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Os favoritos da criançadaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[33]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Os favoritos da criançadaVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_28}     20s
-                      Press Keys  ${homeTrilho.continua_28}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_27}     20s
+                      Press Keys  ${homeTrilho.continua_27}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2459,18 +2491,18 @@ o trilho de "Sucessos no Globoplay" deve exibir
     Log      Verifica exibição do trilho de "Sucessos no Globoplay"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_29}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_29}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_28}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_28}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_sucessosgloboplay}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_sucessosgloboplay}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2479,16 +2511,17 @@ realiza o trilho da grid de "Sucessos no Globoplay"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[35]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Sucessos no Globoplay')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[35]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Sucessos no Globoplay')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_29}     20s
-                      Press Keys  ${homeTrilho.continua_29}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_28}     20s
+                      Press Keys  ${homeTrilho.continua_28}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2507,19 +2540,18 @@ o trilho de "Documentários sobre Personalidades" deve exibir
     Log      Verifica exibição do trilho de "Documentários sobre Personalidades"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_30}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_30}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_29}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_29}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_personalidades}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_personalidades} 
 
-                # Press Keys  ${homeTitle.title_personalidades}   ARROW_RIGHT
-
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2528,16 +2560,17 @@ realiza o trilho da grid de "Documentários sobre Personalidades"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[36]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Documentários sobre PersonalidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[36]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Documentários sobre PersonalidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_30}     20s
-                      Click element  ${homeTrilho.continua_30}
+                      Wait Until Element Is Visible   ${homeTrilho.continua_29}     20s
+                      Click element  ${homeTrilho.continua_29}
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2556,18 +2589,18 @@ o trilho de "As notícias mais quentes" deve exibir
     Log      Verifica exibição do trilho de "As notícias mais quentes"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_31}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_31}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_30}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_30}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_noticiasmais}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_noticiasmais}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Sleep    60ms
+                Press Keys   NONE   ARROW_DOWN
           END
     END
 
@@ -2576,16 +2609,17 @@ realiza o trilho da grid de "As notícias mais quentes"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[37]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'As notícias mais quentes')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[37]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'As notícias mais quentes')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_31}     20s
-                      Press Keys  ${homeTrilho.continua_31}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_30}     20s
+                      Press Keys  ${homeTrilho.continua_30}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2604,18 +2638,18 @@ o trilho de "Vídeos mais vistos" deve exibir
     Log      Verifica exibição do trilho de "Vídeos mais vistos"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_32}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_32}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_31}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_31}
           IF    '${valor[0]}' == 'PASS'
           
                 Wait Until Element Is Visible   ${homeTitle.title_videosmais}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_videosmais}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
-          ELSE
-                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+          ELSE  
+                Sleep    60ms 
+                Press Keys   NONE    ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2624,16 +2658,17 @@ realiza o trilho da grid de "Vídeos mais vistos"
 
    FOR   ${i}  IN RANGE    100
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[39]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Vídeos mais vistos')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[39]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Vídeos mais vistos')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_32}     20s
-                      Press Keys  ${homeTrilho.continua_32}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_31}     20s
+                      Press Keys  ${homeTrilho.continua_31}   ARROW_RIGHT
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
@@ -2652,21 +2687,19 @@ o trilho de "Continue navegando" deve exibir
     Log      Verifica exibição do trilho de "Continue navegando"
 
     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_33}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_33}
+          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_32}   ${timeout_20}
+          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_32}
           IF    '${valor[0]}' == 'PASS'
-          
+                
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+                
                 Wait Until Element Is Visible   ${homeTitle.title_continuenavegando}     30s
                 ${title_canalvivo}=  Get Text   ${homeTitle.title_continuenavegando}
-                 Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  
 
                 Exit For Loop If    '${valor[0]}' == ('PASS')
             
           ELSE
-
-                # Execute JavaScript    window.scrollTo(0,200)
-
-                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
           END
     END
 
@@ -2675,17 +2708,18 @@ realiza o trilho da grid de "Continue navegando"
 
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[40]/div/div[2]/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Continue navegando')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath:/html/body/div[1]/div/div/div[1]/div[2]/span/div/div/div/div[40]/div/div[2]/div[3]/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Continue navegando')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_33}     20s
-                      Press Keys  ${homeTrilho.continua_33}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.continua_32}     20s
+                      Press Keys  ${homeTrilho.continua_32}   ARROW_RIGHT
                       # Press Keys    ${homeTrilho.continuenavegando}    TAB
                 ELSE
+                      Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
                 END
          END
