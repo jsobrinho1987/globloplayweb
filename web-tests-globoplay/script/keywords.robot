@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    Collections
 *** Keywords ***
 
 #----------------------------------------------------------------#
@@ -1125,7 +1126,7 @@ que estou na home
     Log To Console    Verifica página home
 
     Run Keyword If    '${url}' == 'https://globoplay.globo.com/'    Log To Console     Redirecionado para a página de Home
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Home> RETORNA URL: '${url}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Home> RETORNA URL: '${url}'
 
     Wait Until Element Is Visible   ${homePage.pagina}     50s
 
@@ -2750,7 +2751,7 @@ seleciona o menu "Agora na TV"
     Log To Console    Seleciona botão do menu "Agora na TV"
 
     Run Keyword If    '${url_agora_tv}' == 'https://globoplay.globo.com/tv-globo/ao-vivo'    Log To Console     Redirecionado para a página de Agora na TV
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Agora na TV> RETORNA URL: '${url_agora_tv}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Agora na TV> RETORNA URL: '${url_agora_tv}'
 
     Wait until element is visible   ${page_agoratv.agora_tv}  50s
     Click element   ${page_agoratv.agora_tv}
@@ -2907,7 +2908,7 @@ direciona para a página do Explore
     Log To Console    Valida página explore
 
     Run Keyword If    '${url_explore}' == 'https://globoplay.globo.com/categorias/'    Log To Console     Redirecionado para a página de Explore
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Explore> RETORNA URL: '${url_explore}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Explore> RETORNA URL: '${url_explore}'
 
     Wait Until Element Is Visible   ${pageExplore.categorias_lista}     20s
     Click element   ${menu_podcasts.explore}
@@ -2925,7 +2926,7 @@ apresenta as opções disponiveis do podcasts
     Log To Console    Valida página de Podcasts
 
     Run Keyword If    '${url_pod}' == 'https://globoplay.globo.com/podcasts/'    Log To Console     Redirecionado para a página de Podcasts
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Podcasts> RETORNA URL: '${url_pod}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Podcasts> RETORNA URL: '${url_pod}'
     Wait Until Element Is Visible   ${menu_podcasts.lista}     20s
 
 #----------------------------------------------------------#
@@ -2941,7 +2942,7 @@ apresenta opções disponiveis do Original Globoplay
     Log To Console    Valida página do Podcast "Original Globoplay"
     
     Run Keyword If    '${url_originais}' == 'https://globoplay.globo.com/podcasts/categorias/podcasts-originais-globoplay/'    Log To Console     Redirecionado para a página de Podcasts "Original Globoplay"
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Podcast "Original Globoplay"> RETORNA URL: '${url_originais}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Podcast "Original Globoplay"> RETORNA URL: '${url_originais}'
     
     Wait Until Page Contains   text=Podcasts Originais Globoplay
     Wait Until Element Is Visible   ${podcasts.lista}     20s
@@ -2959,7 +2960,7 @@ apresenta opções disponiveis do Podcasts Mais Ouvidos
     Log To Console    Valida página do Podcast "Mais Ouvidos"
     
     Run Keyword If    '${url_mais_ouvidos}' == 'https://globoplay.globo.com/podcasts/categorias/podcasts-mais-ouvidos/'    Log To Console     Redirecionado para a página de Podcasts "Mais Ouvidos"
-    ...         ELSE   Log To Console     <Não redirecinado para a página de Podcast "Mais Ouvidos"> RETORNA URL: '${url_mais_ouvidos}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Podcast "Mais Ouvidos"> RETORNA URL: '${url_mais_ouvidos}'
     
     Wait Until Page Contains   text=Podcasts Mais Ouvidos
     Wait Until Element Is Visible   ${podcasts.lista}     20s
@@ -2972,7 +2973,7 @@ apresenta opções disponiveis de episódios
     Log To Console    Valida página do podcast seleciona
 
     Run Keyword If    '${url_mao_armada}' == 'https://globoplay.globo.com/podcasts/a-mao-armada/7b135c4e-0847-4339-ae77-7d5605ea0ec7'    Log To Console     Redirecionado para a página do Podcasts
-    ...         ELSE   Log To Console     <Não redirecinado para a página do Podcast"> RETORNA URL: '${url_mao_armada}'
+    ...         ELSE   Log To Console     <Não redirecionado para a página do Podcast"> RETORNA URL: '${url_mao_armada}'
 
     Wait Until Element Is Visible   ${grid_podcasts.titulo_principal}     20s
     
@@ -3350,76 +3351,76 @@ o título "Programas Locais" deve estar visível
 
 
 # Menu Explore - Categorias - Redirecionamento de página
-devo ser redirecinado para a página "Novelas"
+devo ser redirecionado para a página "Novelas"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/novelas/'    Log To Console       Redirecionado para a página Novelas.
-  ...       ELSE    Log To Console    Não redirecinado para a página Novelas! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Novelas! URL: '${url}'
 
 
-devo ser redirecinado para a página "Séries"
+devo ser redirecionado para a página "Séries"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/series/'    Log To Console       Redirecionado para a página Séries.
-  ...       ELSE    Log To Console    Não redirecinado para a página Séries! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Séries! URL: '${url}'
 
 
-devo ser redirecinado para a página "Filmes"
+devo ser redirecionado para a página "Filmes"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/filmes/'    Log To Console       Redirecionado para a página Filmes.
-  ...       ELSE    Log To Console    Não redirecinado para a página Filmes! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Filmes! URL: '${url}'
 
 
-devo ser redirecinado para a página "Infantil"
+devo ser redirecionado para a página "Infantil"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/infantil/'    Log To Console       Redirecionado para a página Infantil.
-  ...       ELSE    Log To Console    Não redirecinado para a página Infantil! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Infantil! URL: '${url}'
 
 
-devo ser redirecinado para a página "Realities"
+devo ser redirecionado para a página "Realities"
   ${url}=     Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/reality-shows/'    Log To Console       Redirecionado para a página Realities.
-  ...       ELSE    Log To Console    Não redirecinado para a página Realities! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Realities! URL: '${url}'
 
 
-devo ser redirecinado para a página "Documentários"
+devo ser redirecionado para a página "Documentários"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/documentarios/'    Log To Console       Redirecionado para a página Documentários.
-  ...       ELSE    Log To Console    Não redirecinado para a página Documentários! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Documentários! URL: '${url}'
 
 
-devo ser redirecinado para a página "Variedades"
+devo ser redirecionado para a página "Variedades"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/variedades/'    Log To Console       Redirecionado para a página Variedades.
-  ...       ELSE    Log To Console    Não redirecinado para a página Variedades! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Variedades! URL: '${url}'
 
 
-devo ser redirecinado para a página "Humor"
+devo ser redirecionado para a página "Humor"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/humor/'    Log To Console       Redirecionado para a página Humor.
-  ...       ELSE    Log To Console    Não redirecinado para a página Humor! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Humor! URL: '${url}'
 
 
-devo ser redirecinado para a página "Música"
+devo ser redirecionado para a página "Música"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/especiais/'    Log To Console       Redirecionado para a página Música.
-  ...       ELSE    Log To Console    Não redirecinado para a página Música! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Música! URL: '${url}'
 
 
-devo ser redirecinado para a página "Esportes"
+devo ser redirecionado para a página "Esportes"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/esportes/'    Log To Console       Redirecionado para a página Esportes.
-  ...       ELSE    Log To Console    Não redirecinado para a página Esportes! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Esportes! URL: '${url}'
 
 
-devo ser redirecinado para a página "Jornalismo"
+devo ser redirecionado para a página "Jornalismo"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/jornalismo/'    Log To Console       Redirecionado para a página Jornalismo.
-  ...       ELSE    Log To Console    Não redirecinado para a página Jornalismo! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Jornalismo! URL: '${url}'
 
 
-devo ser redirecinado para a página "Programas Locais"
+devo ser redirecionado para a página "Programas Locais"
   ${url}=    Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/programas-locais/'    Log To Console       Redirecionado para a página Programas Locais.
-  ...       ELSE    Log To Console    Não redirecinado para a página Programas Locais! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página Programas Locais! URL: '${url}'
 
 
 # Menu Explore - Categorias - Conteúdos
@@ -3944,6 +3945,58 @@ devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas
   Element Should Be Visible   ${MenuExplore.textoConteudoExclusivo}
 
 
+# Menu Explore - Categorias - Localização dos trilhos de Categorias | Séries
+#------------------------ Novos cenários | Trilhos
+devo conseguir localizar o trilho "Novidades"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${Series.trilho_novidades}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Novidades" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Novidades" não está visível.
+  END     
+
+
+# Menu Explore - Categorias - Validação do grid dos trilhos de Categorias | Séries
+#------------------------ Novos cenários | Trilhos
+realiza a validação do grid do trilho "Novidades"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Series.btnNextnovidades}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${Series.pega_titulo_novidades}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Log To Console    Primeiro título: ${lista}
+        Run Keyword And Ignore Error    Click Element    ${Series.btnNextnovidades}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Novidades" OK.
+        ELSE
+          Log To Console    Grid do trilho "Novidades" falhou. Valores repetidos encontrados na lista. 
+        END
+        Exit For Loop
+    END
+  END
+
+
 #---------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CANAIS               #
 #---------------------------------------------------------------------#
@@ -3964,46 +4017,46 @@ o título "Canais" deve estar visível
 
 
 # Menu Explore - Canais - Redirecionamento de página
-devo ser redirecinado para a página "TV Globo" no "Agora na TV"
+devo ser redirecionado para a página "TV Globo" no "Agora na TV"
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/tv-globo/ao-vivo/6120663/'    Log To Console       Redirecionado para a página "TV Globo" no "Agora na TV".
-  ...       ELSE    Log To Console    Não redirecinado para a página "TV Globo" no "Agora na TV"! RETORNA URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "TV Globo" no "Agora na TV"! RETORNA URL: '${url}'
 
 
-devo ser redirecinado para a página "Futura" no "Agora na TV"
+devo ser redirecionado para a página "Futura" no "Agora na TV"
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/futura/ao-vivo/7420604/'    Log To Console       Redirecionado para a página "Futura" no "Agora na TV".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Futura" no "Agora na TV"! RETORNA URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Futura" no "Agora na TV"! RETORNA URL: '${url}'
 
 
-devo ser redirecinado para a página "CBN SP" no "Agora na TV"
+devo ser redirecionado para a página "CBN SP" no "Agora na TV"
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/cbn-sp/ao-vivo/9182156/'    Log To Console       Redirecionado para a página "CBN SP" no "Agora na TV".
-  ...       ELSE    Log To Console    Não redirecinado para a página "CBN SP" no "Agora na TV"! RETORNA URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "CBN SP" no "Agora na TV"! RETORNA URL: '${url}'
 
 
-devo ser redirecinado para a página "CBN RJ" no "Agora na TV"
+devo ser redirecionado para a página "CBN RJ" no "Agora na TV"
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/cbn-rj/ao-vivo/9182126/'    Log To Console       Redirecionado para a página "CBN RJ" no "Agora na TV".
-  ...       ELSE    Log To Console    Não redirecinado para a página "CBN RJ" no "Agora na TV"! RETORNA URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "CBN RJ" no "Agora na TV"! RETORNA URL: '${url}'
 
 
-devo ser redirecinado para a página de assinatura
+devo ser redirecionado para a página de assinatura
   Wait Until Element Is Visible    ${MenuExplore.textoAssinatura}    ${timeout_20}
   Element Should Be Visible   ${MenuExplore.textoAssinatura}
 
 
-devo ser redirecinado para a página de assinatura do Telecine
+devo ser redirecionado para a página de assinatura do Telecine
   Wait Until Element Is Visible    ${Telecine.textoAssinatura}    ${timeout_20}
   Element Should Be Visible   ${Telecine.textoAssinatura}
 
 
-devo ser redirecinado para a página de assinatura do Premiere
+devo ser redirecionado para a página de assinatura do Premiere
   Wait Until Element Is Visible    ${Premiere.textoAssinatura}    ${timeout_20}
   Element Should Be Visible   ${Premiere.textoAssinatura}
 
 
-devo ser redirecinado para a página de assinatura do Combate
+devo ser redirecionado para a página de assinatura do Combate
   Wait Until Element Is Visible    ${Combate.textoAssinatura}    ${timeout_20}
   Element Should Be Visible   ${Combate.textoAssinatura}
 
@@ -4332,7 +4385,7 @@ selecionar "TV Globo" em "Canais"
   Click Element    ${TVGlobo.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globo/'    Log To Console       Redirecionado para a página "TV Globo" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "TV Globo" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "TV Globo" em "Canais"! URL: '${url}'
 
 
 selecionar "Multishow" em "Canais"
@@ -4340,7 +4393,7 @@ selecionar "Multishow" em "Canais"
   Click Element    ${Multishow.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/multishow/'    Log To Console       Redirecionado para a página "Multishow" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Multishow" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Multishow" em "Canais"! URL: '${url}'
 
 
 selecionar "Globonews" em "Canais"
@@ -4348,7 +4401,7 @@ selecionar "Globonews" em "Canais"
   Click Element    ${Globonews.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/globonews/'    Log To Console       Redirecionado para a página "Globonews" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Globonews" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Globonews" em "Canais"! URL: '${url}'
 
 
 selecionar "SporTV" em "Canais"
@@ -4356,7 +4409,7 @@ selecionar "SporTV" em "Canais"
   Click Element    ${SporTV.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/sportv/'    Log To Console       Redirecionado para a página "SporTV" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "SporTV" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "SporTV" em "Canais"! URL: '${url}'
 
 
 selecionar "GNT" em "Canais"
@@ -4364,7 +4417,7 @@ selecionar "GNT" em "Canais"
   Click Element    ${GNT.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gnt/'    Log To Console       Redirecionado para a página "GNT" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "GNT" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "GNT" em "Canais"! URL: '${url}'
 
 
 selecionar "VIVA" em "Canais"
@@ -4372,7 +4425,7 @@ selecionar "VIVA" em "Canais"
   Click Element    ${VIVA.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/viva/'    Log To Console       Redirecionado para a página "VIVA" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "VIVA" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "VIVA" em "Canais"! URL: '${url}'
 
 
 selecionar "Gloob" em "Canais"
@@ -4381,7 +4434,7 @@ selecionar "Gloob" em "Canais"
   Click Element    ${Gloob.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloob/'    Log To Console       Redirecionado para a página "Gloob" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Gloob" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Gloob" em "Canais"! URL: '${url}'
 
 
 selecionar "Gloobinho" em "Canais"
@@ -4390,7 +4443,7 @@ selecionar "Gloobinho" em "Canais"
   Click Element    ${Gloobinho.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/gloobinho/'    Log To Console       Redirecionado para a página "Gloobinho" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Gloobinho" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Gloobinho" em "Canais"! URL: '${url}'
 
 
 selecionar "Megapix" em "Canais"
@@ -4399,7 +4452,7 @@ selecionar "Megapix" em "Canais"
   Click Element    ${Megapix.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/megapix/'    Log To Console       Redirecionado para a página "Megapix" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Megapix" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Megapix" em "Canais"! URL: '${url}'
 
 
 selecionar "Universal+" em "Canais"
@@ -4408,7 +4461,7 @@ selecionar "Universal+" em "Canais"
   Click Element    ${Universal+.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/universal/'    Log To Console       Redirecionado para a página "Universal+" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Universal+" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Universal+" em "Canais"! URL: '${url}'
 
 
 selecionar "Canal Brasil" em "Canais"
@@ -4417,7 +4470,7 @@ selecionar "Canal Brasil" em "Canais"
   Click Element    ${CanalBrasil.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-brasil/'    Log To Console       Redirecionado para a página "Canal Brasil" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Canal Brasil" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Canal Brasil" em "Canais"! URL: '${url}'
 
 
 selecionar "Canal Off" em "Canais"
@@ -4426,7 +4479,7 @@ selecionar "Canal Off" em "Canais"
   Click Element    ${CanalOff.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/canal-off/'    Log To Console       Redirecionado para a página "Canal Off" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Canal Off" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Canal Off" em "Canais"! URL: '${url}'
 
 
 selecionar "BIS" em "Canais"
@@ -4435,7 +4488,7 @@ selecionar "BIS" em "Canais"
   Click Element    ${BIS.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/bis/'    Log To Console       Redirecionado para a página "BIS" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "BIS" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "BIS" em "Canais"! URL: '${url}'
 
 
 selecionar "Modo Viagem" em "Canais"
@@ -4444,7 +4497,7 @@ selecionar "Modo Viagem" em "Canais"
   Click Element    ${ModoViagem.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/modo-viagem/'    Log To Console       Redirecionado para a página "Modo Viagem" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Modo Viagem" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Modo Viagem" em "Canais"! URL: '${url}'
 
 
 selecionar "Futura" em "Canais"
@@ -4453,7 +4506,7 @@ selecionar "Futura" em "Canais"
   Click Element    ${Futura.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/futura/'    Log To Console       Redirecionado para a página "Futura" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Futura" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Futura" em "Canais"! URL: '${url}'
 
 
 selecionar "Telecine" em "Canais"
@@ -4462,7 +4515,7 @@ selecionar "Telecine" em "Canais"
   Click Element    ${Telecine.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/telecine/'    Log To Console       Redirecionado para a página "Telecine" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Telecine" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Telecine" em "Canais"! URL: '${url}'
 
 
 selecionar "Premiere" em "Canais"
@@ -4471,7 +4524,7 @@ selecionar "Premiere" em "Canais"
   Click Element    ${Premiere.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/premiere/'    Log To Console       Redirecionado para a página "Premiere" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Premiere" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Premiere" em "Canais"! URL: '${url}'
 
 
 selecionar "Combate" em "Canais"
@@ -4480,7 +4533,7 @@ selecionar "Combate" em "Canais"
   Click Element    ${Combate.Canais}
   ${url}=  Get Location
   Run Keyword If    '${url}' == 'https://globoplay.globo.com/canais/combate/'    Log To Console       Redirecionado para a página "Combate" em "Canais".
-  ...       ELSE    Log To Console    Não redirecinado para a página "Combate" em "Canais"! URL: '${url}'
+  ...       ELSE    Log To Console    Não redirecionado para a página "Combate" em "Canais"! URL: '${url}'
 
 
 # Menu Explore - Canais - Botões
