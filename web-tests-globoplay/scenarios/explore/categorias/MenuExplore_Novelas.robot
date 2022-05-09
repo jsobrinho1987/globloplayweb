@@ -2,8 +2,8 @@
 
 Documentation  Validação dos elementos de Novelas
 
-# IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+# IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS        
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -12,7 +12,7 @@ Suite Setup         Before Suite
 Test Setup          Before Scenario
 
 # O QUE FAZER APÓS CADA UM DOS TESTES - FECHAR NAVEGADOR
-Test Teardown       After Scenario
+# Test Teardown       After Scenario
 
 *** Test Case ***
 # # Localizar o banner de "Novelas"
@@ -34,225 +34,391 @@ Test Teardown       After Scenario
 #   E selecionar "Veja Mais"
 #   Então devo conseguir ver o botão "Assine já"
 
-# Validação dos Trilhos de Novelas
-Validar exibição do trilho "Lançamentos mais recentes" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Lançamentos mais recentes"
-  E realiza a validação do grid do trilho "Lançamentos mais recentes"
+#------------------------ Novos cenários | Títulos
 
-Validar exibição do trilho "No ar na TV Globo" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "No ar na TV Globo"
-  E realiza a validação do grid do trilho "No ar na TV Globo"
+# # Além da Ilusão - https://globoplay.globo.com/alem-da-ilusao/t/cM1zQ7R5wR/
+# Acessar a novela "Além da Ilusão" pelo campo de busca com um usuário anônimo e localizar a Tag assinante em todos os capítulos
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Além da Ilusão"
+#   E selecionar "Além da Ilusão"
+#   Então a tag assinante deve estar visível em todos os capítulos
 
-Validar exibição do trilho "No ar no VIVA" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "No ar no VIVA"
-  E realiza a validação do grid do trilho "No ar no VIVA"
+# Acessar a novela "Além da Ilusão" pelo campo de busca com um usuário anônimo e localizar o botão "Buscar data"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Além da Ilusão"
+#   E selecionar "Além da Ilusão"
+#   Então devo localizar o botão "Buscar data"
 
-Validar exibição do trilho "Novelas Estrangeiras" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Novelas Estrangeiras"
-  E realiza a validação do grid do trilho "Novelas Estrangeiras"
+# Acessar a novela "Além da Ilusão" pelo campo de busca com um usuário anônimo e localizar o texto "Conteúdo exclusivo Globoplay"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Além da Ilusão"
+#   E selecionar "Além da Ilusão"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Conteúdo exclusivo Globoplay"
 
-Validar exibição do trilho "Anos 2020" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 2020"
-  E realiza a validação do grid do trilho "Anos 2020"
+# Acessar a novela "Além da Ilusão" pelo campo de busca com um usuário anônimo e localizar a aba "Detalhes"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Além da Ilusão"
+#   E selecionar "Além da Ilusão"
+#   Então devo localizar a aba "Detalhes"
 
-Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 2015-2019"
-  E realiza a validação do grid do trilho "Anos 2015-2019"
+# Acessar a novela "Além da Ilusão" pelo campo de busca com um usuário anônimo e localizar o texto "Recomendados"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Além da Ilusão"
+#   E selecionar "Além da Ilusão"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Recomendados"
 
-Validar exibição do trilho "Anos 2010-2014" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 2010-2014"
-  E realiza a validação do grid do trilho "Anos 2010-2014"
+# # Paraíso Tropical - https://globoplay.globo.com/paraiso-tropical/t/Dqv7NKbRR6/
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar a Tag assinante a partir do segundo capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então a tag assinante deve estar visível a partir do segundo capítulo
 
-Validar exibição do trilho "Anos 2000" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 2000"
-  E realiza a validação do grid do trilho "Anos 2000"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar o botão "Filtrar capítulos"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar o botão "Filtrar capítulos"
 
-Validar exibição do trilho "Anos 90" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 90"
-  E realiza a validação do grid do trilho "Anos 90"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar os 180 capítulos
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar os 180 capítulos
 
-Validar exibição do trilho "Anos 70 e 80" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Anos 70 e 80"
-  E realiza a validação do grid do trilho "Anos 70 e 80"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" no primeiro capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" no primeiro capítulo
 
-Validar exibição do trilho "Malhação" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Malhação"
-  E realiza a validação do grid do trilho "Malhação"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar o texto "Conteúdo exclusivo Globoplay" no segundo capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o segundo capítulo
+#   Então devo localizar o texto "Conteúdo exclusivo Globoplay" no segundo capítulo
 
-Validar exibição do trilho "Memória da TV" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Memória da TV"
-  E realiza a validação do grid do trilho "Memória da TV"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar a aba "Detalhes"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar a aba "Detalhes"
 
-Validar exibição do trilho "Todas as Novelas" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar o trilho "Todas as Novelas"
-  E realiza a validação do grid do trilho "Todas as Novelas"
+# Acessar a novela "Paraíso Tropical" pelo campo de busca com um usuário anônimo e localizar o texto "Recomendados"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Recomendados"
 
-# Validação dos títulos dos Trilhos de Novelas
-Validar exibição dos títulos do trilho "Lançamentos mais recentes" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Lançamentos mais recentes"
+# # Cobras & Lagartos - https://globoplay.globo.com/cobras-lagartos/t/Zb1wHgHJxV/
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar a Tag assinante a partir do segundo capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então a tag assinante deve estar visível a partir do segundo capítulo
 
-Validar exibição dos títulos do trilho "No ar na TV Globo" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "No ar na TV Globo"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar o botão "Filtrar capítulos"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar o botão "Filtrar capítulos"
 
-Validar exibição dos títulos do trilho "No ar no VIVA" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "No ar no VIVA"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar os 179 capítulos
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar os 179 capítulos
 
-Validar exibição dos títulos do trilho "Novelas Estrangeiras" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Novelas Estrangeiras"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" no primeiro capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Conteúdo exclusivo gratuito para contas cadastradas" no primeiro capítulo
 
-Validar exibição dos títulos do trilho "Anos 2020" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 2020"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar o texto "Conteúdo exclusivo Globoplay" no segundo capítulo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Conteúdo exclusivo Globoplay" no segundo capítulo
 
-Validar exibição dos títulos do trilho "Anos 2015-2019" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 2015-2019"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar a aba "Detalhes"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   Então devo localizar a aba "Detalhes"
 
-Validar exibição dos títulos do trilho "Anos 2010-2014" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 2010-2014"
+# Acessar a novela "Cobras & Lagartos" pelo campo de busca com um usuário anônimo e localizar o texto "Recomendados"
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no botão de Busca
+#   E pesquisar por "Paraíso Tropical"
+#   E selecionar "Paraíso Tropical"
+#   E selecionar o primeiro capítulo
+#   Então devo localizar o texto "Recomendados"
 
-Validar exibição dos títulos do trilho "Anos 2000" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 2000"
+#------------------------ Novos cenários | Trilhos
 
-Validar exibição dos títulos do trilho "Anos 90" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 90"
+# # Validação dos Trilhos de Novelas
+# Validar exibição do trilho "Lançamentos mais recentes" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Lançamentos mais recentes"
+#   # E realiza a validação do grid do trilho "Lançamentos mais recentes"
 
-Validar exibição dos títulos do trilho "Anos 70 e 80" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Anos 70 e 80"
+# Validar exibição do trilho "No ar na TV Globo" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "No ar na TV Globo"
 
-Validar exibição dos títulos do trilho "Malhação" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Malhação"
+# Validar exibição do trilho "No ar no VIVA" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "No ar no VIVA"
+#   E realiza a validação do grid do trilho "No ar no VIVA"
 
-Validar exibição dos títulos do trilho "Memória da TV" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Memória da TV"
+# Validar exibição do trilho "Novelas Estrangeiras" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Novelas Estrangeiras"
+#   E realiza a validação do grid do trilho "Novelas Estrangeiras"
 
-Validar exibição dos títulos do trilho "Todas as Novelas" com um usuário anônimo
-  Dado que sou um usuário anônimo
-  E que estou na home
-  Quando clicar no menu "Explore"
-  E selecionar "Categorias"
-  E selecionar "Novelas"
-  Então devo conseguir localizar todos os títulos do trilho "Todas as Novelas"
+# Validar exibição do trilho "Anos 2020" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 2020"
+#   E realiza a validação do grid do trilho "Anos 2020"
+
+# Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 2015-2019"
+#   E realiza a validação do grid do trilho "Anos 2015-2019"
+
+# Validar exibição do trilho "Anos 2010-2014" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 2010-2014"
+#   E realiza a validação do grid do trilho "Anos 2010-2014"
+
+# Validar exibição do trilho "Anos 2000" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 2000"
+#   E realiza a validação do grid do trilho "Anos 2000"
+
+# Validar exibição do trilho "Anos 90" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 90"
+#   E realiza a validação do grid do trilho "Anos 90"
+
+# Validar exibição do trilho "Anos 70 e 80" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Anos 70 e 80"
+#   E realiza a validação do grid do trilho "Anos 70 e 80"
+
+# Validar exibição do trilho "Malhação" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Malhação"
+#   E realiza a validação do grid do trilho "Malhação"
+
+# Validar exibição do trilho "Memória da TV" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Memória da TV"
+#   E realiza a validação do grid do trilho "Memória da TV"
+
+# Validar exibição do trilho "Todas as Novelas" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar o trilho "Todas as Novelas"
+#   E realiza a validação do grid do trilho "Todas as Novelas"
+
+# # Validação dos títulos dos Trilhos de Novelas
+# Validar exibição dos títulos do trilho "Lançamentos mais recentes" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Lançamentos mais recentes"
+
+# Validar exibição dos títulos do trilho "No ar na TV Globo" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "No ar na TV Globo"
+
+# Validar exibição dos títulos do trilho "No ar no VIVA" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "No ar no VIVA"
+
+# Validar exibição dos títulos do trilho "Novelas Estrangeiras" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Novelas Estrangeiras"
+
+# Validar exibição dos títulos do trilho "Anos 2020" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 2020"
+
+# Validar exibição dos títulos do trilho "Anos 2015-2019" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 2015-2019"
+
+# Validar exibição dos títulos do trilho "Anos 2010-2014" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 2010-2014"
+
+# Validar exibição dos títulos do trilho "Anos 2000" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 2000"
+
+# Validar exibição dos títulos do trilho "Anos 90" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 90"
+
+# Validar exibição dos títulos do trilho "Anos 70 e 80" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Anos 70 e 80"
+
+# Validar exibição dos títulos do trilho "Malhação" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Malhação"
+
+# Validar exibição dos títulos do trilho "Memória da TV" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Memória da TV"
+
+# Validar exibição dos títulos do trilho "Todas as Novelas" com um usuário anônimo
+#   Dado que sou um usuário anônimo
+#   E que estou na home
+#   Quando clicar no menu "Explore"
+#   E selecionar "Categorias"
+#   E selecionar "Novelas"
+#   Então devo conseguir localizar todos os títulos do trilho "Todas as Novelas"
