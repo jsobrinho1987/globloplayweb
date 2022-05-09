@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Categorias
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -15,7 +15,7 @@ Test Setup          Before Scenario
 Test Teardown       After Scenario
 
 *** Test Case ***
-# Localizar o título "Novelas" em Categorias
+# Localizar os títulos de Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Novelas" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -23,7 +23,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Novelas" com um us
   E selecionar "Categorias"
   Então o título "Novelas" deve estar visível
 
-# Localizar o título "Séries" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Séries" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -31,7 +30,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Séries" com um us
   E selecionar "Categorias"
   Então o título "Séries" deve estar visível
 
-# Localizar o título "Filmes" em Categorias
 Acessar "Filmes" pelo Menu Explore e localizar o título "Filmes" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -39,7 +37,6 @@ Acessar "Filmes" pelo Menu Explore e localizar o título "Filmes" com um usuári
   E selecionar "Categorias"
   Então o título "Filmes" deve estar visível
 
-# Localizar o título "Infantil" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Infantil" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -47,7 +44,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Infantil" com um u
   E selecionar "Categorias"
   Então o título "Infantil" deve estar visível
 
-# Localizar o título "Realities" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Realities" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -55,7 +51,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Realities" com um 
   E selecionar "Categorias"
   Então o título "Realities" deve estar visível
 
-# Localizar o título "Documentários" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Documentários" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -63,7 +58,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Documentários" co
   E selecionar "Categorias"
   Então o título "Documentários" deve estar visível
 
-# Localizar o título "Variedades" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Variedades" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -71,7 +65,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Variedades" com um
   E selecionar "Categorias"
   Então o título "Variedades" deve estar visível
 
-# Localizar o título "Humor" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Humor" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -79,7 +72,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Humor" com um usu�
   E selecionar "Categorias"
   Então o título "Humor" deve estar visível
 
-# Localizar o título "Música" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Música" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -87,7 +79,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Música" com um us
   E selecionar "Categorias"
   Então o título "Música" deve estar visível
 
-# Localizar o título "Esportes" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Esportes" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -95,7 +86,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Esportes" com um u
   E selecionar "Categorias"
   Então o título "Esportes" deve estar visível
 
-# Localizar o título "Jornalismo" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Jornalismo" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -103,7 +93,6 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Jornalismo" com um
   E selecionar "Categorias"
   Então o título "Jornalismo" deve estar visível
 
-# Localizar o título "Programas Locais" em Categorias
 Acessar "Categorias" pelo Menu Explore e localizar o título "Programas Locais" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
@@ -111,110 +100,108 @@ Acessar "Categorias" pelo Menu Explore e localizar o título "Programas Locais" 
   E selecionar "Categorias"
   Então o título "Programas Locais" deve estar visível
 
-# Redirecionar a página para "Novelas" através de Categorias
-Localizar o título "Novelas" em Categorias com um usuário anônimo
+# Acessar os títulos de Categorias
+Acessar "Novelas" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Novelas"
-  Então devo ser redirecinado para a página "Novelas"
+  Então devo ser redirecionado para a página "Novelas"
 
-# Redirecionar a página para "Séries" através de Categorias
-Localizar o título "Séries" em Categorias com um usuário anônimo
+Acessar "Séries" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Séries"
-  Então devo ser redirecinado para a página "Séries"
+  Então devo ser redirecionado para a página "Séries"
 
-# Redirecionar a página para "Filmes" através de Categorias
-Localizar o título "Filmes" em Categorias com um usuário anônimo
+Acessar "Filmes" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Filmes"
-  Então devo ser redirecinado para a página "Filmes"
+  Então devo ser redirecionado para a página "Filmes"
 
-# Redirecionar a página para "Infantil" através de Categorias
-Localizar o título "Infantil" em Categorias com um usuário anônimo
+Acessar "Infantil" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Infantil"
-  Então devo ser redirecinado para a página "Infantil"
+  Então devo ser redirecionado para a página "Infantil"
 
-# Redirecionar a página para "Realities" através de Categorias
-Localizar o título "Realities" em Categorias com um usuário anônimo
+# Cenário novo
+Acessar "BBB" pelo Menu Explore através de "Categorias" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "BBB"
+  Então devo ser redirecionado para a página "BBB"
+
+Acessar "Realities" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Realities"
-  Então devo ser redirecinado para a página "Realities"
+  Então devo ser redirecionado para a página "Realities"
 
-# Redirecionar a página para "Documentários" através de Categorias
-Localizar o título "Documentários" em Categorias com um usuário anônimo
+Acessar "Documentários" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Documentários"
-  Então devo ser redirecinado para a página "Documentários"
+  Então devo ser redirecionado para a página "Documentários"
 
-# Redirecionar a página para "Variedades" através de Categorias
-Localizar o título "Variedades" em Categorias com um usuário anônimo
+Acessar "Variedades" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Variedades"
-  Então devo ser redirecinado para a página "Variedades"
+  Então devo ser redirecionado para a página "Variedades"
 
-# Redirecionar a página para "Humor" através de Categorias
-Localizar o título "Humor" em Categorias com um usuário anônimo
+Acessar "Humor" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Humor"
-  Então devo ser redirecinado para a página "Humor"
+  Então devo ser redirecionado para a página "Humor"
 
-# Redirecionar a página para "Música" através de Categorias
-Localizar o título "Música" em Categorias com um usuário anônimo
+Acessar "Música" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Música"
-  Então devo ser redirecinado para a página "Música"
+  Então devo ser redirecionado para a página "Música"
 
-# Redirecionar a página para "Esportes" através de Categorias
-Localizar o título "Esportes" em Categorias com um usuário anônimo
+Acessar "Esportes" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Esportes"
-  Então devo ser redirecinado para a página "Esportes"
+  Então devo ser redirecionado para a página "Esportes"
 
-# Redirecionar a página para "Jornalismo" através de Categorias
-Localizar o título "Jornalismo" em Categorias com um usuário anônimo
+Acessar "Jornalismo" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Jornalismo"
-  Então devo ser redirecinado para a página "Jornalismo"
+  Então devo ser redirecionado para a página "Jornalismo"
 
-# Redirecionar a página para "Programas Locais" através de Categorias
-Localizar o título "Programas Locais" em Categorias com um usuário anônimo
+Acessar "Programas Locais" pelo Menu Explore através de "Categorias" com um usuário anônimo
   Dado que sou um usuário anônimo
   E que estou na home
   Quando clicar no menu "Explore"
   E selecionar "Categorias"
   E selecionar "Programas Locais"
-  Então devo ser redirecinado para a página "Programas Locais"
+  Então devo ser redirecionado para a página "Programas Locais"
