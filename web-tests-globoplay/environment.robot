@@ -89,7 +89,7 @@ Before Suite
     Empty Directory                 ${path_screenshots}/${SUITE NAME}
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
-    Remove files    ${EXECDIR}/web-tests-globoplay/geckodriver-*.log
+    Remove files    ${EXECDIR}/geckodriver-*.log
 
 
 Before Scenario

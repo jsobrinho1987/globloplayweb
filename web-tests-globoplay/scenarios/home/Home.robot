@@ -43,20 +43,20 @@ Validar exibição do trilho de Só novelão
     E realiza o trilho da grid de Só novelão
 
 
-Validar exibição do trilho de Canais Ao Vivo
-# [Tags]      Home    Trilho de Canais Ao Vivo
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de Canais Ao Vivo deve exibir
-    E realiza o trilho da grid de Canais Ao Vivo
+# Validar exibição do trilho de Canais Ao Vivo
+# # [Tags]      Home    Trilho de Canais Ao Vivo
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de Canais Ao Vivo deve exibir
+#     E realiza o trilho da grid de Canais Ao Vivo
 
 
-Validar exibição do trilho das Séries mais vistas
-# [Tags]      Home    Trilho das Séries mais vistas
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho das "Séries mais vistas" deve exibir
-    E realiza o trilho da grid das "Séries mais vistas"
+# Validar exibição do trilho das Séries mais vistas
+# # [Tags]      Home    Trilho das Séries mais vistas
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho das "Séries mais vistas" deve exibir
+#     E realiza o trilho da grid das "Séries mais vistas"
 
 
 Validar exibição do trilho de Canais
@@ -90,12 +90,12 @@ Validar exibição do trilho de "Séries que dão o que falar"
     E realiza o trilho da grid de "Séries que dão o que falar"
 
 
-Validar exibição do trilho de "Ao Vivo no BBB"
-# [Tags]      Home    Trilho de "Ao Vivo no BBB"
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de "Ao Vivo no BBB" deve exibir
-    E realiza o trilho da grid de "Ao Vivo no BBB"
+# Validar exibição do trilho de "Ao Vivo no BBB"
+# # [Tags]      Home    Trilho de "Ao Vivo no BBB"
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de "Ao Vivo no BBB" deve exibir
+#     E realiza o trilho da grid de "Ao Vivo no BBB"
 
 
 Validar exibição do trilho de "Assista no Discovery+"
@@ -130,20 +130,20 @@ Validar exibição do trilho de "Tramas latinas"
     E realiza o trilho da grid de "Tramas latinas"
 
 
-# [Tags]      Home    Trilho de "Participantes Pipoca"
-Validar exibição do trilho de "Participantes Pipoca"
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de "Participantes Pipoca" deve exibir
-    E realiza o trilho da grid de "Participantes Pipoca"
+# # [Tags]      Home    Trilho de "Participantes Pipoca"
+# Validar exibição do trilho de "Participantes Pipoca"
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de "Participantes Pipoca" deve exibir
+#     E realiza o trilho da grid de "Participantes Pipoca"
 
 
-# [Tags]      Home    Trilho de "Participantes Camarote"
-Validar exibição do trilho de "Participantes Camarote"
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de "Participantes Camarote" deve exibir
-    E realiza o trilho da grid de "Participantes Camarote"
+# # [Tags]      Home    Trilho de "Participantes Camarote"
+# Validar exibição do trilho de "Participantes Camarote"
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de "Participantes Camarote" deve exibir
+#     E realiza o trilho da grid de "Participantes Camarote"
 
 
 Validar exibição do trilho "Os filmes que todos estão vendo"
@@ -162,61 +162,61 @@ Validar exibição do trilho de "Top 10 - Mais Consumidos"
     E realiza o trilho da grid de "Top 10 - Mais Consumidos"
 
 
-# # [Tags]      Home    Trilho de "Navegue pelo Globoplay"
-# Validar exibição do trilho de "Navegue pelo Globoplay"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Navegue pelo Globoplay" deve exibir
-#     E realiza o trilho da grid de "Navegue pelo Globoplay"
+# [Tags]      Home    Trilho de "Navegue pelo Globoplay"
+Validar exibição do trilho de "Navegue pelo Globoplay"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Navegue pelo Globoplay" deve exibir
+    E realiza o trilho da grid de "Navegue pelo Globoplay"
 
 
-# # [Tags]      Home    Trilho de "Assista no Disney+"
-# Validar exibição do trilho de "Assista no Disney+"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Assista no Disney+" deve exibir
-#     E realiza o trilho da grid de "Assista no Disney+"
+# [Tags]      Home    Trilho de "Assista no Disney+"
+Validar exibição do trilho de "Assista no Disney+"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Assista no Disney+" deve exibir
+    E realiza o trilho da grid de "Assista no Disney+"
 
 
-# # [Tags]      Home    Trilho de "Grandes sucessos do cinema"
-# Validar exibição do trilho de "Grandes sucessos do cinema"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Grandes sucessos do cinema" deve exibir
-#     E realiza o trilho da grid de "Grandes sucessos do cinema"
+# [Tags]      Home    Trilho de "Grandes sucessos do cinema"
+Validar exibição do trilho de "Grandes sucessos do cinema"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Grandes sucessos do cinema" deve exibir
+    E realiza o trilho da grid de "Grandes sucessos do cinema"
 
 
 
-# # [Tags]      Home    Trilho de "Em alta no Telecine"
-# Validar exibição do trilho de "Em alta no Telecine"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Em alta no Telecine" deve exibir
-#     E realiza o trilho da grid de "Em alta no Telecine"
+# [Tags]      Home    Trilho de "Em alta no Telecine"
+Validar exibição do trilho de "Em alta no Telecine"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Em alta no Telecine" deve exibir
+    E realiza o trilho da grid de "Em alta no Telecine"
 
 
-# # [Tags]      Home    Trilho de "Assista de graça"
-# Validar exibição do trilho de "Assista de graça"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Assista de graça" deve exibir
-#     E realiza o trilho da grid de "Assista de graça"
+# [Tags]      Home    Trilho de "Assista de graça"
+Validar exibição do trilho de "Assista de graça"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Assista de graça" deve exibir
+    E realiza o trilho da grid de "Assista de graça"
 
 
-# # [Tags]      Home    Trilho de "Podcasts"
-# Validar exibição do trilho de "Podcasts"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Podcasts" deve exibir
-#     E realiza o trilho da grid de "Podcasts"
+# [Tags]      Home    Trilho de "Podcasts"
+Validar exibição do trilho de "Podcasts"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Podcasts" deve exibir
+    E realiza o trilho da grid de "Podcasts"
 
 
-# # [Tags]      Home    Trilho de "Novelas que marcaram época"
-# Validar exibição do trilho de "Novelas que marcaram época"
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Então o trilho de "Novelas que marcaram época" deve exibir
-#     E realiza o trilho da grid de "Novelas que marcaram época"
+# [Tags]      Home    Trilho de "Novelas que marcaram época"
+Validar exibição do trilho de "Novelas que marcaram época"
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Então o trilho de "Novelas que marcaram época" deve exibir
+    E realiza o trilho da grid de "Novelas que marcaram época"
 
 
 # # [Tags]      Home    Trilho de "Produções Originais Globoplay"

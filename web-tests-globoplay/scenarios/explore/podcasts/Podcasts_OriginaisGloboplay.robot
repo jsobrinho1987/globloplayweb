@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Acesso tela de Explore e valida opção Podcasts
+Documentation   Acesso tela de Explore e valida opção Podcasts Originais no Globoplay
 
 # Default Tags    Ajuda  Minha Conta
 
