@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Humor
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -54,6 +54,8 @@ Test Teardown       After Scenario
 #   E selecionar "Assista"
 #   Então devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas"
 
+#------------------------ Novos cenários
+
 # Validação dos títulos apresentados ao acessar Humor com um usuário anônimo
 Validar exibição dos títulos de Humor apresentados com um usuário anônimo
   Dado que sou um usuário anônimo
@@ -62,3 +64,13 @@ Validar exibição dos títulos de Humor apresentados com um usuário anônimo
   E selecionar "Categorias"
   E selecionar "Humor"
   Então devo conseguir localizar os 24 títulos
+
+# Validação de todos os títulos apresentados ao acessar Humor com um usuário anônimo
+Validar exibição de todos os títulos de Humor apresentados com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Humor"
+  E selecionar "Veja mais" no final da página
+  Então devo conseguir localizar todos os títulos

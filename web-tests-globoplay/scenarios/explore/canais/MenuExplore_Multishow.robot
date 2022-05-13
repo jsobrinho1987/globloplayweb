@@ -1,10 +1,11 @@
 *** Settings ***
-Documentation   Acesso tela de Explore e valida opção Podcasts
+
+Documentation   Validação dos elementos de Multishow
 
 # Default Tags    Ajuda  Minha Conta
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -14,6 +15,7 @@ Test Setup          Before Scenario
 
 # O QUE FAZER APÓS CADA UM DOS TESTES - FECHAR NAVEGADOR
 Test Teardown       After Scenario
+
 *** Test Case ***
 # Localizar o título "Escolha seu plano" ao clicar no botão "Eu quero" no "Assista ao vivo" do Multishow
 # Acessar o Multishow através de "Canais" com um usuário anônimo e localizar o texto "Escolha seu plano"

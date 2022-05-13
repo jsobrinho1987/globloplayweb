@@ -79,6 +79,8 @@ ${browserOptions_chrome}        #add_argument("--headless");
 
 ${path_screenshots}     screenshots
 
+#TIMEOUT
+${timeout_20}                   20s
 
 *** Keywords ***
 Before Suite
@@ -89,6 +91,7 @@ Before Suite
     Empty Directory                 ${path_screenshots}/${SUITE NAME}
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
+
     Remove files    ${EXECDIR}/geckodriver-*.log
 
 

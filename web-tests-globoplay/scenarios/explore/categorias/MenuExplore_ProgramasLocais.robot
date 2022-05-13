@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Programas Locais
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS
-Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
+Resource            ${EXECDIR}/../../../environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
