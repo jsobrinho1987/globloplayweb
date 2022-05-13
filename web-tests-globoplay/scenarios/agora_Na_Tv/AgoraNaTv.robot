@@ -37,13 +37,13 @@ Acessar conteúdo de Agora na TV na opção "Todos" com usuário anônimo
     Então seleciona os canais da playlist
 
 
-# [Tags]      Agora na TV    BBB
-Acessar conteúdo de Agora na TV na opção "BBB" com usuário anônimo
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então seleciona o menu "Agora na TV"
-    E clica no sub menu BBB
-    Então seleciona os canais da playlist
+# # [Tags]      Agora na TV    BBB
+# Acessar conteúdo de Agora na TV na opção "BBB" com usuário anônimo
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então seleciona o menu "Agora na TV"
+#     E clica no sub menu BBB
+#     Então seleciona os canais da playlist
 
 
 # [Tags]      Agora na TV    Gratuito
@@ -100,22 +100,21 @@ Acessar conteúdo de Agora na TV na opção "Infantil" com usuário anônimo
     Então seleciona os canais da playlist
 
 
+Acessar conteúdo aovivo Jornalismo com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Quando clicar no menu "Agora na TV"
+    E clicar no sub menu jornalismo
+    E clicar no aovivo jornalismo
+    Então vejo o tapume com a mensagem Aproveite
 
-# Acessar conteúdo aovivo Jornalismo com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu jornalismo
-#     E clicar no aovivo jornalismo
-#     Então vejo o tapume com a mensagem Aproveite
-
-# Acessar conteúdo aovivo Infantil com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando clicar no menu "Agora na TV"
-#     E clicar no sub menu infantil
-#     E clicar no aovivo gloob
-#     Então vejo o tapume com a mensagem Conteúdo exclusivo
+Acessar conteúdo aovivo Infantil com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Quando clicar no menu "Agora na TV"
+    E clicar no sub menu infantil
+    E clicar no aovivo gloob
+    Então vejo o tapume com a mensagem Conteúdo exclusivo
 
 
 

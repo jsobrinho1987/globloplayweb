@@ -1425,7 +1425,7 @@ o trilho de Estreias no +Canais deve exibir
             
           ELSE
                 Sleep    60ms
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
           END
     END
 
