@@ -125,8 +125,9 @@ Library          SeleniumLibrary
 ...                         btnNextnovelasestrangeiras=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[5]/div/div[2]/div[3]/div
 ...                         trilho_anos2020=xpath://h2[text()="Anos 2020"]
 ...                         btnNextanos2020=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[6]/div/div[2]/div[3]/div
-...                         trilho_anos2015-2019=xpath://h2[text()="Anos 2015-2019"]
-...                         btnNextanos2015-2019=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[7]/div/div[2]/div[3]/div
+...                         anos2015-2019=css:#app > div > div > div.application-controller__layout > div.application-controller__view > span > div > div > div > div:nth-child(7) > div > div.playkit-container > section > a > h2
+...                         trilho_anos2015-2019=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Anos 2015-2019Veja mais')]
+...                         btnNextanos2015-2019=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Anos 2015-2019Veja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 ...                         trilho_anos2010-2014=xpath://h2[text()="Anos 2010-2014"]
 ...                         btnNextanos2010-2014=xpath://*[@id="app"]/div/div/div[1]/div[2]/span/div/div/div/div[8]/div/div[2]/div[3]/div
 ...                         trilho_anos2000=xpath://h2[text()="Anos 2000"]

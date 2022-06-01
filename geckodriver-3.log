@@ -1,0 +1,15 @@
+1653932877948	geckodriver	INFO	Listening on 127.0.0.1:51237
+1653932881026	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--disable-popup-blocking" "--no-sandbox" "—-disable-gpu" "--disable-infobars" "--disable-dev-shm-usage" "--user-agent= Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0" "-foreground" "-no-remote" "-profile" "C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofileTKejHU"
+1653932881375	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofileTKejHU\\search.json.mozlz4", (void 0)))
+1653932883404	Marionette	INFO	Listening on port 51246
+1653932883717	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Child 24752, MediaDecoderStateMachine #1] WARNING: 20b67858200 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:330
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://globoplay.globo.com"
+[Child 24752, MediaDecoderStateMachine #2] WARNING: 20b6594a820 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:330
+
+###!!! [Child][PContentChild] Error: RunMessage(msgname=PContent::Msg_CommitBrowsingContextTransaction) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][PContentChild] Error: RunMessage(msgname=PContent::Msg_CommitBrowsingContextTransaction) Channel closing: too late to send/recv, messages will be lost
+

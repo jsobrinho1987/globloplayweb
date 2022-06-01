@@ -3,7 +3,7 @@
 Documentation  Validação dos elementos de Novelas
 
 # IMPORT DE VARIÁVEIS DE OUTROS ARQUIVOS        
-Resource            ${EXECDIR}/../../../environment.robot
+Resource            ${EXECDIR}/web-tests-globoplay/environment.robot
 
 # O QUE FAZER ANTES DA EXECUÇÃO DOS TESTES
 Suite Setup         Before Suite
@@ -201,7 +201,7 @@ Test Setup          Before Scenario
 
 #------------------------ Novos cenários | Trilhos
 
-# # Validação dos Trilhos de Novelas
+# Validação dos Trilhos de Novelas
 # Validar exibição do trilho "Lançamentos mais recentes" com um usuário anônimo
 #   Dado que sou um usuário anônimo
 #   E que estou na home
@@ -209,7 +209,7 @@ Test Setup          Before Scenario
 #   E selecionar "Categorias"
 #   E selecionar "Novelas"
 #   Então devo conseguir localizar o trilho "Lançamentos mais recentes"
-#   # E realiza a validação do grid do trilho "Lançamentos mais recentes"
+  # E realiza a validação do grid do trilho "Lançamentos mais recentes"
 
 # Validar exibição do trilho "No ar na TV Globo" com um usuário anônimo
 #   Dado que sou um usuário anônimo
@@ -246,14 +246,14 @@ Test Setup          Before Scenario
 #   Então devo conseguir localizar o trilho "Anos 2020"
 #   E realiza a validação do grid do trilho "Anos 2020"
 
-# Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Novelas"
-#   Então devo conseguir localizar o trilho "Anos 2015-2019"
-#   E realiza a validação do grid do trilho "Anos 2015-2019"
+Validar exibição do trilho "Anos 2015-2019" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Novelas"
+  Então devo conseguir localizar o trilho "Anos 2015-2019"
+  E realiza a validação do grid do trilho "Anos 2015-2019"
 
 # Validar exibição do trilho "Anos 2010-2014" com um usuário anônimo
 #   Dado que sou um usuário anônimo

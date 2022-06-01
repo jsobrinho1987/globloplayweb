@@ -9,12 +9,9 @@ Library    Collections
 
 que sou um usuário anônimo
     # Acessa Home_Locator
-    Log        Verifica acesso Globoplay
+    Log        Verifica acesso Globoplay com usuário anônimo
     Wait Until Element Is Visible   ${homePage.pagina}
 
-    # CASO HAJA ALGUM USUÁRIO LOGADO
-    # ${user_anonimo}=    BuiltIn.Run Keyword And Ignore Error   Element Should Be Visible    ${MenuMinhaConta_Perfil.foto_anonimo}
-    # Run Keyword If  '${user_anonimo[0]}' == 'FAIL'   Trocar conta para user anônimo
 
 Trocar conta para user anônimo
     Click element   ${MenuMinhaConta_Perfil.btnTrocarConta}
@@ -1128,7 +1125,16 @@ que estou na home
     Run Keyword If    '${url}' == 'https://globoplay.globo.com/'    Log To Console     Redirecionado para a página de Home
     ...         ELSE   Log To Console     <Não redirecionado para a página de Home> RETORNA URL: '${url}'
 
-    Wait Until Element Is Visible   ${homePage.pagina}     50s
+    Wait Until Element Is Visible   ${homePage.pagina}     30s
+
+
+que estou na novelas
+    Log To Console    Verifica página novela
+
+    Run Keyword If    '${url}' == 'https://globoplay.globo.com/categorias/novelas/'    Log To Console     Redirecionado para a página de Home
+    ...         ELSE   Log To Console     <Não redirecionado para a página de Home> RETORNA URL: '${url_novelas} '
+
+    Wait Until Element Is Visible   ${homePage.pagina}     30s
 
 ############################################
 #   VALIDA CARROSSEL HOME
@@ -1160,24 +1166,23 @@ apresenta as imagens dos banner
 o trilho de "Só novelão" deve exibir
     Log      Verifica exibição do trilho de "Só novelão"
 
-    # ${status}=    Run Keyword And Return status    Should Be true   
+    FOR    ${counter}    IN RANGE    30
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-    FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_01}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_01}
-          IF    '${valor[0]}' == 'PASS'
-          
-                Wait Until Element Is Visible   ${homeTitle.title_sonovelao}     30s
-                ${title_sonovelao}=  Get Text   ${homeTitle.title_sonovelao}
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_sonovelao}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "Só novelão" está visível.
 
-                Press Keys   NONE   ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+            Press Keys  None  ARROW_DOWN+ARROW_DOWN
 
-                Exit For Loop If    '${valor[0]}' == ('PASS')
-            
-          ELSE
-                Log      Trilho de "Só novelão" não identificado.
-          END
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   60ms
     END
+
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+        Log To Console    Trilho "Só novelão" não está visível.
+    END 
     
 
 realiza o trilho da grid de Só novelão
@@ -1205,42 +1210,41 @@ realiza o trilho da grid de Só novelão
     END
 
 ############################################
-#   VALIDA TRILHO DE CANAIS AO VIVO
+#   VALIDA TRILHO DE ASSISTA AO VIVO
 ############################################
 
-o trilho de Canais Ao Vivo deve exibir
-    Log      Verifica exibição do trilho de "Canais Ao Vivo"
+o trilho de Assista Ao Vivo deve exibir
+    Log      Verifica exibição do trilho de "Assista Ao Vivo"
 
-    FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_02}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_02}
-          IF    '${valor[0]}' == 'PASS'
+    FOR    ${counter}    IN RANGE    300
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-            Press Keys   NONE   PAGE_DOWN  PAGE_DOWN  PAGE_DOWN
-          
-            Wait Until Element Is Visible   ${homeTitle.title_canalvivo}     50s
-            ${title_canalvivo}=  Get Text   ${homeTitle.title_canalvivo}
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_assistavivo}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "Assista ao Vivo" está visível.
 
-            Exit For Loop If    '${valor[0]}' == ('PASS')
-            
-          ELSE
-            # Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
-            Log      Trilho das "Canais Ao Vivo" não identificado.
+            Press Keys  None  ARROW_DOWN+ARROW_DOWN
 
-          END
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   60ms
     END
 
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+        Log To Console    Trilho "Assista ao Vivo" não está visível.
+    END 
 
-realiza o trilho da grid de Canais Ao Vivo
-   Wait Until Element Is Visible   ${homeTrilho.canalvivo}     30s
+
+realiza o trilho da grid de Assista Ao Vivo
+   Wait Until Element Is Visible   ${homeTrilho.assistavivo}     30s
    
    FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Canais Ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Canais Ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista ao VivoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 
                 IF  '${condition[0]}' == 'PASS'
  
@@ -1265,23 +1269,39 @@ realiza o trilho da grid de Canais Ao Vivo
 o trilho das "Séries mais vistas" deve exibir
     Log      Verifica exibição do trilho das "Séries mais vistas"
 
-     FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_03}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_03}
-          IF    '${valor[0]}' == 'PASS'
+    FOR    ${counter}    IN RANGE    43
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN++ARROW_DOWN+ARROW_DOWN
 
-            Press Keys   NONE   PAGE_DOWN  PAGE_DOWN
-          
-            Wait Until Element Is Visible   ${homeTitle.title_seriemaisvista}     50s
-            ${title_canalvivo}=  Get Text   ${homeTitle.title_seriemaisvista}
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_seriemaisvista}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "Séries mais vistas" está visível.
 
-            Exit For Loop If    '${valor[0]}' == ('PASS')
-            
-          ELSE
-            Log      Trilho das "Séries mais vistas" não identificado.
+            Press Keys  None  ARROW_DOWN+ARROW_DOWN
 
-          END
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   60ms
     END
+
+    # FOR   ${i}  IN RANGE    200
+    #       Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_03}   ${timeout_20}
+    #       ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_03}
+    #       IF    '${trilho_visivel[0]}' == 'PASS'
+          
+    #             Wait Until Element Is Visible   ${homeTitle.title_seriemaisvista}     30s
+    #             ${title_canalvivo}=  Get Text   ${homeTitle.title_seriemaisvista}
+
+    #             Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+    #       ELSE
+    #             Sleep    60ms
+    #             Press Keys   NONE   ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWNARROW_DOWN  ARROW_DOWN
+    #       END
+    # END
+
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+        Log To Console    Trilho "Séries mais vistas" não está visível.
+    END           
 
 realiza o trilho da grid das "Séries mais vistas"
    Wait Until Element Is Visible   ${homeTrilho.seriemaisvista}     30s
@@ -1309,27 +1329,29 @@ realiza o trilho da grid das "Séries mais vistas"
     END
 
 ############################################
-#   VALIDA TRILHO DE CANAIS
+#   VALIDA TRILHO DE +CANAIS
 ############################################
 
 o trilho de Canais deve exibir
-    Log      Verifica exibição do trilho de Canais
+    Log      Verifica exibição do trilho de +Canais
 
-    FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_04}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_04}
-          IF    '${valor[0]}' == 'PASS'
-          
-            Wait Until Element Is Visible   ${homeTitle.title_canal}     30s
-            ${title_canalvivo}=  Get Text   ${homeTitle.title_canal}
+    FOR    ${counter}    IN RANGE    300
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-            Exit For Loop If    '${valor[0]}' == ('PASS')
-            
-          ELSE
-              Sleep    60ms
-              Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
-          END
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_canal}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "+Canais" está visível.
+
+            Press Keys  None  ARROW_DOWN+ARROW_DOWN
+
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   60ms
     END
+
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+        Log To Console    Trilho "+Canais" não está visível.
+    END   
     
 
 realiza o trilho da grid de Canais
@@ -1364,27 +1386,30 @@ realiza o trilho da grid de Canais
 o trilho de Novidades deve exibir
     Log      Verifica exibição do trilho de Novidades
 
-    FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_05}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_05}
-          IF    '${valor[0]}' == 'PASS'
-          
-                Wait Until Element Is Visible   ${homeTitle.title_novidade}     30s
-                ${title_canalvivo}=  Get Text   ${homeTitle.title_novidade}
-                 
-                Exit For Loop If    '${valor[0]}' == ('PASS')
+    FOR    ${counter}    IN RANGE    300
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTrilho.novidade}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "Novidades" está visível.
             
-          ELSE
-                Sleep    60ms
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
-          END
-          
+            Press Keys  None  ARROW_DOWN+ARROW_DOWN
+
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   60ms
     END
 
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+      Log To Console    Trilho "Novidades" não está visível.
+    END   
+
 realiza o trilho da grid de Novidades
-   Wait Until Element Is Visible   ${homeTrilho.novidade}     30s
+    Log    Valida o grid do trilho de novidade
+    
+      Wait Until Element Is Visible   ${homeTrilho.novidade}     30s
    
-   FOR   ${i}  IN RANGE    200
+      FOR   ${i}  IN RANGE    200
          
          ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
@@ -1404,7 +1429,7 @@ realiza o trilho da grid de Novidades
         #  Log To Console    Trilho = '${i}'
          ${x}=    Evaluate    ${i} + 1
         
-    END
+      END
 
 ##############################################
 #    VALIDA TRILHO DE +ESTREIAS NO +CANAIS
@@ -1413,46 +1438,47 @@ realiza o trilho da grid de Novidades
 o trilho de Estreias no +Canais deve exibir
     Log      Verifica exibição do trilho de Estreias no +Canais
 
-    FOR   ${i}  IN RANGE    200
-          Run Keyword And Ignore Error    Wait Until Element Is Visible    ${homeTrilho.continua_06}   ${timeout_20}
-          ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${homeTrilho.continua_06}
-          IF    '${valor[0]}' == 'PASS'
-          
-                Wait Until Element Is Visible   ${homeTitle.title_estreias_canais}     30s
-                ${title_canalvivo}=  Get Text   ${homeTitle.title_estreias_canais}
+    FOR    ${counter}    IN RANGE    30
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-                Exit For Loop If    '${valor[0]}' == ('PASS')
-            
-          ELSE
-                Sleep    60ms
-                Press Keys   NONE   ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
-          END
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_estreias_canais}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "Estreias no +Canais" está visível.
+
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   1s
     END
+
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+      Log To Console    Trilho "Estreias no +Canais" não está visível.
+    END  
 
 realiza o trilho da grid de Estreias no +Canais
-   Wait Until Element Is Visible   ${homeTrilho.estreias_canais}     30s
+    Log    Valida o grid do trilho de Estreias no +Canais
    
-   FOR   ${i}  IN RANGE    200
-         
-         ${estreias_canais}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
-         Run Keyword If  '${estreias_canais[0]}' == ('PASS', None)   Sleep   2s
+    Wait Until Element Is Visible   ${homeTrilho.estreias_canais}     30s
+   
+    FOR   ${i}  IN RANGE    200
+          
+          ${estreias_canais}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+          Run Keyword If  '${estreias_canais[0]}' == ('PASS', None)   Sleep   2s
 
-         IF    '${estreias_canais[0]}' == 'FAIL'
+          IF    '${estreias_canais[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
-                IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_06}     20s
-                      Press Keys  ${homeTrilho.continua_06}   ARROW_RIGHT
-                ELSE
-                      Log To Console    Trilho = '${i}'
-                      Exit For Loop If    '${estreias_canais[0]}' == ('FAIL')     
-                END
-         END
+                  ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
+                  IF  '${condition[0]}' == 'PASS'
+                        Wait Until Element Is Visible   ${homeTrilho.continua_06}     20s
+                        Press Keys  ${homeTrilho.continua_06}   ARROW_RIGHT
+                  ELSE
+                        Log To Console    Trilho = '${i}'
+                        Exit For Loop If    '${estreias_canais[0]}' == ('FAIL')     
+                  END
+          END
 
-        #  Log To Console    Trilho = '${i}'
-         ${x}=    Evaluate    ${i} + 1
-        
-    END
+          #  Log To Console    Trilho = '${i}'
+          ${x}=    Evaluate    ${i} + 1
+     END
 
 #####################################################
 #    VALIDA TRILHO DE SÉRIES QUE DÃO O QUE FALAR
@@ -3979,8 +4005,27 @@ devo conseguir ver o texto "Conteúdo exclusivo gratuito para contas cadastradas
   Element Should Be Visible   ${MenuExplore.textoConteudoExclusivo}
 
 
-# Menu Explore - Categorias - Localização dos trilhos de Categorias | Séries
+# Menu Explore - Categorias - Localização dos trilhos de Categorias
 #------------------------ Novos cenários | Trilhos
+devo conseguir localizar o trilho "Escolha pelo gênero"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_escolhapelogenero}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Escolha pelo gênero" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Escolha pelo gênero" não está visível.
+  END
+
 devo conseguir localizar o trilho "Novidades"
   Log    Localiza o trilho na página e retorna se está visível.
   Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
@@ -3988,7 +4033,7 @@ devo conseguir localizar o trilho "Novidades"
   FOR    ${counter}    IN RANGE    30
       Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${Series.trilho_novidades}
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_novidades}
       IF    '${trilho_visivel[0]}' == 'PASS'
           Log To Console    Trilho "Novidades" está visível.
           Exit For Loop
@@ -3998,23 +4043,829 @@ devo conseguir localizar o trilho "Novidades"
 
   IF    '${trilho_visivel[0]}' == 'FAIL'
     Log To Console    Trilho "Novidades" não está visível.
-  END     
+  END
 
 
-# Menu Explore - Categorias - Validação do grid dos trilhos de Categorias | Séries
+devo conseguir localizar o trilho "Todas as séries"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_todasasseries}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Todas as séries" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Todas as séries" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Ação"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_acao}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Ação" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Ação" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Comédia"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_comedia}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Comédia" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Comédia" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Originais Globoplay"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_originaisgloboplay}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Originais Globoplay" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries brasileiras" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Séries brasileiras"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_seriesbrasileiras}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Séries brasileiras" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries de brasileiras" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Séries de época"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_seriesdeepoca}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Séries de época" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries de época" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Suspense"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_suspense}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Suspense" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Suspense" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Séries médicas"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_seriesmedicas}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Séries médicas" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries médicas" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Policial"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_policial}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Policial" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Policial" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Exclusivo Globoplay"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_exclusivogloboplay}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Exclusivo Globoplay" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Exclusivo Globoplay" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Sessão nostalgia"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_sessaonostalgia}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Sessão nostalgia" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Sessão nostalgia" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Sucessos no Globoplay"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_sucessosnogloboplay}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Sucessos no Globoplay" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Sucessos no Globoplay" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Premiadas"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_premiadas}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Premiadas" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Premiadas" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Romance"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_romance}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Romance" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Romance" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Sobrenatural"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_sobrenatural}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Sobrenatural" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Sobrenatural" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Para ver rapidinho"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_paraverrapidinho}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Para ver rapidinho" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Para ver rapidinho" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Séries completas"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_seriescompletas}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Séries completas" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries completas" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Séries da Globo"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_seriesdaglobo}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Séries da Globo" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Séries da Globo" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Drama"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_drama}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Drama" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Drama" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Mistério"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_misterio}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Mistério" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Mistério" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Ficção Científica"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_ficcaocientifica}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Ficção Científica" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Ficção Científica" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Franquias e spin-offs"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_franquiasespinoffs}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Franquias e spin-offs" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Franquias e spin-offs" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Novas temporadas"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_novastemporadas}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Novas temporadas" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Novas temporadas" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Faroeste"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_faroeste}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Faroeste" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Faroeste" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Podcasts"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_podcasts}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Podcasts" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Podcasts" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Lançamentos mais recentes"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_lancamentosmaisrecentes}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Lançamentos mais recentes" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  # IF    '${trilho_visivel[0]}' == 'FAIL'
+  #   Log To Console    Trilho "Lançamentos mais recentes" não está visível.
+  # END
+
+
+devo conseguir localizar o trilho "No ar na TV Globo"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_noarnatvglobo}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "No ar na TV Globo" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "No ar na TV Globo" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "No ar no VIVA"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_noarnoVIVA}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "No ar no VIVA" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "No ar no VIVA" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Novelas Estrangeiras"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_novelasestrangeiras}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Novelas Estrangeiras" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Novelas Estrangeiras" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Anos 2020"
+  Log    Localiza o trilho na página e retorna se e
+
+    FOR    ${counter}    IN RANGE    30
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${categoriasTitle.trilho_anos2020}
+        IF    '${trilho_visivel[0]}' == 'PASS'
+            Log To Console    Trilho "+Canais" está visível.
+
+            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+        END
+        Sleep   1s
+    END
+
+    IF    '${trilho_visivel[0]}' == 'FAIL'
+        Log To Console    Trilho "+Canais" não está visível.
+    END   
+    
+devo conseguir localizar o trilho "Anos 2015-2019"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  # FOR   ${i}  IN RANGE    200
+  #         Run Keyword And Ignore Error    Wait Until Element Is Visible    ${categoriasTrilho.btnNextanos2015-2019}   ${timeout_20}
+  #         ${valor}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNextanos2015-2019}
+  #         IF    '${valor[0]}' == 'PASS'
+          
+  #               Wait Until Element Is Visible   ${categoriasTrilho.anos2015-2019}     30s
+  #               ${title_canalvivo}=  Get Text   ${categoriasTrilho.anos2015-2019}
+
+  #               Exit For Loop If    '${valor[0]}' == ('PASS')
+            
+  #         ELSE
+  #               Sleep    1s
+  #               Press Keys   NONE   ARROW_DOWN  ARROW_DOWN
+  #         END
+  #   END
+
+  #   IF    '${valor[0]}' == 'FAIL'
+  #     Log To Console    Trilho "Anos 2015-2019" não está visível.
+  #   END
+
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN  ARROW_DOWN  ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTrilho.anos2015-2019}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+
+          Log To Console    Trilho "Anos 2015-2019" está visível.
+          Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+      END
+      Sleep   1s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Anos 2015-2019" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Anos 2010-2014"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_anos2010-2014}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Anos 2010-2014" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Anos 2010-2014" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Anos 2000"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_anos2000}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Anos 2000" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Anos 2000" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Anos 90"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_anos90}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Anos 90" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Anos 90" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Anos 70 e 80"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_anos70-80}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Anos 70 e 80" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Anos 70 e 80" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Malhação"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_malhacao}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Malhação" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Malhação" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Memória da TV"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_memoriasdatv}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Memória da TV" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Memória da TV" não está visível.
+  END
+
+
+devo conseguir localizar o trilho "Todas as Novelas"
+  Log    Localiza o trilho na página e retorna se está visível.
+  Wait Until Element Is Visible    ${Categorias.banner}   ${timeout_20}
+
+  FOR    ${counter}    IN RANGE    30
+      Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
+
+      ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View    ${categoriasTitle.trilho_todasasnovelas}
+      IF    '${trilho_visivel[0]}' == 'PASS'
+          Log To Console    Trilho "Todas as Novelas" está visível.
+          Exit For Loop
+      END
+      Sleep   3s
+  END
+
+  IF    '${trilho_visivel[0]}' == 'FAIL'
+    Log To Console    Trilho "Todas as Novelas" não está visível.
+  END
+
+
+# Menu Explore - Categorias - Validação do grid dos trilhos de Categorias
 #------------------------ Novos cenários | Trilhos
-realiza a validação do grid do trilho "Novidades"
+realiza a validação do grid do trilho "Escolha pelo gênero"
   Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
   FOR    ${counter}    IN RANGE    10
-    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${Series.btnNextnovidades}
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_escolhapelogenero}
 
     IF    '${botaoNext[0]}' == 'PASS'
 
-        ${pega_titulo}=    Get Element Attribute    ${Series.pega_titulo_novidades}   title
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_escolhapelogenero}   title
         Append To List    ${lista}    ${pega_titulo}
 
-        Log To Console    Primeiro título: ${lista}
-        Run Keyword And Ignore Error    Click Element    ${Series.btnNextnovidades}
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_escolhapelogenero}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Escolha pelo gênero" OK.
+        ELSE
+          Log To Console    Grid do trilho "Escolha pelo gênero" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Novidades"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_novidades}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_novidades}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_novidades}
         Sleep  2s
 
     ELSE
@@ -4024,12 +4875,1035 @@ realiza a validação do grid do trilho "Novidades"
         IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
           Log To Console    Grid do trilho "Novidades" OK.
         ELSE
-          Log To Console    Grid do trilho "Novidades" falhou. Valores repetidos encontrados na lista. 
+          Log To Console    Grid do trilho "Novidades" falhou.
         END
         Exit For Loop
     END
   END
 
+
+
+realiza a validação do grid do trilho "Todas as séries"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_todasasseries}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_todasasseries}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_todasasseries}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Todas as séries" OK.
+        ELSE
+          Log To Console    Grid do trilho "Todas as séries" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Ação"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_acao}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_acao}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_acao}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Ação" OK.
+        ELSE
+          Log To Console    Grid do trilho "Ação" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Comédia"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_comedia}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_comedia}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_comedia}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Comédia" OK.
+        ELSE
+          Log To Console    Grid do trilho "Comédia" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Originais Globoplay"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_originaisgloboplay}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_originaisgloboplay}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_originaisgloboplay}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Originais Globoplay" OK.
+        ELSE
+          Log To Console    Grid do trilho "Originais Globoplay" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+  
+realiza a validação do grid do trilho "Séries brasileiras"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_seriesbrasileiras}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_seriesbrasileiras}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_seriesbrasileiras}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Séries brasileiras" OK.
+        ELSE
+          Log To Console    Grid do trilho "Séries brasileiras" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Séries de época"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_seriesdeepoca}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_seriesdeepoca}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_seriesdeepoca}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Séries de época" OK.
+        ELSE
+          Log To Console    Grid do trilho "Séries de época" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Suspense"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_suspense}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_suspense}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_suspense}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Suspense" OK.
+        ELSE
+          Log To Console    Grid do trilho "Suspense" falhou.
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Séries médicas"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_seriesmedicas}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_seriesmedicas}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_seriesmedicas}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Séries médicas" OK.
+        ELSE
+          Log To Console    Grid do trilho "Séries médicas" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Policial"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_policial}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_policial}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_policial}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Policial" OK.
+        ELSE
+          Log To Console    Grid do trilho "Policial" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Exclusivo Globoplay"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_exclusivogloboplay}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_exclusivogloboplay}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_exclusivogloboplay}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Exclusivo Globoplay" OK.
+        ELSE
+          Log To Console    Grid do trilho "Exclusivo Globoplay" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Sessão nostalgia"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_sessaonostalgia}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_sessaonostalgia}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_sessaonostalgia}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Sessão nostalgia" OK.
+        ELSE
+          Log To Console    Grid do trilho "Sessão nostalgia" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Sucessos no Globoplay"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_sucessosnogloboplay}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_sucessosnogloboplay}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_sucessosnogloboplay}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Sucessos no Globoplay" OK.
+        ELSE
+          Log To Console    Grid do trilho "Sucessos no Globoplay" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Romance"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_romance}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_romance}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_romance}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Romance" OK.
+        ELSE
+          Log To Console    Grid do trilho "Romance" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Premiadas"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_premiadas}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_premiadas}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_premiadas}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Premiadas" OK.
+        ELSE
+          Log To Console    Grid do trilho "Premiadas" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Sobrenatural"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_sobrenatural}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_sobrenatural}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_sobrenatural}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Sobrenatural" OK.
+        ELSE
+          Log To Console    Grid do trilho "Sobrenatural" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Para ver rapidinho"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_paraverrapidinho}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_paraverrapidinho}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_paraverrapidinho}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Para ver rapidinho" OK.
+        ELSE
+          Log To Console    Grid do trilho "Para ver rapidinho" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Séries completas"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_seriescompletas}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_seriescompletas}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_seriescompletas}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Séries completas" OK.
+        ELSE
+          Log To Console    Grid do trilho "Séries completas" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Séries da Globo"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_seriesdaglobo}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_seriesdaglobo}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_seriesdaglobo}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Séries da Globo" OK.
+        ELSE
+          Log To Console    Grid do trilho "Séries da Globo" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Drama"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_drama}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_drama}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_drama}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Drama" OK.
+        ELSE
+          Log To Console    Grid do trilho "Drama" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Mistério"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_misterio}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_misterio}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_misterio}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Mistério" OK.
+        ELSE
+          Log To Console    Grid do trilho "Mistério" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Ficção Científica"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_ficcaocientifica}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_ficcaocientifica}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_ficcaocientifica}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Ficção Científica" OK.
+        ELSE
+          Log To Console    Grid do trilho "Ficção Científica" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Franquias e spin-offs"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_franquiasespinoffs}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_franquiasespinoffs}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_franquiasespinoffs}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Franquias e spin-offs" OK.
+        ELSE
+          Log To Console    Grid do trilho "Franquias e spin-offs" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Novas temporadas"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_novastemporadas}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_novastemporadas}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_novastemporadas}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Novas temporadas" OK.
+        ELSE
+          Log To Console    Grid do trilho "Novas temporadas" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Faroeste"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_faroeste}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_faroeste}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_faroeste}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Faroeste" OK.
+        ELSE
+          Log To Console    Grid do trilho "Faroeste" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Podcasts"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_podcasts}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_podcasts}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_podcasts}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Podcasts" OK.
+        ELSE
+          Log To Console    Grid do trilho "Podcasts" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Lançamentos mais recentes"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_lancamentosmaisrecentes}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_lancamentosmaisrecentes}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_lancamentosmaisrecentes}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Lançamentos mais recentes" OK.
+        ELSE
+          Log To Console    Grid do trilho "Lançamentos mais recentes" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "No ar no VIVA"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_noarnoVIVA}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_noarnoVIVA}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_noarnoVIVA}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "No ar no VIVA" OK.
+        ELSE
+          Log To Console    Grid do trilho "No ar no VIVA" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Novelas Estrangeiras"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_novelasestrangeiras}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_novelasestrangeiras}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_novelasestrangeiras}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS' 
+          Log To Console    Grid do trilho "Novelas Estrangeiras" OK.
+        ELSE
+          Log To Console    Grid do trilho "Novelas Estrangeiras" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Anos 2020"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos2020}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos2020}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos2020}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Anos 2020" OK.
+        ELSE
+          Log To Console    Grid do trilho "Anos 2020" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Anos 2015-2019"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  # FOR    ${counter}    IN RANGE    10
+  #   ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos2015-2019}
+
+  #   IF    '${botaoNext[0]}' == 'PASS'
+
+  #       ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos2015-2019}   title
+  #       Append To List    ${lista}    ${pega_titulo}
+
+  #       Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos2015-2019}
+  #       Sleep  2s
+
+  #   ELSE
+  #       ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+  #       ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+  #       IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+  #         Log To Console    Grid do trilho "Anos 2015-2019" OK.
+  #       ELSE
+  #         Log To Console    Grid do trilho "Anos 2015-2019" falhou. 
+  #       END
+  #       Exit For Loop
+  #   END
+  # END
+
+   
+   FOR   ${i}  IN RANGE    200
+         
+         ${resultado}=  Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos2015-2019}
+         Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
+
+         IF    '${resultado[0]}' == 'FAIL'
+
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    ${categoriasTrilho.btnNext_anos2015-2019}
+                IF  '${condition[0]}' == 'PASS'
+                      Wait Until Element Is Visible   ${categoriasTrilho.btnNext_anos2015-2019}     20s
+                      Press Keys  ${categoriasTrilho.btnNext_anos2015-2019}   ARROW_RIGHT
+                ELSE
+                      Log To Console    Trilho = '${i}'
+                      Exit For Loop If    '${resultado[0]}' == ('FAIL')     
+                END
+         END
+
+        #  Log To Console    Trilho = '${i}'
+         ${x}=    Evaluate    ${i} + 1
+        
+    END 
+
+
+realiza a validação do grid do trilho "Anos 2010-2014"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos2010-2014}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos2010-2014}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos2010-2014}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Anos 2010-2014" OK.
+        ELSE
+          Log To Console    Grid do trilho "Anos 2010-2014" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Anos 2000"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos2000}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos2000}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos2000}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Anos 2000" OK.
+        ELSE
+          Log To Console    Grid do trilho "Anos 2000" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Anos 90"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos90}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos90}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos90}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Anos 90" OK.
+        ELSE
+          Log To Console    Grid do trilho "Anos 90" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Anos 70 e 80"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_anos70-80}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_anos70-80}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_anos70-80}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Anos 70 e 80" OK.
+        ELSE
+          Log To Console    Grid do trilho "Anos 70 e 80" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Malhação"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_malhacao}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_malhacao}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_malhacao}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Malhação" OK.
+        ELSE
+          Log To Console    Grid do trilho "Malhação" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Memória da TV"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_memoriasdatv}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_memoriasdatv}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_memoriasdatv}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Memória da TV" OK.
+        ELSE
+          Log To Console    Grid do trilho "Memória da TV" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+
+
+realiza a validação do grid do trilho "Todas as Novelas"
+  Log    Valida o grid do trilho incluindo alguns títulos numa lista e verificando se tem valor duplicado e se está vazia.
+  FOR    ${counter}    IN RANGE    10
+    ${botaoNext}=    Run Keyword And Ignore Error    Element Should Be Visible    ${categoriasTrilho.btnNext_todasasnovelas}
+
+    IF    '${botaoNext[0]}' == 'PASS'
+
+        ${pega_titulo}=    Get Element Attribute    ${categoriasTrilho.pegaTitulo_todasasnovelas}   title
+        Append To List    ${lista}    ${pega_titulo}
+
+        Run Keyword And Ignore Error    Click Element    ${categoriasTrilho.btnNext_todasasnovelas}
+        Sleep  2s
+
+    ELSE
+        ${duplicada}=    Run Keyword And Ignore Error    List Should Not Contain Duplicates    ${lista}
+        ${vazia}=    Run Keyword And Ignore Error    Should Not Be Empty    ${lista}
+
+        IF    '${duplicada[0]}' == 'PASS' and '${vazia[0]}' == 'PASS'
+          Log To Console    Grid do trilho "Todas as Novelas" OK.
+        ELSE
+          Log To Console    Grid do trilho "Todas as Novelas" falhou. 
+        END
+        Exit For Loop
+    END
+  END
+  
 
 #---------------------------------------------------------------------#
 #              VALIDAÇÃO DOS CENÁRIOS DE EXPLORE CANAIS               #

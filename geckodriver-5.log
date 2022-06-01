@@ -1,0 +1,8 @@
+1654018201682	geckodriver	INFO	Listening on 127.0.0.1:59550
+1654018204764	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--disable-popup-blocking" "--no-sandbox" "—-disable-gpu" "--disable-infobars" "--disable-dev-shm-usage" "--user-agent= Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0" "-foreground" "-no-remote" "-profile" "C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofilelKzKr6"
+1654018205101	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ACT\\AppData\\Local\\Temp\\rust_mozprofilelKzKr6\\search.json.mozlz4", (void 0)))
+1654018207159	Marionette	INFO	Listening on port 50005
+1654018207466	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[Child 2496, MediaDecoderStateMachine #1] WARNING: 252a08d5c80 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:330
+[Child 2496, MediaDecoderStateMachine #1] WARNING: 252a291ae40 Could not set cubeb stream name.: file /builds/worker/checkouts/gecko/dom/media/AudioStream.cpp:330

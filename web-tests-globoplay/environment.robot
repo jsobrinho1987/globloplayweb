@@ -10,7 +10,7 @@ Library                 SeleniumLibrary
 Library                 Collections
 
 Library                 String
-#Library                 Screenshot  ${path_screenshots}
+# Library                 Screenshot  ${path_screenshots}
 
 Resource                ../web-tests-globoplay/config/usuarios/accounts.robot
 Resource                ../web-tests-globoplay/config/login/LoginExterno_Locators.robot
@@ -41,6 +41,7 @@ Resource                ../web-tests-globoplay/config/explore_categorias/variabl
 *** Variables ***
 # ${url}                     https://beta-globoplay.globo.com/
 ${url}                      https://globoplay.globo.com/
+${url_novelas}              https://globoplay.globo.com/categorias/novelas/ 
 ${url_explore}              https://globoplay.globo.com/categorias/
 ${url_pod}                  https://globoplay.globo.com/podcasts/
 ${url_originais}            https://globoplay.globo.com/podcasts/categorias/podcasts-originais-globoplay/
@@ -92,7 +93,7 @@ Before Suite
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
 
-    Remove files    ${EXECDIR}/geckodriver-*.log
+    Remove files    ${EXECDIR}/web-tests-globoplay/screenshots/geckodriver-*.log
 
 
 Before Scenario
@@ -125,30 +126,6 @@ Before Scenario
 After Scenario
     Set Screenshot Directory    ${path_screenshots}/${SUITE NAME}
     Capture Page Screenshot     
-    Remove Files                ${EXECDIR}/selenium-screenshot*
+    Remove Files                ${EXECDIR}/web-tests-globoplay/screenshots/selenium-screenshot*
     Close Browser
 
-
-#Before Suite ${navegador}
-    #CRIAR PASTA, SE NÃO EXISTIR
-#    Create Directory                ${path_screenshots}/${SUITE NAME}
-
-    #ESVAZIAR PASTA COM SCREENSHOTS DA EXECUÇÃO ANTERIOR
-#    Empty Directory                 ${path_screenshots}/${SUITE NAME}
-
-#    ${condition_navegador}=   BuiltIn.Run Keyword And Ignore Error     Should Be True   '${navegador}' == 'firefox'
-#    Run Keyword If  '${condition_navegador[0]}' == 'PASS'       Remove logs do geckodriver
-
-#Remove logs do geckodriver
-#    ${condition_remove_logs}=   BuiltIn.Run Keyword And Ignore Error     Remove files   ${EXECDIR}/geckodriver-*.log
-#    Run Keyword If  '${condition_remove_logs[0]}' == 'FAIL'       Sleep   1s
-
-
-#Before Scenario ${navegador}
-    #ABRIR O BROWSER NA URL CONFIGURADA NAS VARIABLES ACIMA
-#    Open Browser                    ${url}  ${navegador}  options=${browserOptions_${navegador}}
-
-    #MAXIMIZAR O NAVEGADOR
-#    ${condition_navegador}=   BuiltIn.Run Keyword And Ignore Error     Should Be True   '${navegador}' == 'firefox'
-#    Run Keyword If  '${condition_navegador[0]}' == 'PASS'       Maximize Browser Window
-#    ...         ELSE    Set Window Size     ${1400}     ${800}
