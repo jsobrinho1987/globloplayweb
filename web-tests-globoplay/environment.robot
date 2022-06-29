@@ -93,7 +93,7 @@ Before Suite
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
 
-    Remove files    ${EXECDIR}/web-tests-globoplay/screenshots/geckodriver-*.log
+    
 
 
 Before Scenario
@@ -102,11 +102,10 @@ Before Scenario
     # Open Browser                    ${url}  chrome      option = Options()
 
     # --- MAXIMIZA O NAVEGADOR FULL ---
-    Maximize Browser Window
+    # Maximize Browser Window
 
     # --- MAXIMIZA O NAVEGADOR DE ACORDO COM A RESOLUÇÃO DESEJADA ---
-    # Set Viewport size    1920     1080
-
+    Set Window Size	1920   1080	
 
     #INCLUSÃO DE REPETIÇÃO PARA CASO DE QUEDA DE REDE (OCORRENDO POR VEZES NO PIPELINE)
     FOR     ${x}    IN  2
@@ -119,6 +118,7 @@ Before Scenario
         ...         ELSE    Go To   ${url}
     END
 
+
     #AGUARDAR A HOME SER CARREGADA
     Wait Until Element Is Visible   ${homePage.pagina}     20s
 
@@ -126,6 +126,6 @@ Before Scenario
 After Scenario
     Set Screenshot Directory    ${path_screenshots}/${SUITE NAME}
     Capture Page Screenshot     
-    Remove Files                ${EXECDIR}/web-tests-globoplay/screenshots/selenium-screenshot*
     Close Browser
+    Remove Files                ${EXECDIR}/geckodriver-*.log
 

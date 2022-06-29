@@ -1386,6 +1386,8 @@ realiza o trilho da grid de Canais
 o trilho de Novidades deve exibir
     Log      Verifica exibição do trilho de Novidades
 
+    Set Viewport size    1920     1080
+
     FOR    ${counter}    IN RANGE    300
         Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 

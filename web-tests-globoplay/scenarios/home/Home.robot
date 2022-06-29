@@ -21,10 +21,10 @@ Test Teardown       After Scenario
 # ACESSOS ANONIMO
 #------------------------------------#
 
-# Valida exibição da página da home
-# # [Tags]      Valida page Home
-#     Dado que sou um usuário anônimo
-#     E que estou na home
+Valida exibição da página da home
+# [Tags]      Valida page Home
+    Dado que sou um usuário anônimo
+    E que estou na home
 
 
 # Validar exibição do destaque banner de carrossel na home
