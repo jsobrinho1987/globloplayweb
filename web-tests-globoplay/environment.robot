@@ -17,22 +17,15 @@ Resource                ../web-tests-globoplay/config/login/LoginExterno_Locator
 Resource                ../web-tests-globoplay/config/home/Home_Locators.robot
 Resource                ../web-tests-globoplay/config/explore_categorias/MenuExplore.robot
 Resource                ../web-tests-globoplay/config/explore_podcasts/MenuExplore_podcasts.robot
-# Resource                ../web-tests-globoplay/config/MenuExplore_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuExplore_SubmenuProgramasLocais_Locators.robot
+Resource                ../web-tests-globoplay/config/MenuExplore_Locators.robot
+Resource                ../web-tests-globoplay/config/MenuExplore_SubmenuProgramasLocais_Locators.robot
 Resource                ../web-tests-globoplay/config/agora_Na_Tv/AgoraNaTvLocators.robot
-# Resource                ../web-tests-globoplay/config/TitlePage_Locators.robot
-# Resource                ../web-tests-globoplay/config/AtivarContaLocators.robot
-# Resource                ../web-tests-globoplay/config/MenuBusca_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuAgoraNaTV_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuAgoraNaTV_Programacao_Locator.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuMinhaLista_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuMinhaConta_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuConfiguracoes_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuAjuda_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuSobreSeuDispositivo_Locators.robot
-# Resource                ../web-tests-globoplay/config/MenuMinhaConta_SubmenuTermosEPoliticas_Locators.robot
-# Resource                ../web-tests-globoplay/config/LGPD_Locators.robot
-# Resource                ../web-tests-globoplay/config/Player_Locators.robot
+Resource                ../web-tests-globoplay/config/TitlePage_Locators.robot
+Resource                ../web-tests-globoplay/config/AtivarContaLocators.robot
+Resource                ../web-tests-globoplay/config/MenuBusca_Locators.robot
+Resource                ../web-tests-globoplay/config/MenuAgoraNaTV_Locators.robot
+Resource                ../web-tests-globoplay/config/LGPD_Locators.robot
+Resource                ../web-tests-globoplay/config/Player_Locators.robot
 Resource                BDDptbr.robot
 Resource                ../web-tests-globoplay/script/keywords.robot
 Resource                ../web-tests-globoplay/config/explore_categorias/variables_categorias.robot
@@ -50,8 +43,6 @@ ${url_papo_parente}         https://globoplay.globo.com/podcasts/papo-de-parente
 ${url_mais_ouvidos}         https://globoplay.globo.com/podcasts/categorias/podcasts-mais-ouvidos/
 
 ${url_agora_tv}             https://globoplay.globo.com/tv-globo/ao-vivo
-
-#${PROXY}                proxy.globoi.com:3128   #192.168.0.108:8888 # IP:PORT or HOST:PORT
 
 #CONFIGURAÇÕES DO BROWSER Firefox
 ${browserOptions_firefox}       #add_argument("--headless");
