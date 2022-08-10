@@ -21,10 +21,10 @@ Test Teardown       After Scenario
 # ACESSOS ANONIMO
 #------------------------------------#
 
-Valida exibição da página da home
-# [Tags]      Valida page Home
-    Dado que sou um usuário anônimo
-    E que estou na home
+# Valida exibição da página da home
+# # [Tags]      Valida page Home
+#     Dado que sou um usuário anônimo
+#     E que estou na home
 
 
 # Validar exibição do destaque banner de carrossel na home
@@ -35,36 +35,36 @@ Valida exibição da página da home
 #     E apresenta as imagens dos banner
 
 
-Validar exibição do trilho de Só novelão
-# [Tags]      Home    Trilho de Só novelão
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de "Só novelão" deve exibir
-    E realiza o trilho da grid de Só novelão
+# Validar exibição do trilho de Só novelão
+# # [Tags]      Home    Trilho de Só novelão
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de "Só novelão" deve exibir
+#     E realiza o trilho da grid de Só novelão
 
 
-Validar exibição do trilho de Assista Ao Vivo
-# [Tags]      Home    Trilho de Canais Ao Vivo
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de Assista Ao Vivo deve exibir
-    E realiza o trilho da grid de Assista Ao Vivo
+# Validar exibição do trilho de Assista Ao Vivo
+# # [Tags]      Home    Trilho de Canais Ao Vivo
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de Assista Ao Vivo deve exibir
+#     E realiza o trilho da grid de Assista Ao Vivo
 
 
-Validar exibição do trilho das Séries mais vistas
-# [Tags]      Home    Trilho das Séries mais vistas
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho das "Séries mais vistas" deve exibir
-    E realiza o trilho da grid das "Séries mais vistas"
+# Validar exibição do trilho das Séries mais vistas
+# # [Tags]      Home    Trilho das Séries mais vistas
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho das "Séries mais vistas" deve exibir
+#     E realiza o trilho da grid das "Séries mais vistas"
 
 
-Validar exibição do trilho de Canais
-# [Tags]      Home    Trilho de Canais
-    Dado que sou um usuário anônimo
-    E que estou na home
-    Então o trilho de Canais deve exibir
-    E realiza o trilho da grid de Canais
+# Validar exibição do trilho de Canais
+# # [Tags]      Home    Trilho de Canais
+#     Dado que sou um usuário anônimo
+#     E que estou na home
+#     Então o trilho de Canais deve exibir
+#     E realiza o trilho da grid de Canais
 
 
 Validar exibição do trilho de Novidades

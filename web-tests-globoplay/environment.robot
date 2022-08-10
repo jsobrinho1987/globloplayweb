@@ -93,8 +93,6 @@ Before Suite
 
     #REMOVER ARQUIVOS DE LOG GERADOS LOCALMENTE
 
-    
-
 
 Before Scenario
     #ABRIR O BROWSER NA URL CONFIGURADA NAS VARIABLES ACIMA
@@ -102,10 +100,10 @@ Before Scenario
     # Open Browser                    ${url}  chrome      option = Options()
 
     # --- MAXIMIZA O NAVEGADOR FULL ---
-    # Maximize Browser Window
+    Maximize Browser Window
 
     # --- MAXIMIZA O NAVEGADOR DE ACORDO COM A RESOLUÇÃO DESEJADA ---
-    Set Window Size	1920   1080	
+    # Set Window Size	1920   1080	
 
     #INCLUSÃO DE REPETIÇÃO PARA CASO DE QUEDA DE REDE (OCORRENDO POR VEZES NO PIPELINE)
     FOR     ${x}    IN  2

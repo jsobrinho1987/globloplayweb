@@ -1166,7 +1166,7 @@ apresenta as imagens dos banner
 o trilho de "Só novelão" deve exibir
     Log      Verifica exibição do trilho de "Só novelão"
 
-    FOR    ${counter}    IN RANGE    30
+    FOR    ${counter}    IN RANGE    60
         Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
         ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_sonovelao}
@@ -1216,7 +1216,7 @@ realiza o trilho da grid de Só novelão
 o trilho de Assista Ao Vivo deve exibir
     Log      Verifica exibição do trilho de "Assista Ao Vivo"
 
-    FOR    ${counter}    IN RANGE    300
+    FOR    ${counter}    IN RANGE    60
         Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
         ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_assistavivo}
@@ -1269,8 +1269,8 @@ realiza o trilho da grid de Assista Ao Vivo
 o trilho das "Séries mais vistas" deve exibir
     Log      Verifica exibição do trilho das "Séries mais vistas"
 
-    FOR    ${counter}    IN RANGE    43
-        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN++ARROW_DOWN+ARROW_DOWN
+    FOR    ${counter}    IN RANGE    60
+        Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
         ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_seriemaisvista}
         IF    '${trilho_visivel[0]}' == 'PASS'
@@ -1386,42 +1386,40 @@ realiza o trilho da grid de Canais
 o trilho de Novidades deve exibir
     Log      Verifica exibição do trilho de Novidades
 
-    Set Viewport size    1920     1080
-
     FOR    ${counter}    IN RANGE    300
         Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
-        ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTrilho.novidade}
-        IF    '${trilho_visivel[0]}' == 'PASS'
+        ${homeTitle.title_novidade}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTrilho.novidade}
+        IF    '${homeTitle.title_novidade[0]}' == 'PASS'
             Log To Console    Trilho "Novidades" está visível.
             
             Press Keys  None  ARROW_DOWN+ARROW_DOWN
 
-            Exit For Loop If    '${trilho_visivel[0]}' == ('PASS')
+            Exit For Loop If    '${homeTitle.title_novidade[0]}' == ('PASS')
         END
         Sleep   60ms
     END
 
-    IF    '${trilho_visivel[0]}' == 'FAIL'
+    IF    '${homeTitle.title_novidade[0]}' == 'FAIL'
       Log To Console    Trilho "Novidades" não está visível.
-    END   
+    END
 
 realiza o trilho da grid de Novidades
     Log    Valida o grid do trilho de novidade
     
-      Wait Until Element Is Visible   ${homeTrilho.novidade}     30s
+      Wait Until Element Is Visible   ${homeTitle.title_novidade}     30s
    
       FOR   ${i}  IN RANGE    200
          
-         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[${i+1}]
+         ${resultado}=  BuiltIn.Run Keyword And Ignore Error    Get Text      ${homeTrilho.arrow_05}
          Run Keyword If  '${resultado[0]}' == ('PASS', None)   Sleep   2s
 
          IF    '${resultado[0]}' == 'FAIL'
 
-                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
+                ${condition}=   BuiltIn.Run Keyword And Ignore Error    Element Should be Visible    xpath://a[@href="/categorias/novidades/"]/h2[contains(.,'Novidades')]/ancestor::div[@class='offer-unit']//button[@aria-label="Próximos itens"]
                 IF  '${condition[0]}' == 'PASS'
-                      Wait Until Element Is Visible   ${homeTrilho.continua_05}     20s
-                      Press Keys  ${homeTrilho.continua_05}   ARROW_RIGHT
+                      Wait Until Element Is Visible   ${homeTrilho.arrow_05}     20s
+                      Press Keys  ${homeTrilho.arrow_05}   ARROW_RIGHT
                 ELSE
                       Log To Console    Trilho = '${i}'
                       Exit For Loop If    '${resultado[0]}' == ('FAIL')     
@@ -1440,7 +1438,7 @@ realiza o trilho da grid de Novidades
 o trilho de Estreias no +Canais deve exibir
     Log      Verifica exibição do trilho de Estreias no +Canais
 
-    FOR    ${counter}    IN RANGE    30
+    FOR    ${counter}    IN RANGE    300
         Press Keys  None  ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN+ARROW_DOWN
 
         ${trilho_visivel}=  Run Keyword And Ignore Error    Scroll Element Into View     ${homeTitle.title_estreias_canais}

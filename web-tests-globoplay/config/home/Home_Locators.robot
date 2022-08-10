@@ -23,7 +23,7 @@ ${url}=                 Get Location
 ...                     title_assistavivo=xpath://h2[contains(.,'Assista ao Vivo')]
 ...                     title_seriemaisvista=xpath://h2[contains(.,'As séries mais vistas')]
 ...                     title_canal=xpath://h2[contains(.,'CanaisVeja mais')]
-...                     title_novidade=xpath://h2[contains(.,'NovidadesVeja mais')]
+...                     title_novidade=xpath://a[@href="/categorias/novidades/"]/h2[contains(.,'Novidades')]
 ...                     title_estreias_canais=xpath://h2[contains(.,'Estreias no +Canais')]
 ...                     title_seriesquefalar=xpath://h2[contains(.,'Séries que dão o que falar')]
 ...                     title_filmesstodovendo=xpath://h2[contains(.,'Os filmes que todos estão vendo')]
@@ -57,7 +57,7 @@ ${url}=                 Get Location
 
 
 &{homeTrilho}
-...                     sonovelao=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só novelãoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
+...                     sonovelao=xpath://div[@class='page-template__offers']//div[2][@class='offer-unit']//div//a//h2[contains(.,'Só novelão')]/ancestor::div/div[@class='application-controller__layout']/div[2]/span/div/div/div/div[2]/div[2]/div/div/div[2]/button[2]/div[@class='gplay-slider__icon-container']div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só novelãoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
 ...                     continua_01=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Só novelãoVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 ...                     assistavivo=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista ao Vivo')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
 ...                     continua_02=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Assista ao Vivo')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
@@ -65,8 +65,10 @@ ${url}=                 Get Location
 ...                     continua_03=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'As séries mais vistas')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 ...                     canal=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CanaisVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
 ...                     continua_04=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'CanaisVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
-...                     novidade=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
-...                     continua_05=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'NovidadesVeja mais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
+
+...                     novidade=xpath://a[@href="/categorias/novidades/"]/h2[contains(.,'Novidades')]/ancestor::div/div
+...                     arrow_05=xpath://a[@href="/categorias/novidades/"]/h2[contains(.,'Novidades')]/ancestor::div[@class='offer-unit']//button[@aria-label="Próximos itens"]
+
 ...                     estreias_canais=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]
 ...                     continua_06=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Estreias no +Canais')]/ancestor::div/div[@class='playkit-slider__container ']/div[@class='playkit-list__next playkit-list__always-show-navigation']/div
 ...                     seriesquefalar=xpath://div[@class='playkit-container']/section[@class='playkit-slider__header']//h2[contains(.,'Séries que dão o que falar')]/ancestor::div/div[@class='playkit-slider__container ']/div[2]/div/div[1]

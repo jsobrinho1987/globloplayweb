@@ -109,8 +109,3 @@ Library          SeleniumLibrary
 ...                         AssistaAoVivo=xpath://a[contains(@aria-label,"Combate.")]
 ...                         Canais=xpath://a[@aria-label="Combate"]
 ...                         textoAssinatura=xpath://h3[text()="Combate"]
-<<<<<<< HEAD
-...                         btnAssineCombate=xpath://*[@class="open-products-card-list-modal-button"]
-=======
-...                         btnAssineCombate=xpath://*[@class="open-products-card-list-modal-button"]
->>>>>>> 94bcc07a76d2a35a68903753361268a1b01c4859

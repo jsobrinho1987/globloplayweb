@@ -40,3 +40,30 @@ Library             SeleniumLibrary
 &{MenuMinhaConta_Perfil_Logout}
 ...                     confirmar=link:Sim
 ...                     cancelar=link:Não
+
+
+*** Variables ***
+&{SubmenuAjuda}
+...                     page=class:content-account
+
+*** Variables ***
+&{SubmenuConfiguracoes}
+...                     page=class:content-account
+
+*** Variables ***
+&{SubmenuMinhaConta}
+...                     page=class:content-account
+
+*** Variables ***
+&{SubmenuMinhaLista}
+...                     page=class:page-categories_titulo
+...                     last_title_add=xpath://*[@id="row_0"]/div[1]/div
+...                     empty_list=class:empty-list
+
+*** Variables ***
+&{SubmenuSobreSuaTv}
+...                     page=class:content-account
+
+*** Variables ***
+&{SubmenuTermos_E_Politicas}
+...                     page=class:content-account

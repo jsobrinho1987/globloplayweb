@@ -39,66 +39,66 @@ Test Setup          Before Scenario
 
 #------------------------ Novos cenários | Trilhos
 
-# # Validação dos Trilhos de Originais
-# Validar exibição do trilho "Séries" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Séries"
-#   E realiza a validação do grid do trilho "Séries"
-#   E selecionar "Veja Mais"
+# Validação dos Trilhos de Originais
+Validar exibição do trilho "Séries" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Séries"
+  E realiza a validação do grid do trilho "Séries"
+  E selecionar "Veja Mais"
 
-# Validar exibição do trilho "Documentários" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Documentários"
-#   E realiza a validação do grid do trilho "Documentários"
-#   E selecionar "Veja Mais"
+Validar exibição do trilho "Documentários" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Documentários"
+  E realiza a validação do grid do trilho "Documentários"
+  E selecionar "Veja Mais"
 
-# Validar exibição do trilho "Novela" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Novela"
+Validar exibição do trilho "Novela" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Novela"
 
-# Validar exibição do trilho "Podcasts" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Podcasts"
+Validar exibição do trilho "Podcasts" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Podcasts"
 
-# Validar exibição do trilho "Música" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Música"
-#   E realiza a validação do grid do trilho "Música"
-#   E selecionar "Veja Mais"
+Validar exibição do trilho "Música" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Música"
+  E realiza a validação do grid do trilho "Música"
+  E selecionar "Veja Mais"
 
-# Validar exibição do trilho "Infantil" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Infantil"
-#   E selecionar "Veja Mais"
+Validar exibição do trilho "Infantil" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Infantil"
+  E selecionar "Veja Mais"
 
-# Validar exibição do trilho "Talk Show" com um usuário anônimo
-#   Dado que sou um usuário anônimo
-#   E que estou na home
-#   Quando clicar no menu "Explore"
-#   E selecionar "Categorias"
-#   E selecionar "Originais"
-#   Então devo conseguir localizar o trilho "Talk Show"
+Validar exibição do trilho "Talk Show" com um usuário anônimo
+  Dado que sou um usuário anônimo
+  E que estou na home
+  Quando clicar no menu "Explore"
+  E selecionar "Categorias"
+  E selecionar "Originais"
+  Então devo conseguir localizar o trilho "Talk Show"

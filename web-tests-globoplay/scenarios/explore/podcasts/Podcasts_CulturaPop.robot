@@ -13,13 +13,13 @@ Test Setup          Before Scenario
 Test Teardown       After Scenario
 
 *** Test Cases ***
-# Acessar explore Podcasts com usuário anônimo
-#     Dado que sou um usuário anônimo
-#     E que estou na home
-#     Quando seleciona o menu Explore
-#     E direciona para a página do Explore
-#     Quando seleciona a aba "Podcasts"
-#     E apresenta as opções disponiveis do podcasts
+Acessar explore Podcasts com usuário anônimo
+    Dado que sou um usuário anônimo
+    E que estou na home
+    Quando seleciona o menu Explore
+    E direciona para a página do Explore
+    Quando seleciona a aba "Podcasts"
+    E apresenta as opções disponiveis do podcasts
 
 # ACESSO CENÁRIOS PODCASTS CULTURA POP
 
